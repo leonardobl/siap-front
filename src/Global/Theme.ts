@@ -1,25 +1,29 @@
 export const Theme = {
   colors: {
-    c12: "#000000",
-    c11: "#111111",
-    c10: "#2D2D2D",
-    c09: "#404040",
-    c08: "#595959",
-    c07: "#717171",
-    c06: "#9C9C9C",
-    c05: "#B2B2B2",
-    c04: "#CCCCCC",
-    c03: "#DEDEDE",
-    c02: "#EEEEEE",
-    c01: "#F7F7F7",
-    w: "#FFFFFF",
-    a4: "#01114C",
-    a3: "#00186E",
-    a2: "#0029BF",
-    a1: "#286BED",
+    white: "#fff",
+    black: "#111",
+    "gray-100": "#F6F6F6;",
+    "gray-200": "#9d9d9d;",
+    "gray-300": "#5D7281",
+    green: "#237C54",
+    "blue-100": "#2082E3",
+    "blue-200": "#0B6884",
+    "blue-300": "#0B4A89",
   },
-  space: {
-    large: "1600px",
-    medio: "1158px",
+  screens: {
+    sm: "640px",
+    // => @media (min-width: 640px) { ... }
+
+    md: "768px",
+    // => @media (min-width: 768px) { ... }
+
+    lg: "1024px",
+    // => @media (min-width: 1024px) { ... }
+
+    xl: "1280px",
+    // => @media (min-width: 1280px) { ... }
+
+    "2xl": "1536px",
+    // => @media (min-width: 1536px) { ... }
   },
 };
