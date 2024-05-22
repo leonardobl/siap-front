@@ -8,8 +8,8 @@ import {
 } from "react";
 
 import { IAuth } from "./types";
-import { Loading } from "../components/Atoms/Loading";
-import { useSessionStorage } from "../hooks/useSessionStorage";
+import { Loading } from "../Components/Atoms/Loading";
+import { useSessionStorage } from "../Hooks/useSessionStorage";
 
 type ContextSite = {
   isLoad: boolean;

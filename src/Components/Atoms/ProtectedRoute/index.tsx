@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Navigate } from "react-router-dom";
-import { useSessionStorage } from "../../../hooks/useSessionStorage";
+import { useSessionStorage } from "../../../Hooks/useSessionStorage";
 
 export const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   // const { isAuth } = useContextSite();

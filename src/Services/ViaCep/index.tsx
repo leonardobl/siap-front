@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { IViaCepV2 } from "../../types/viaCep";
+import { IViaCepV2 } from "../../Types/viaCep";
 import { ApiViaCep } from "../../Apis/ViaCepApi";
 
 export class ViaCep {

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { ApiIbge } from "../../Apis/Ibge";
-import { IEstado, IUFS } from "../../types/ibge";
+import { IEstado, IUFS } from "../../Types/ibge";
 
 export class Ibge {
   static async UFs(): Promise<AxiosResponse<IUFS[]>> {

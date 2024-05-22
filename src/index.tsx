@@ -4,10 +4,10 @@ import ReactDOM from "react-dom/client";
 import { GlobalStyles } from "./Global/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import { Theme } from "./Global/Theme";
-import { Home } from "./components/Pages/home";
+import { Home } from "./Components/Pages/home";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { ContextProvider } from "./context/Context";
+import { ContextProvider } from "./Context/Context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
