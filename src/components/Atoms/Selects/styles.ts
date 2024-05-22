@@ -1,13 +1,16 @@
 import styled, { css } from "styled-components";
 
-export const Container = styled.div<{ $isLabel: boolean }>`
-  ${({ $isLabel }) => css`
-    font-family: "Roboto";
+export const Container = styled.div<{
+  $isLabel: boolean;
+  $variantSearch?: boolean;
+}>`
+  ${({ $isLabel, $variantSearch }) => css`
+    font-family: "Mulish";
 
     position: relative;
 
     input {
-      height: 36px;
+      height: 42px;
     }
 
     .css-1u9des2-indicatorSeparator {
@@ -16,15 +19,21 @@ export const Container = styled.div<{ $isLabel: boolean }>`
 
     .css-1h06qz8-control,
     .css-13cymwt-control {
-      border-color: #266bf0;
+      border-color: #12d1a7;
+      background: #f7f7f7;
+    }
+
+    .css-894a34-indicatorSeparator {
+      display: none;
     }
 
     .css-1h06qz8-control:hover,
     .css-13cymwt-control:hover {
-      border-color: #266bf0;
+      border-color: #12d1a7;
     }
 
-    .css-lm8j94-menu {
+    .css-lm8j94-menu,
+    .css-gfh3go-menu {
       z-index: 2;
     }
 
@@ -32,8 +41,12 @@ export const Container = styled.div<{ $isLabel: boolean }>`
       display: ${$isLabel ? "none" : "block"};
     }
 
+    svg {
+      cursor: pointer;
+    }
+
     svg path {
-      fill: #266bf0;
+      fill: #111;
     }
   `}
 `;
@@ -41,28 +54,33 @@ export const Container = styled.div<{ $isLabel: boolean }>`
 export const Label = styled.label`
   position: absolute;
   z-index: 1;
-  top: -10px;
-  left: 10px;
-  background-color: #fff;
-  display: block;
-  padding: 2px 5px;
+  top: -8px;
+  left: 24px;
+  background: linear-gradient(to top, #fff 50%, transparent 50%);
+
+  display: flex;
+  padding: 0 5px;
 
   color: rgba(0, 0, 0, 0.56);
-  font-family: "Roboto";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+
+  &[data-variant-modal="true"] {
+    background: #e1f2ee;
+  }
 `;
 
 export const Required = styled.span<{ $isRequired: boolean }>`
   color: rgba(237, 0, 0, 1);
-  position: absolute;
-  padding-right: 5px;
-  background-color: #fff;
-  z-index: 1;
-  top: 3px;
-  font-size: 16px;
-  right: -10px;
   display: ${({ $isRequired }) => ($isRequired ? "block" : "none")};
+`;
+
+export const IconSearch = styled.img`
+  position: absolute;
+  top: 50%;
+  display: block;
+  transform: translateY(-50%);
+  left: 20px;
 `;

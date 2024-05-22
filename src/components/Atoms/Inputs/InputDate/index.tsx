@@ -1,29 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import DatePicker, { ReactDatePickerProps } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import ptBR from "date-fns/locale/pt-BR";
-import ReactDatePicker, { registerLocale } from "react-datepicker";
+import { registerLocale } from "react-datepicker";
+import { ptBR } from "date-fns/locale";
 
 interface InputDateProps extends ReactDatePickerProps {
   label?: string;
+  isLoading?: boolean;
 }
 
 export const InputDate = (props: InputDateProps) => {
   registerLocale("ptBR", ptBR);
 
   return (
-    <S.Container>
+    <S.Container $showIcon={props.showIcon}>
       {props.label && (
         <S.Label>
           {props.label}
           <S.Required $isRequired={!!props.required}>*</S.Required>
         </S.Label>
       )}
+      {props.isLoading && (
+        <S.ImgLoad src="/assets/svgs/dots-load.svg" alt="svg load" />
+      )}
       <DatePicker
+        {...props}
+        disabled={props.isLoading ? true : props.disabled}
+        placeholderText={props.isLoading ? "" : props.placeholderText}
+        // selected={value ? value : props.selected}
+        onChange={(e, v) => {
+          props.onChange(e, v);
+        }}
         renderCustomHeader={({ monthDate, decreaseMonth, increaseMonth }) => (
           <div className="react-datepicker__navigation_wrapper">
             <button
+              type="button"
               aria-label="Previous Month"
               className={
                 "react-datepicker__navigation react-datepicker__navigation--previous"
@@ -45,6 +57,7 @@ export const InputDate = (props: InputDateProps) => {
               })}
             </span>
             <button
+              type="button"
               aria-label="Next Month"
               className={
                 "react-datepicker__navigation react-datepicker__navigation--next"
@@ -66,37 +79,17 @@ export const InputDate = (props: InputDateProps) => {
         icon={
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="22"
-            viewBox="0 0 22 22"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
             fill="none"
           >
-            <g clip-path="url(#clip0_265_3920)">
-              <path
-                d="M11 9.38235C14.5588 9.38235 18.1176 9.38235 21.6765 9.38235C22 9.38235 22 9.38235 22 9.70588C22 12.9412 22 16.3382 22 19.5735C22 20.8676 21.0294 22 19.5735 22C13.75 22 8.08823 22 2.26471 22C0.970588 22 0 21.0294 0 19.7353C0 16.5 0 13.1029 0 9.86765C0 9.54412 0 9.54412 0.323529 9.54412C3.88235 9.38235 7.44118 9.38235 11 9.38235Z"
-                fill="#00186D"
-              />
-              <path
-                d="M16.5 2.42647C17.6324 2.42647 18.6029 2.42647 19.7353 2.42647C21.0294 2.42647 22 3.39706 22 4.69118C22 5.66177 22 6.63236 22 7.60294C22 7.76471 22 7.92647 21.6765 7.92647C14.5588 7.92647 7.44118 7.92647 0.161765 7.92647C0 7.92647 0 7.76471 0 7.60294C0 6.63236 0 5.5 0 4.52942C0 3.39706 0.970588 2.26471 2.26471 2.26471C3.39706 2.26471 4.52941 2.26471 5.5 2.26471C5.5 3.2353 5.5 4.36765 5.5 5.33824C5.5 5.82353 5.82353 6.14706 6.30882 6.14706C6.79412 6.14706 7.11765 5.82353 7.11765 5.33824C7.11765 4.36765 7.11765 3.2353 7.11765 2.26471C9.70588 2.26471 12.2941 2.26471 14.8824 2.26471C14.8824 3.2353 14.8824 4.20589 14.8824 5.33824C14.8824 5.5 14.8824 5.66177 15.0441 5.82353C15.2059 6.14706 15.5294 6.14706 15.8529 6.14706C16.1765 5.9853 16.3382 5.82353 16.3382 5.33824C16.5 4.36765 16.5 3.39706 16.5 2.42647Z"
-                fill="#00186D"
-              />
-              <path
-                d="M5.5 2.42647C5.5 1.94118 5.5 1.29412 5.5 0.808824C5.5 0.323529 5.82353 0 6.30882 0C6.79412 0 7.11765 0.323529 7.11765 0.808824C7.11765 1.29412 7.11765 1.94118 7.11765 2.42647C6.63235 2.42647 5.98529 2.42647 5.5 2.42647Z"
-                fill="#00186D"
-              />
-              <path
-                d="M14.8823 2.42647C14.8823 1.94118 14.8823 1.45588 14.8823 0.970588C14.8823 0.323529 15.2059 0 15.6911 0C16.1764 0 16.5 0.323529 16.5 0.808824C16.5 1.29412 16.5 1.77941 16.5 2.26471C16.0147 2.42647 15.5294 2.42647 14.8823 2.42647Z"
-                fill="#00186D"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_265_3920">
-                <rect width="22" height="22" fill="white" />
-              </clipPath>
-            </defs>
+            <path
+              d="M16.2 1.2H14.4V0.6C14.4 0.268652 14.1313 0 13.8 0C13.4687 0 13.2 0.268652 13.2 0.6V1.2H4.8V0.6C4.8 0.268652 4.53135 0 4.2 0C3.86865 0 3.6 0.268652 3.6 0.6V1.2H1.8C0.807422 1.2 0 2.00742 0 3V16.2C0 17.1926 0.807422 18 1.8 18H16.2C17.1926 18 18 17.1926 18 16.2V3C18 2.00742 17.1926 1.2 16.2 1.2ZM1.8 2.4H3.6C3.6 2.73135 3.86865 3 4.2 3C4.53135 3 4.8 2.73135 4.8 2.4H13.2C13.2 2.73135 13.4687 3 13.8 3C14.1313 3 14.4 2.73135 14.4 2.4H16.2C16.5308 2.4 16.8 2.66924 16.8 3V4.8H1.2V3C1.2 2.66924 1.46924 2.4 1.8 2.4ZM16.2 16.8H1.8C1.46924 16.8 1.2 16.5308 1.2 16.2V6H16.8V16.2C16.8 16.5308 16.5308 16.8 16.2 16.8ZM5.4 8.4C5.4 8.73135 5.13135 9 4.8 9H3.6C3.26865 9 3 8.73135 3 8.4C3 8.06865 3.26865 7.8 3.6 7.8H4.8C5.13135 7.8 5.4 8.06865 5.4 8.4ZM10.2 8.4C10.2 8.73135 9.93135 9 9.6 9H8.4C8.06865 9 7.8 8.73135 7.8 8.4C7.8 8.06865 8.06865 7.8 8.4 7.8H9.6C9.93135 7.8 10.2 8.06865 10.2 8.4ZM15 8.4C15 8.73135 14.7313 9 14.4 9H13.2C12.8687 9 12.6 8.73135 12.6 8.4C12.6 8.06865 12.8687 7.8 13.2 7.8H14.4C14.7313 7.8 15 8.06865 15 8.4ZM5.4 11.4C5.4 11.7313 5.13135 12 4.8 12H3.6C3.26865 12 3 11.7313 3 11.4C3 11.0687 3.26865 10.8 3.6 10.8H4.8C5.13135 10.8 5.4 11.0687 5.4 11.4ZM5.4 14.4C5.4 14.7313 5.13135 15 4.8 15H3.6C3.26865 15 3 14.7313 3 14.4C3 14.0687 3.26865 13.8 3.6 13.8H4.8C5.13135 13.8 5.4 14.0687 5.4 14.4ZM10.2 11.4C10.2 11.7313 9.93135 12 9.6 12H8.4C8.06865 12 7.8 11.7313 7.8 11.4C7.8 11.0687 8.06865 10.8 8.4 10.8H9.6C9.93135 10.8 10.2 11.0687 10.2 11.4ZM10.2 14.4C10.2 14.7313 9.93135 15 9.6 15H8.4C8.06865 15 7.8 14.7313 7.8 14.4C7.8 14.0687 8.06865 13.8 8.4 13.8H9.6C9.93135 13.8 10.2 14.0687 10.2 14.4ZM15 11.4C15 11.7313 14.7313 12 14.4 12H13.2C12.8687 12 12.6 11.7313 12.6 11.4C12.6 11.0687 12.8687 10.8 13.2 10.8H14.4C14.7313 10.8 15 11.0687 15 11.4ZM15 14.4C15 14.7313 14.7313 15 14.4 15H13.2C12.8687 15 12.6 14.7313 12.6 14.4C12.6 14.0687 12.8687 13.8 13.2 13.8H14.4C14.7313 13.8 15 14.0687 15 14.4Z"
+              fill="#E84E1B"
+            />
           </svg>
         }
-        {...props}
       />
     </S.Container>
   );
