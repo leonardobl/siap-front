@@ -63,14 +63,14 @@ export const Label = styled.label`
   &:has(> input:focus),
   &[data-variant-filed="true"] {
     > p {
-      top: -10px;
+      top: -7px;
     }
   }
 `;
 
 export const Input = styled.input`
   width: 100%;
-  height: 2.625rem;
+  height: 36px;
   border-radius: 0.25rem;
   border: 0.5px solid ${(props) => props.theme.colors["gray-200"]};
   background: #fff;
