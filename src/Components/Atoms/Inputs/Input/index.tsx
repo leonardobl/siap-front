@@ -7,44 +7,17 @@ interface InputCustomProps extends ComponentProps<"input"> {
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputCustomProps>(
-  ({ placeholder, ...rest }: InputCustomProps, ref) => {
-    const [eyeOpen, setEyeOpen] = useState(false);
-
-    function handleTypeChange() {
-      setEyeOpen((prev) => !prev);
-    }
-
+  (props: InputCustomProps, ref) => {
     return (
-      <S.Label htmlFor={rest.id} data-variant-filed={!!rest?.value}>
-        {rest?.label && (
-          <p>
-            {rest?.label} {!!rest?.required && <span>*</span>}{" "}
-          </p>
+      <S.Container>
+        <S.MyInput {...props} ref={ref} placeholder={" "} />
+        {props?.label && (
+          <S.MyLabel htmlFor={props.id}>
+            {props.label}
+            {props.required && <span id="asterisk">*</span>}
+          </S.MyLabel>
         )}
-
-        <S.Input
-          {...rest}
-          type={eyeOpen ? "text" : rest.type}
-          onWheel={(event) => event.currentTarget.blur()}
-          required={false}
-          ref={ref}
-        />
-        {rest.type === "password" ? (
-          eyeOpen ? (
-            <img
-              src="/assets/svg/icon-eye-open.svg"
-              alt="icone olho"
-              onClick={handleTypeChange}
-            />
-          ) : (
-            <img
-              src="/assets/svg/icon-eye-close.svg"
-              alt="icone olho"
-              onClick={handleTypeChange}
-            />
-          )
-        ) : null}
-      </S.Label>
+      </S.Container>
     );
   }
 );
