@@ -32,15 +32,13 @@ export const customSelectStyles = {
   }),
   singleValue: (provided: any, state: any) => ({
     ...provided,
-    color: "#111",
+    color: "#2082E3",
   }),
 
   option: (styles: any, { isFocused, isSelected }: any) => ({
     // ...styles,
-    backgroundColor: isFocused
-      ? lighten(0.4, colors["blue-100"])
-      : "transparent",
-    color: "#111",
+    backgroundColor: isFocused ? colors["blue-100"] : "transparent",
+    color: isFocused ? colors.white : colors["blue-100"],
     fontSize: "12px",
     zindex: 2,
     padding: "10px 20px",
