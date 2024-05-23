@@ -8,7 +8,6 @@ import { ptBR } from "date-fns/locale";
 interface InputDateProps extends ReactDatePickerProps {
   label?: string;
   "data-error"?: boolean;
-  isLoading?: boolean;
 }
 
 export const InputDate = (props: InputDateProps) => {
@@ -16,20 +15,10 @@ export const InputDate = (props: InputDateProps) => {
 
   return (
     <S.Container $showIcon={props.showIcon}>
-      {props.label && (
-        <S.Label className={props?.["data-error"] ? "data-error" : ""}>
-          {props.label}
-          <S.Required $isRequired={!!props.required}>*</S.Required>
-        </S.Label>
-      )}
-      {props.isLoading && (
-        <S.ImgLoad src="/assets/svgs/dots-load.svg" alt="svg load" />
-      )}
       <DatePicker
         {...props}
         className={props?.["data-error"] ? "data-error" : ""}
-        disabled={props.isLoading ? true : props.disabled}
-        placeholderText={props.isLoading ? "" : props.placeholderText}
+        placeholderText={""}
         // selected={value ? value : props.selected}
         onChange={(e, v) => {
           props.onChange(e, v);
@@ -121,6 +110,12 @@ export const InputDate = (props: InputDateProps) => {
           </svg>
         }
       />
+      {props.label && (
+        <S.Label className={props?.["data-error"] ? "data-error" : ""}>
+          {props.label}
+          <S.Required $isRequired={!!props.required}>*</S.Required>
+        </S.Label>
+      )}
     </S.Container>
   );
 };

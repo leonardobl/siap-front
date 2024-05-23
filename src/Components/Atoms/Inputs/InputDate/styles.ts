@@ -4,6 +4,18 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
   ${({ $showIcon }) => css`
     position: relative;
 
+    &:has(input:focus) {
+      label {
+        top: -2px;
+      }
+    }
+
+    &:has(input:not(:placeholder-shown)) {
+      label {
+        top: -2px;
+      }
+    }
+
     .react-datepicker-popper {
       z-index: 2;
     }
@@ -105,8 +117,9 @@ export const Required = styled.span<{ $isRequired: boolean }>`
 export const Label = styled.label`
   position: absolute;
   z-index: 1;
-  top: -9px;
+  top: 50%;
   left: 12px;
+  transform: translateY(-50%);
   background: linear-gradient(to top, #fff 50%, transparent 50%);
   display: flex;
 
@@ -117,6 +130,7 @@ export const Label = styled.label`
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+  transition: all 0.2s ease-in-out;
 
   &.data-error {
     color: red;

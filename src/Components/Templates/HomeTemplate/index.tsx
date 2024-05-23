@@ -26,10 +26,12 @@ export const HomeTemplate = () => {
       </div>
 
       <br /> */}
+      <br />
 
       <div style={{ width: "400px" }}>
         <InputDate
           showIcon
+          required
           onChange={setData}
           selected={data}
           label="Testset"
