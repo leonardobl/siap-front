@@ -21,13 +21,23 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
 
     .react-datepicker-wrapper {
       min-width: 100%;
+      position: relative;
 
       svg {
         right: 4px;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 24px;
       }
+    }
+
+    .react-datepicker-wrapper::before {
+      position: absolute;
+      z-index: 1;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      content: url("/assets/svg/left-bar.svg");
+      display: block;
     }
 
     .react-datepicker {
@@ -38,11 +48,13 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
       &::after {
         background-color: transparent;
         color: ${(props) => props.theme.colors["gray-300"]};
-        font-size: 21px;
+        font-size: 16px;
         position: absolute;
-        font-weight: 900;
-        right: ${$showIcon ? "50px" : "10px"};
-        bottom: 20px;
+        /* font-weight: 600; */
+        right: ${$showIcon ? "46px" : "10px"};
+        /* bottom: 20px; */
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
 
@@ -50,15 +62,15 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
       input {
         width: 100%;
 
-        height: 2.625rem;
-        border-radius: 0.25rem;
+        height: 36px;
+        border-radius: 12px;
         border: 0.5px solid ${(props) => props.theme.colors["gray-200"]};
         background: #fff;
 
-        padding: 0 30px;
-        color: ${(props) => props.theme.colors["gray-300"]};
-        font-size: 16px;
-        font-weight: 600;
+        padding: 0 16px;
+        color: ${(props) => props.theme.colors["gray-200"]};
+        font-size: 14px;
+        font-weight: 400;
 
         &:focus {
           /* outline: 1px solid #12d1a7; */
@@ -68,6 +80,10 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
         &:disabled {
           cursor: not-allowed;
         }
+      }
+
+      .data-error {
+        border: 1px solid red;
       }
     }
 
@@ -89,19 +105,22 @@ export const Required = styled.span<{ $isRequired: boolean }>`
 export const Label = styled.label`
   position: absolute;
   z-index: 1;
-  top: -10px;
-  left: 24px;
+  top: -9px;
+  left: 12px;
   background: linear-gradient(to top, #fff 50%, transparent 50%);
   display: flex;
 
-  padding: 2px 5px;
-  font-family: "Open Sans";
+  padding: 0 4px;
   color: rgba(0, 0, 0, 0.56);
 
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+
+  &.data-error {
+    color: red;
+  }
 `;
 
 export const ImgLoad = styled.img`
