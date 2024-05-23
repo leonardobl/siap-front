@@ -1,15 +1,16 @@
 import React, { Ref } from "react";
 import * as S from "../styles";
-import { lighten } from "polished";
 
 import Select, {
   GroupBase,
+  PlaceholderProps,
   Props,
   SelectInstance,
   components,
 } from "react-select";
 import { IoCloseOutline } from "react-icons/io5";
-import { Theme } from "../../../../Global/Theme";
+
+import { customSelectStyles } from "../CustomSelectStyles";
 
 export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
   function ReactSelect<
@@ -20,9 +21,6 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
     props: Props<Option, IsMulti, Group>,
     ref: Ref<SelectInstance<Option, IsMulti, Group>>
   ) {
-    const myVariant = props.variant;
-    const colors = Theme.colors;
-
     const ClearIndicator = (props) => {
       return (
         components.DropdownIndicator && (
@@ -37,77 +35,6 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
           </components.ClearIndicator>
         )
       );
-    };
-
-    const customStyles = {
-      control: (base: any, state: { isFocused: any }) => ({
-        ...base,
-        // background: myVariant === "modal" ? "#E1F2EE" : "#fff",
-        background: "#fff",
-
-        // match with the menu
-        borderRadius: 10,
-        // letterSpacing: 10,
-
-        padding: "0 20px",
-        fontFamily: "Mulish",
-        // color: state.isSelected ? "red" : "blue",
-        // Overwrittes the different states of border
-        borderColor: colors["gray-200"],
-        // fontWeight: 600,
-        // Removes weird border around container
-        boxShadow: state.isFocused ? null : null,
-        "&:hover": {
-          // Overwrittes the different states of border
-          borderColor: colors["gray-200"],
-        },
-      }),
-
-      menu: (base: any, state: any) => ({
-        ...base,
-        // override border radius to match the box
-        width: "100%",
-        // kill the gap
-        // marginTop: 0,
-        zIndex: 2,
-      }),
-      menuList: (base: any, state: any) => ({
-        ...base,
-        // kill the white space on first and last option
-        // padding: 0,
-
-        borderRadius: 10,
-        borderColor: colors["gray-200"],
-      }),
-      singleValue: (provided: any, state: any) => ({
-        ...provided,
-        color: "#111",
-      }),
-
-      option: (styles: any, { isFocused, isSelected }: any) => ({
-        // ...styles,
-        backgroundColor: isFocused
-          ? lighten(0.4, colors["blue-100"])
-          : "transparent",
-        color: "#111",
-        // fontWeight: 600,
-        // letterSpacing: 1,
-        zindex: 2,
-        padding: "10px 20px",
-        cursor: "pointer",
-        // paddingLeft: "20px",
-        fontFamily: "Mulish",
-      }),
-      valueContainer: (provided: any, state: any) => ({
-        ...provided,
-      }),
-
-      dropdownIndicator: (base, state) => {
-        let changes = {
-          padding: 0,
-        };
-        return Object.assign(base, changes);
-      },
     };
 
     const DropdownIndicator = (props) => {
@@ -134,24 +61,22 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
     };
 
     return (
-      <S.Container $isLabel={!!props.label}>
-        {props.label && (
-          <S.Label
-            data-variant-modal={myVariant === "modal"}
-            htmlFor={props.inputId}
-          >
-            {props.label}{" "}
-            <S.Required $isRequired={!!props.required}>*</S.Required>
-          </S.Label>
-        )}
+      <S.Container>
         <Select
           {...props}
-          name={props.name}
           ref={ref}
+          placeholder={""}
           components={{ DropdownIndicator, ClearIndicator }}
-          theme={(theme) => ({ ...theme, borderRadius: 10 })}
-          styles={customStyles}
+          className="react-select-container"
+          classNamePrefix="react-select"
+          styles={customSelectStyles}
         />
+        {props?.label && (
+          <S.Label htmlFor={props.inputId}>
+            {props.label}
+            {props.required && <S.Required>*</S.Required>}
+          </S.Label>
+        )}
       </S.Container>
     );
   }

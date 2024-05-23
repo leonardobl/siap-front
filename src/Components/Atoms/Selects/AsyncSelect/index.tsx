@@ -105,11 +105,11 @@ export function AsyncSimpleSelect<
   };
 
   return (
-    <S.Container $isLabel={!!props.label} $variantSearch={!!myVariant}>
+    <S.Container>
       {props.label && (
         <S.Label>
-          {props.label}{" "}
-          <S.Required $isRequired={!!props.required}>*</S.Required>
+          {props.label}
+          {props?.required && <S.Required>*</S.Required>}
         </S.Label>
       )}
       <AsyncSelect
