@@ -1,4 +1,3 @@
-import { lighten } from "polished";
 import { Theme } from "../../../Global/Theme";
 
 const colors = Theme.colors;
@@ -38,7 +37,7 @@ export const customSelectStyles = {
   option: (styles: any, { isFocused, isSelected }: any) => ({
     // ...styles,
     backgroundColor: isFocused ? colors["blue-100"] : "transparent",
-    color: isFocused ? colors.white : colors["blue-100"],
+    color: isFocused ? colors.white : colors["gray-200"],
     fontSize: "12px",
     zindex: 2,
     padding: "10px 20px",
