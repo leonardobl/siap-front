@@ -24,12 +24,6 @@ export const HomeTemplate = () => {
   return (
     <div>
       <div>HomeTemplate</div>
-
-      <br />
-
-      <div style={{ width: "400px" }}>
-        <SimpleSelect label="Leonardo" options={data} required isClearable />
-      </div>
     </div>
   );
 };
