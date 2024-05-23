@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { useFormLogin } from "./useFormLogin";
 import { InputLogin } from "../../Atoms/Inputs/InputLogin";
 import { ErrorMessage } from "../../Atoms/ErrorMessage";
+import { Button } from "../../Atoms/Button";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
   submiteForm: (data) => void;
@@ -38,7 +39,9 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
           />
           {errors?.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
         </div>
-        <button>enviar</button>
+        <div>
+          <Button iconLeft="/assets/svg/icon-plus.svg">Avançar</Button>
+        </div>
       </S.Grid>
     </S.MyFormLogin>
   );
