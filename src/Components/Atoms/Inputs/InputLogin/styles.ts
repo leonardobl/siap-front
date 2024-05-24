@@ -23,19 +23,15 @@ export const Input = styled.input`
   height: 36px;
   border-radius: 12px;
   outline: none;
-  border: 1px solid ${(props) => props.theme.colors["gray-200"]};
+  border: none;
 
   width: 100%;
   height: 36px;
-  border-radius: 12px;
-  /* border: 0.5px solid ${(props) => props.theme.colors["gray-200"]}; */
-  border: none;
   background: #fff;
   padding: 0 30px 0 16px;
   font-size: 14px;
   font-weight: 400;
   color: ${(props) => props.theme.colors["blue-100"]};
-
   letter-spacing: 1;
 
   &[type="number"]::-webkit-inner-spin-button {

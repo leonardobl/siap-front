@@ -14,13 +14,14 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
 
   return (
     <S.MyFormLogin {...rest} onSubmit={handleSubmit(submiteForm)}>
-      <img src="/assets/img/logo-siap-white.png" alt="logo siap" />
-
+      <img id="fundo" src="/assets/img/fundo.png" alt="background" />
+      <img id="logo" src="/assets/svg/logo-siap-white.svg" alt="logo siap" />
       <S.Grid>
         <div>
           <InputLogin
             {...register("cpfCnpj")}
             placeholder="CPF/CNPJ"
+            maxLength={18}
             iconLeft="/assets/svg/icon-avatar.svg"
             data-error={!!errors?.cpfCnpj?.message}
           />
