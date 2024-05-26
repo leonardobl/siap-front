@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import { InputCustomProps } from "../../../../Types/inputs";
 
 export const Container = styled.div`
   position: relative;
 `;
 
-export const MyInput = styled.input`
+export const MyInput = styled.input<InputCustomProps>`
   height: 36px;
   border-radius: 12px;
   outline: none;
   border: 1px solid ${(props) => props.theme.colors["gray-200"]};
 
   &::placeholder {
-    color: transparent;
+    color: ${(props) => (props.placeholder ? "" : "transparent")};
   }
 
   &:focus + label {

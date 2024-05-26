@@ -3,10 +3,11 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./Global/GlobalStyles";
 import { ContextProvider } from "./Context/Context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./Components/Pages/home";
+import { Home } from "./Components/Pages/Home";
 import { Theme } from "./Global/Theme";
 import { Login } from "./Components/Pages/Login";
 import "react-toastify/dist/ReactToastify.css";
+import { UserRegister } from "./Components/Pages/UserRegister";
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="login" element={<Login />} />
+            <Route path="cadastro-usuario" element={<UserRegister />} />
           </Routes>
         </BrowserRouter>
       </ContextProvider>

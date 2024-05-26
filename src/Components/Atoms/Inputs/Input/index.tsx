@@ -1,16 +1,12 @@
-import React, { ComponentProps, useState } from "react";
+import React from "react";
 import * as S from "./styles";
-
-interface InputCustomProps extends ComponentProps<"input"> {
-  label?: string;
-  required?: boolean;
-}
+import { InputCustomProps } from "../../../../Types/inputs";
 
 export const Input = React.forwardRef<HTMLInputElement, InputCustomProps>(
   (props: InputCustomProps, ref) => {
     return (
       <S.Container>
-        <S.MyInput {...props} ref={ref} placeholder={" "} />
+        <S.MyInput {...props} ref={ref} placeholder={props.placeholder || ""} />
         {props?.label && (
           <S.MyLabel htmlFor={props.id}>
             {props.label}
