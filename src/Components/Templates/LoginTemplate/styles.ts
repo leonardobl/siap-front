@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MyContainer = styled.div`
-  min-height: 100dvh;
+  min-height: 100vh;
   width: 100%;
   max-width: ${(props) => props.theme.screens["2xl"]};
   margin: 0 auto;

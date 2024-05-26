@@ -3,10 +3,11 @@ import * as S from "./styles";
 import { useFormLogin } from "./useFormLogin";
 import { InputLogin } from "../../Atoms/Inputs/InputLogin";
 import { ErrorMessage } from "../../Atoms/ErrorMessage";
-import { Button } from "../../Atoms/Button";
+import { Link } from "react-router-dom";
+import { IAutenticacaoForm } from "../../../Types/autenticacao";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
-  submiteForm: (data) => void;
+  submiteForm: (data: IAutenticacaoForm) => void;
 }
 
 export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
@@ -19,14 +20,14 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
       <S.Grid>
         <div>
           <InputLogin
-            {...register("cpfCnpj")}
+            {...register("cpfCNPJ")}
             placeholder="CPF/CNPJ"
             maxLength={18}
             iconLeft="/assets/svg/icon-avatar.svg"
-            data-error={!!errors?.cpfCnpj?.message}
+            data-error={!!errors?.cpfCNPJ?.message}
           />
-          {errors?.cpfCnpj && (
-            <ErrorMessage>{errors.cpfCnpj.message}</ErrorMessage>
+          {errors?.cpfCNPJ && (
+            <ErrorMessage>{errors.cpfCNPJ.message}</ErrorMessage>
           )}
         </div>
 
@@ -40,8 +41,19 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
           />
           {errors?.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
         </div>
+
         <div>
-          <Button iconLeft="/assets/svg/icon-plus.svg">Avançar</Button>
+          <S.ButtonEnter>Entrar</S.ButtonEnter>
+        </div>
+
+        <div>
+          <S.ButtonRegister>Cadastrar</S.ButtonRegister>
+        </div>
+
+        <div>
+          <Link to={"/esqueceu-senha"} id="forgot">
+            Esqueceu sua senha?
+          </Link>
         </div>
       </S.Grid>
     </S.MyFormLogin>

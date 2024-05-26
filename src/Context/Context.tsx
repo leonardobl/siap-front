@@ -7,9 +7,7 @@ import {
   useState,
 } from "react";
 
-import { IAuth } from "./types";
 import { Loading } from "../Components/Atoms/Loading";
-import { useSessionStorage } from "../Hooks/useSessionStorage";
 
 type ContextSite = {
   isLoad: boolean;

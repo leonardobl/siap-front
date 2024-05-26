@@ -28,7 +28,7 @@ export const MyInput = styled.input`
   border: 0.5px solid ${(props) => props.theme.colors["gray-200"]};
   background: #fff;
   padding: 0 30px 0 16px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   color: ${(props) => props.theme.colors["blue-100"]};
 

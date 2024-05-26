@@ -1,9 +1,6 @@
-import React, { ComponentProps } from "react";
+import React from "react";
 import * as S from "./styles";
-
-interface IButtonProps extends ComponentProps<"button"> {
-  iconLeft?: string;
-}
+import { IButtonProps } from "../../../Types/button";
 
 export const Button = (props: IButtonProps) => {
   return (

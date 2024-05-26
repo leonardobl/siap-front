@@ -5,10 +5,12 @@ export const Label = styled.label`
 
   > img#icon-eye {
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-50%);
-    right: 16px;
+    right: 10px;
     cursor: pointer;
+    padding: 5px;
+    display: block;
   }
 
   > img#icon-left {
@@ -16,6 +18,7 @@ export const Label = styled.label`
     top: 50%;
     transform: translateY(-50%);
     left: 16px;
+    display: block;
   }
 `;
 
@@ -29,7 +32,7 @@ export const Input = styled.input`
   height: 36px;
   background: #fff;
   padding: 0 30px 0 16px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   color: ${(props) => props.theme.colors["blue-100"]};
   letter-spacing: 1;
