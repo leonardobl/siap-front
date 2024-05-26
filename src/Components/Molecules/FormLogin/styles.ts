@@ -4,7 +4,6 @@ export const MyFormLogin = styled.form`
   padding: 50px 22px;
   position: relative;
   width: 312px;
-  margin: 0 auto;
 
   > img#logo {
     display: block;
@@ -101,4 +100,36 @@ export const ButtonRegister = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+`;
+
+export const ContentModal = styled.div`
+  background-color: ${(props) => props.theme.colors["blue-100"]};
+  padding: 16px;
+  width: 311px;
+
+  > img#icon-close {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 28px;
+    cursor: pointer;
+  }
+
+  > p {
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 12px;
+    margin-bottom: 28px;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  > div.wrapperBtns {
+    display: flex;
+    justify-content: space-between;
+  }
 `;

@@ -8,12 +8,14 @@ export const LoginTemplate = () => {
 
   return (
     <S.MyContainer>
-      <S.MyTitle>
-        Olá, <span></span>Bem vindo(a)
-      </S.MyTitle>
-      <S.MyText>
-        Preencha o formulário <span>para fazer login.</span>
-      </S.MyText>
+      <S.TextContent>
+        <S.MyTitle>
+          Olá, <span></span>Bem vindo(a)
+        </S.MyTitle>
+        <S.MyText>
+          Preencha o formulário <span>para fazer login.</span>
+        </S.MyText>
+      </S.TextContent>
       <FormLogin submiteForm={submiteForm} />
     </S.MyContainer>
   );

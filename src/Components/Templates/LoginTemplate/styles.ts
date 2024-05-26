@@ -6,6 +6,10 @@ export const MyContainer = styled.div`
   max-width: ${(props) => props.theme.screens["2xl"]};
   margin: 0 auto;
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   background-image: url("/assets/img/bg-login-mobile.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,6 +18,19 @@ export const MyContainer = styled.div`
 
   @media (min-width: ${(props) => props.theme.screens.lg}) {
     background-image: url("/assets/img/bg-login-desktop.png");
+    padding: 150px 24px;
+
+    flex-direction: row;
+    gap: 0 312px;
+    justify-content: center;
+  }
+`;
+
+export const TextContent = styled.div`
+  width: 312px;
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    width: fit-content;
   }
 `;
 
@@ -28,10 +45,19 @@ export const MyTitle = styled.h1`
   > span {
     display: block;
   }
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    color: #fff;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const MyText = styled.p`
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors["gray-50"]};
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -40,5 +66,13 @@ export const MyText = styled.p`
 
   > span {
     display: block;
+  }
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    font-size: 16px;
+
+    span {
+      display: inline;
+    }
   }
 `;

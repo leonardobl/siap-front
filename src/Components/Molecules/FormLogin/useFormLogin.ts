@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { maskCnpj, maskCpf } from "../../../Utils/masks";
 import { IAutenticacaoForm } from "../../../Types/autenticacao";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   cpfCNPJ: z
@@ -13,6 +14,9 @@ const schema = z.object({
 });
 
 export const useFormLogin = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
@@ -39,5 +43,5 @@ export const useFormLogin = () => {
     setValue("cpfCNPJ", result);
   }, [watch("cpfCNPJ")]);
 
-  return { handleSubmit, register, errors };
+  return { handleSubmit, register, errors, openModal, setOpenModal, navigate };
 };

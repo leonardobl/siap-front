@@ -5,13 +5,16 @@ import { InputLogin } from "../../Atoms/Inputs/InputLogin";
 import { ErrorMessage } from "../../Atoms/ErrorMessage";
 import { Link } from "react-router-dom";
 import { IAutenticacaoForm } from "../../../Types/autenticacao";
+import { MyModal } from "../../Atoms/Modal";
+import { Button } from "../../Atoms/Button";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
   submiteForm: (data: IAutenticacaoForm) => void;
 }
 
 export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
-  const { handleSubmit, register, errors } = useFormLogin();
+  const { handleSubmit, register, errors, openModal, setOpenModal, navigate } =
+    useFormLogin();
 
   return (
     <S.MyFormLogin {...rest} onSubmit={handleSubmit(submiteForm)}>
@@ -47,7 +50,9 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
         </div>
 
         <div>
-          <S.ButtonRegister>Cadastrar</S.ButtonRegister>
+          <S.ButtonRegister type="button" onClick={() => setOpenModal(true)}>
+            Cadastrar
+          </S.ButtonRegister>
         </div>
 
         <div>
@@ -56,6 +61,33 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
           </Link>
         </div>
       </S.Grid>
+
+      <MyModal isOpen={openModal} onAfterClose={() => setOpenModal(false)}>
+        <S.ContentModal>
+          <img
+            id="icon-close"
+            src="/assets/svg/icon-close-white.svg"
+            alt="icone close"
+            onClick={() => setOpenModal(false)}
+          />
+          <p>
+            Cadastro <span>exclusivo</span> para clientes!
+          </p>
+
+          <div className="wrapperBtns">
+            <Button type="button" onClick={() => setOpenModal(false)}>
+              Cancelar
+            </Button>
+            <Button
+              onClick={() => navigate("/cadastro-usuario")}
+              type="button"
+              variant="blue"
+            >
+              Continuar
+            </Button>
+          </div>
+        </S.ContentModal>
+      </MyModal>
     </S.MyFormLogin>
   );
 };
