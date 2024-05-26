@@ -23,10 +23,6 @@ export const useLogin = () => {
       senha: data.senha,
     };
 
-    console.log(PAYLOAD);
-
-    return;
-
     Autenticacao.post(PAYLOAD)
       .then(({ data }) => {
         setToken(data.token);

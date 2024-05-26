@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./Components/Pages/home";
 import { Theme } from "./Global/Theme";
 import { Login } from "./Components/Pages/Login";
+import "react-toastify/dist/ReactToastify.css";
 
 export function App() {
   return (
