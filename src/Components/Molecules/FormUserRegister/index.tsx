@@ -6,8 +6,8 @@ import { InputLogin } from "../../Atoms/Inputs/InputLogin";
 import { Button } from "../../Atoms/Button";
 import { IClienteForm } from "../../../Types/cliente";
 import { useFormUserRegister } from "./useFormUserRegister";
-import { ErroMessage } from "../../Atoms/ErrorMessage/styles";
 import { ISelectOptions } from "../../../Types/inputs";
+import { ErrorMessage } from "../../Atoms/ErrorMessage";
 
 interface IFormUserRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IClienteForm) => void;
@@ -41,13 +41,13 @@ export const FormUserRegister = ({
 
       <S.Grid>
         <div>
-          <Input {...register("nome")} placeholder="Nome Completo*" />
-          {errors?.nome && <ErroMessage>{errors?.nome?.message}</ErroMessage>}
+          <Input {...register("nome")} label="NOme" />
+          {errors?.nome && <ErrorMessage>{errors?.nome?.message}</ErrorMessage>}
         </div>
         <div>
           <Input {...register("cpfCnpj")} placeholder="CPF*" maxLength={18} />
           {errors?.cpfCnpj && (
-            <ErroMessage>{errors?.cpfCnpj?.message}</ErroMessage>
+            <ErrorMessage>{errors?.cpfCnpj?.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -57,12 +57,14 @@ export const FormUserRegister = ({
             maxLength={15}
           />
           {errors?.telefone && (
-            <ErroMessage>{errors?.telefone?.message}</ErroMessage>
+            <ErrorMessage>{errors?.telefone?.message}</ErrorMessage>
           )}
         </div>
         <div>
           <Input {...register("email")} placeholder="E-mail" />
-          {errors?.email && <ErroMessage>{errors?.email?.message}</ErroMessage>}
+          {errors?.email && (
+            <ErrorMessage>{errors?.email?.message}</ErrorMessage>
+          )}
         </div>
         <div>
           <Input
@@ -72,7 +74,7 @@ export const FormUserRegister = ({
             maxLength={9}
           />
           {errors?.endereco?.cep?.message && (
-            <ErroMessage>{errors.endereco.cep.message}</ErroMessage>
+            <ErrorMessage>{errors.endereco.cep.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -88,7 +90,7 @@ export const FormUserRegister = ({
             placeholder="Número*"
           />
           {errors?.endereco?.numero?.message && (
-            <ErroMessage>{errors.endereco.numero.message}</ErroMessage>
+            <ErrorMessage>{errors.endereco.numero.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -100,7 +102,7 @@ export const FormUserRegister = ({
         <div>
           <Input {...register("endereco.bairro")} placeholder="Bairro*" />
           {errors?.endereco?.bairro?.message && (
-            <ErroMessage>{errors.endereco.bairro.message}</ErroMessage>
+            <ErrorMessage>{errors.endereco.bairro.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -117,7 +119,7 @@ export const FormUserRegister = ({
             )}
           />
           {errors?.endereco?.uf?.message && (
-            <ErroMessage>{errors.endereco.uf.message}</ErroMessage>
+            <ErrorMessage>{errors.endereco.uf.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -135,7 +137,7 @@ export const FormUserRegister = ({
             )}
           />
           {errors?.endereco?.uf?.message && (
-            <ErroMessage>{errors.endereco.uf.message}</ErroMessage>
+            <ErrorMessage>{errors.endereco.uf.message}</ErrorMessage>
           )}
         </div>
         <div>
@@ -145,7 +147,7 @@ export const FormUserRegister = ({
             type="password"
           />
           {errors?.senha?.message && (
-            <ErroMessage>{errors.senha.message}</ErroMessage>
+            <ErrorMessage>{errors.senha.message}</ErrorMessage>
           )}
         </div>{" "}
         <div>
@@ -155,7 +157,7 @@ export const FormUserRegister = ({
             type="password"
           />
           {errors?.confirmSenha?.message && (
-            <ErroMessage>{errors.confirmSenha.message}</ErroMessage>
+            <ErrorMessage>{errors.confirmSenha.message}</ErrorMessage>
           )}
         </div>
         <div>

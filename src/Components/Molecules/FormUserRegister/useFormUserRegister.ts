@@ -48,10 +48,10 @@ const schema = z
       .min(12, "Por favor preencha o nome completo"),
     senha: z
       .string({ message: "Campo obrigatorio" })
-      .min(6, "Minimo de 6 caracteres"),
+      .min(1, "Campo obrigatorio"),
     confirmSenha: z
       .string({ message: "Campo obrigatorio" })
-      .min(6, "Minimo de 6 caracteres"),
+      .min(1, "Campo obrigatorio"),
     telefone: z
       .string({ message: "Campo obrigatorio" })
       .min(14, "Telefone invalido")
@@ -98,8 +98,7 @@ export const useFormUserRegister = () => {
         uuid: "",
       },
     },
-    mode: "onChange",
-    criteriaMode: "firstError",
+    mode: "onSubmit",
     resolver: zodResolver(schema),
   });
 

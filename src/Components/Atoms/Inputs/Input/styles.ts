@@ -31,7 +31,7 @@ export const MyInput = styled.input<InputCustomProps>`
   padding: 0 30px 0 16px;
   font-size: 12px;
   font-weight: 400;
-  color: ${(props) => props.theme.colors["blue-100"]};
+  color: ${(props) => props.theme.colors["blue-300"]};
 
   letter-spacing: 1;
 

@@ -23,6 +23,7 @@ export const Form = styled.form`
 `;
 
 export const Grid = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 24px 0;
