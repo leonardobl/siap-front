@@ -68,6 +68,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.cep")}
             placeholder="CEP*"
+            onBlur={handleCep}
             maxLength={9}
           />
           {errors?.endereco?.cep?.message && (
