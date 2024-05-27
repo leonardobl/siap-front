@@ -1,5 +1,4 @@
 import { TipoClienteEnum } from "../enums/tipoCliente";
-import { IEnderecoDTO } from "./agendamento";
 
 export interface IClienteForm {
   cpfCnpj: string;
@@ -20,4 +19,15 @@ export interface IClienteDTO {
   uuid: string;
   telefone: string;
   tipo: TipoClienteEnum;
+}
+
+export interface IEnderecoDTO {
+  bairro: string;
+  cep: string;
+  cidade: string;
+  complemento?: string;
+  logradouro: string;
+  numero?: string;
+  uf: string;
+  uuid?: string;
 }
