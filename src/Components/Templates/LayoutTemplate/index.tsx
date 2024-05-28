@@ -1,15 +1,13 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Outlet } from "react-router-dom";
-import { Button } from "../../Atoms/Button";
 import { useLayout } from "./useLayout";
-import { NavLink } from "react-router-dom";
 
-interface LayoutTemplateProps extends ComponentProps<"div"> {
+interface ILayoutTemplateProps extends ComponentProps<"div"> {
   children?: React.ReactNode;
 }
 
-export const LayoutTemplate = (props: LayoutTemplateProps) => {
+export const LayoutTemplate = (props: ILayoutTemplateProps) => {
   const {
     logout,
     menuOpen,
@@ -19,13 +17,14 @@ export const LayoutTemplate = (props: LayoutTemplateProps) => {
     navigate,
     setModalIsOpen,
     isCliente,
-    LINKS,
   } = useLayout();
 
   return (
     <S.Container {...props}>
       <S.WrapperMainMenu>
-        <S.MainMenu data-open={menuOpen}></S.MainMenu>
+        <S.MainMenu data-open={false}>
+          <p>Menu</p>
+        </S.MainMenu>
       </S.WrapperMainMenu>
 
       <S.WrapperMain>

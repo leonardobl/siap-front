@@ -4,13 +4,6 @@ import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 import { RolesEnum } from "../../../Enum/roles";
 import { useContextSite } from "../../../Context/Context";
 
-const LINKS = {
-  starcheck: "https://starcheck.com.br/",
-  log: "https://logvistorias.com.br/",
-  vlx: "https://veloxvistorias.com.br/",
-  tokyo: "https://tokyovistorias.com.br/",
-};
-
 export const useLayout = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -28,8 +21,8 @@ export const useLayout = () => {
 
     setTimeout(() => {
       localStorage.clear();
+      window.open("/login", "_self");
       setIsLoad(false);
-      window.open("/", "_self");
     }, 1000);
   }
 
@@ -46,6 +39,5 @@ export const useLayout = () => {
     navigate,
     setModalIsOpen,
     isCliente,
-    LINKS,
   };
 };

@@ -18,40 +18,29 @@ export const Main = styled.main`
 `;
 
 export const MainMenu = styled.div`
-  ${({ theme: { colors } }) => css`
-    background: #fff;
+  background: #fff;
+  height: 100%;
+  box-shadow: 8px 4px 20.7px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  -webkit-transition: width 0.3s ease-in-out;
+  -moz-transition: width 0.3s ease-in-out;
+  -o-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  width: ${pxToRem(0)};
+  position: absolute;
+  background-color: red;
 
-    height: 100%;
-    box-shadow: 8px 4px 20.7px 0px rgba(0, 0, 0, 0.2);
+  &[data-open="true"] {
+    width: 100vh;
+  }
 
-    overflow: hidden;
-
+  @media (max-width: 500px) {
     &[data-open="true"] {
-      -webkit-transition: width 0.3s ease-in-out;
-      -moz-transition: width 0.3s ease-in-out;
-      -o-transition: width 0.3s ease-in-out;
-      transition: width 0.3s ease-in-out;
-
-      width: ${pxToRem(285)};
+      width: 100vw;
+      position: fixed;
+      z-index: 10;
     }
-
-    &[data-open="false"] {
-      -webkit-transition: width 0.3s ease-in-out;
-      -moz-transition: width 0.3s ease-in-out;
-      -o-transition: width 0.3s ease-in-out;
-      transition: width 0.3s ease-in-out;
-
-      width: ${pxToRem(0)};
-    }
-
-    @media (max-width: 500px) {
-      &[data-open="true"] {
-        width: 100vw;
-        position: fixed;
-        z-index: 10;
-      }
-    }
-  `}
+  }
 `;
 
 export const Wrapper = styled.div`
