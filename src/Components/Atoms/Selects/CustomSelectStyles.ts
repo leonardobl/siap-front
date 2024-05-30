@@ -6,7 +6,7 @@ export const customSelectStyles = {
   control: (base: any, state: { isFocused: any }) => ({
     ...base,
 
-    // padding: "0 20px",
+    padding: "0 0 0 8px",
 
     minHeight: "36px",
     borderRadius: "12px",
@@ -31,7 +31,7 @@ export const customSelectStyles = {
   }),
   singleValue: (provided: any, state: any) => ({
     ...provided,
-    color: "#2082E3",
+    color: colors["blue-300"],
   }),
 
   option: (styles: any, { isFocused, isSelected }: any) => ({

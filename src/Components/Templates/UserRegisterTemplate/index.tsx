@@ -1,14 +1,17 @@
 import React from "react";
-import * as S from "./styles";
 import { FormUserRegister } from "../../Molecules/FormUserRegister";
 import { useUserRegister } from "./useUserRegister";
+import { LayoutNoLogin } from "../LayoutNoLogin";
+import * as S from "./styles";
 
 export const UserRegisterTemplate = () => {
   const { submitForm } = useUserRegister();
 
   return (
-    <S.MyContainer>
-      <FormUserRegister submitForm={submitForm} />
-    </S.MyContainer>
+    <LayoutNoLogin>
+      <S.Container>
+        <FormUserRegister submitForm={submitForm} />
+      </S.Container>
+    </LayoutNoLogin>
   );
 };

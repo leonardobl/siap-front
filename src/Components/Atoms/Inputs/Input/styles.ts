@@ -1,8 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { InputCustomProps } from "../../../../Types/inputs";
 
 export const Container = styled.div`
   position: relative;
+
+  > img {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px;
+  }
 `;
 
 export const MyInput = styled.input<InputCustomProps>`
@@ -28,7 +37,7 @@ export const MyInput = styled.input<InputCustomProps>`
   border-radius: 12px;
   border: 0.5px solid ${(props) => props.theme.colors["gray-200"]};
   background: #fff;
-  padding: 0 30px 0 16px;
+  padding: 0 32px 0 16px;
   font-size: 12px;
   font-weight: 400;
   color: ${(props) => props.theme.colors["blue-300"]};
@@ -37,10 +46,6 @@ export const MyInput = styled.input<InputCustomProps>`
 
   &[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-  }
-
-  &[type="password"] {
-    padding: 0 40px 0 16px;
   }
 
   &:-webkit-autofill,

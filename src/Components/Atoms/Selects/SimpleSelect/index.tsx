@@ -55,6 +55,7 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
         <Select
           {...props}
           ref={ref}
+          required={false}
           placeholder={props.placeholder || ""}
           components={{ DropdownIndicator, ClearIndicator }}
           className="react-select-container"

@@ -31,37 +31,35 @@ export const FormUserRegister = ({
 
   return (
     <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
-      <img
-        id="fundo"
-        src="/assets/svg/bg-form-user-register.svg"
-        alt="background form"
-      />
-
-      <img id="logo" src="/assets/svg/logo-siap-white.svg" alt="logo siap" />
+      <h1>Cadastro</h1>
+      <p>
+        Preencha o formulário para fazer <span>login.</span>
+      </p>
 
       <S.Grid>
         <div>
-          <Input {...register("nome")} label="NOme" />
+          <Input
+            {...register("nome")}
+            autoFocus
+            label="Nome Completo"
+            required
+          />
           {errors?.nome && <ErrorMessage>{errors?.nome?.message}</ErrorMessage>}
         </div>
         <div>
-          <Input {...register("cpfCnpj")} placeholder="CPF*" maxLength={18} />
+          <Input {...register("cpfCnpj")} label="CPF" required maxLength={18} />
           {errors?.cpfCnpj && (
             <ErrorMessage>{errors?.cpfCnpj?.message}</ErrorMessage>
           )}
         </div>
         <div>
-          <Input
-            {...register("telefone")}
-            placeholder="Telefone"
-            maxLength={15}
-          />
+          <Input {...register("telefone")} label="Telefone" maxLength={15} />
           {errors?.telefone && (
             <ErrorMessage>{errors?.telefone?.message}</ErrorMessage>
           )}
         </div>
         <div>
-          <Input {...register("email")} placeholder="E-mail" />
+          <Input {...register("email")} label="E-mail" type="email" />
           {errors?.email && (
             <ErrorMessage>{errors?.email?.message}</ErrorMessage>
           )}
@@ -69,7 +67,8 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("endereco.cep")}
-            placeholder="CEP*"
+            required
+            label="CEP"
             onBlur={handleCep}
             maxLength={9}
           />
@@ -80,27 +79,26 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("endereco.logradouro")}
-            placeholder="Logadrouro"
+            label="Logradouro"
+            required
           />
         </div>
         <div>
           <Input
             {...register("endereco.numero")}
             type="number"
-            placeholder="Número*"
+            label="Número"
+            required
           />
           {errors?.endereco?.numero?.message && (
             <ErrorMessage>{errors.endereco.numero.message}</ErrorMessage>
           )}
         </div>
         <div>
-          <Input
-            {...register("endereco.complemento")}
-            placeholder="Complemento"
-          />
+          <Input {...register("endereco.complemento")} label="Complemento" />
         </div>
         <div>
-          <Input {...register("endereco.bairro")} placeholder="Bairro*" />
+          <Input {...register("endereco.bairro")} label="Bairro" required />
           {errors?.endereco?.bairro?.message && (
             <ErrorMessage>{errors.endereco.bairro.message}</ErrorMessage>
           )}
@@ -112,7 +110,8 @@ export const FormUserRegister = ({
             render={({ field: { onChange, value } }) => (
               <SimpleSelect
                 options={ufOptions}
-                placeholder={"UF*"}
+                label={"UF"}
+                required
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={ufOptions?.find((i) => i.value === value) || null}
               />
@@ -132,7 +131,8 @@ export const FormUserRegister = ({
                 key={`${Math.random()}${watch("endereco.uf")}`}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={cidadesOptions?.find((i) => i.value === value) || null}
-                placeholder={"Cidade*"}
+                label={"Cidade"}
+                required
               />
             )}
           />
@@ -141,9 +141,10 @@ export const FormUserRegister = ({
           )}
         </div>
         <div>
-          <InputLogin
+          <Input
             {...register("senha")}
-            placeholder="Senha*"
+            label="Senha"
+            required
             type="password"
           />
           {errors?.senha?.message && (
@@ -151,10 +152,11 @@ export const FormUserRegister = ({
           )}
         </div>{" "}
         <div>
-          <InputLogin
+          <Input
             {...register("confirmSenha")}
-            placeholder="Confirmar Senha*"
+            label="Confirmar Senha"
             type="password"
+            required
           />
           {errors?.confirmSenha?.message && (
             <ErrorMessage>{errors.confirmSenha.message}</ErrorMessage>
