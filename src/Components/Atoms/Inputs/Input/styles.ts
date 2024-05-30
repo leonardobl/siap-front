@@ -12,6 +12,11 @@ export const Container = styled.div`
     transform: translateY(-50%);
     padding: 4px;
   }
+
+  > img#iconLeft {
+    position: absolute;
+    left: 10px;
+  }
 `;
 
 export const MyInput = styled.input<InputCustomProps>`
@@ -55,7 +60,8 @@ export const MyInput = styled.input<InputCustomProps>`
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #fff inset !important;
-    -webkit-text-fill-color: #111 !important;
+    -webkit-text-fill-color: ${(props) =>
+      props.theme.colors["blue-300"]} !important;
   }
 
   &[data-error="true"] {
@@ -73,6 +79,16 @@ export const MyInput = styled.input<InputCustomProps>`
       color: ${(props) => props.theme.colors["blue-100"]};
     }
   }
+
+  ${(props) =>
+    props.iconLeft &&
+    css`
+      padding: 0 32px;
+
+      & + label {
+        left: 32px;
+      }
+    `}
 `;
 
 export const MyLabel = styled.label`

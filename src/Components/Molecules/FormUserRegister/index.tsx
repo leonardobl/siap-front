@@ -2,7 +2,6 @@ import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Input } from "../../Atoms/Inputs/Input";
 import { SimpleSelect } from "../../Atoms/Selects/SimpleSelect";
-import { InputLogin } from "../../Atoms/Inputs/InputLogin";
 import { Button } from "../../Atoms/Button";
 import { IClienteForm } from "../../../Types/cliente";
 import { useFormUserRegister } from "./useFormUserRegister";
@@ -158,7 +157,6 @@ export const FormUserRegister = ({
               <SimpleSelect
                 options={cidadesOptions}
                 customError={!!errors?.endereco?.cidade}
-                key={`${Math.random()}${watch("endereco.uf")}`}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={cidadesOptions?.find((i) => i.value === value) || null}
                 label={"Cidade"}

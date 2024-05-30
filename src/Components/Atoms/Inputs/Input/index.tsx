@@ -27,6 +27,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputCustomProps>(
             />
           )
         ) : null}
+
+        {props?.iconLeft && (
+          <img src={props.iconLeft} alt="icone" id="iconLeft" />
+        )}
         <S.MyInput
           {...props}
           type={eyeOpen ? "text" : props.type}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Controller } from "react-hook-form";
@@ -69,6 +69,7 @@ export const useFormUserRegister = () => {
   const [ufOptions, setUfOptions] = useState<ISelectOptions[]>([]);
   const { setIsLoad } = useContextSite();
   const [cidadesOptions, setCidadesOptions] = useState<ISelectOptions[]>([]);
+  const [cidadeTemp, setCidadeTemp] = useState("");
 
   const {
     handleSubmit,
@@ -98,11 +99,11 @@ export const useFormUserRegister = () => {
         uuid: "",
       },
     },
-    mode: "onSubmit",
+    mode: "all",
     resolver: zodResolver(schema),
   });
 
-  useEffect(() => {
+  const getUfs = useCallback(() => {
     Ibge.UFs()
       .then(({ data }) => {
         const options = data.map((item) => ({
@@ -116,6 +117,10 @@ export const useFormUserRegister = () => {
       .catch((erro) => toast.error("Erro ao requisitar as UFs"));
   }, []);
 
+  useEffect(() => {
+    getUfs();
+  }, [getUfs]);
+
   function handleCep() {
     if (watch("endereco.cep").length === 9) {
       setIsLoad(true);
@@ -124,8 +129,9 @@ export const useFormUserRegister = () => {
           .then(({ data }) => {
             setValue("endereco.logradouro", data.logradouro);
             setValue("endereco.bairro", data.bairro);
-            setValue("endereco.cidade", data.localidade);
+            // setValue("endereco.cidade", data.localidade);
             setValue("endereco.uf", data.uf);
+            setCidadeTemp(data.localidade);
           })
           .catch((erro) => toast.error("Cep não encontrado"))
           .finally(() => setIsLoad(false));
@@ -135,6 +141,7 @@ export const useFormUserRegister = () => {
 
   useEffect(() => {
     if (watch("endereco.uf")) {
+      setValue("endereco.cidade", "");
       Ibge.CidadesPorEstado({ sigla: watch("endereco.uf") })
         .then(({ data }) => {
           const options = data.map((item) => ({
@@ -143,8 +150,12 @@ export const useFormUserRegister = () => {
             element: item,
           }));
           setCidadesOptions(options);
+          setValue("endereco.cidade", cidadeTemp);
         })
-        .catch((erro) => toast.error("Erro ao requisitar as cidades"));
+        .then(() => {
+          setCidadeTemp("");
+        })
+        .catch((erro) => toast.error("Erro ao requisitar a lista de cidades"));
     }
   }, [watch("endereco.uf")]);
 

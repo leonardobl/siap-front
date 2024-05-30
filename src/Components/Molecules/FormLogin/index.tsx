@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { IAutenticacaoForm } from "../../../Types/autenticacao";
 import { MyModal } from "../../Atoms/Modal";
 import { Button } from "../../Atoms/Button";
+import { Input } from "../../Atoms/Inputs/Input";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
   submiteForm: (data: IAutenticacaoForm) => void;
@@ -36,9 +37,10 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
 
       <S.Grid>
         <div>
-          <InputLogin
+          <Input
             {...register("cpfCNPJ")}
-            placeholder="CPF/CNPJ"
+            label="CPF/CNPJ"
+            required
             maxLength={18}
             iconLeft="/assets/svg/icon-avatar.svg"
             data-error={!!errors?.cpfCNPJ?.message}
@@ -49,9 +51,10 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
         </div>
 
         <div>
-          <InputLogin
+          <Input
             {...register("senha")}
-            placeholder="Senha"
+            label="Senha"
+            required
             type="password"
             iconLeft="/assets/svg/icon-locked.svg"
             data-error={!!errors?.senha?.message}
