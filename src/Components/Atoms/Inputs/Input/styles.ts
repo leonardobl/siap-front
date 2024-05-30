@@ -66,18 +66,12 @@ export const MyInput = styled.input<InputCustomProps>`
     }
   }
 
-  ${(props) =>
-    props.customError &&
-    css`
-      border: 0.5px solid ${(props) => props.theme.colors.red};
-
-      & + label {
-        color: ${(props) => props.theme.colors.red};
-      }
-    `}
-
-  &:focus {
+  &:focus:not([data-error="true"]) {
     border-color: ${(props) => props.theme.colors["blue-100"]};
+
+    & + label {
+      color: ${(props) => props.theme.colors["blue-100"]};
+    }
   }
 `;
 

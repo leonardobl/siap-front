@@ -41,7 +41,7 @@ export const FormUserRegister = ({
           <Input
             {...register("nome")}
             autoFocus
-            customError={!!errors?.nome}
+            data-error={!!errors?.nome}
             label="Nome Completo"
             required
           />
@@ -50,7 +50,7 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("cpfCnpj")}
-            customError={!!errors?.cpfCnpj}
+            data-error={!!errors?.cpfCnpj}
             label="CPF"
             required
             maxLength={18}
@@ -62,7 +62,7 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("telefone")}
-            customError={!!errors?.telefone}
+            data-error={!!errors?.telefone}
             label="Telefone"
             maxLength={15}
           />
@@ -73,9 +73,8 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("email")}
-            customError={!!errors?.email}
+            data-error={!!errors?.email}
             label="E-mail"
-            type="email"
           />
           {errors?.email && (
             <ErrorMessage>{errors?.email?.message}</ErrorMessage>
@@ -85,7 +84,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.cep")}
             required
-            customError={!!errors?.endereco?.cep}
+            data-error={!!errors?.endereco?.cep}
             label="CEP"
             onBlur={handleCep}
             maxLength={9}
@@ -98,7 +97,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.logradouro")}
             label="Logradouro"
-            customError={!!errors?.endereco?.logradouro}
+            data-error={!!errors?.endereco?.logradouro}
             required
           />
         </div>
@@ -106,7 +105,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.numero")}
             type="number"
-            customError={!!errors?.endereco?.numero}
+            data-error={!!errors?.endereco?.numero}
             label="Número"
             required
           />
@@ -117,14 +116,14 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("endereco.complemento")}
-            customError={!!errors?.endereco?.complemento}
+            data-error={!!errors?.endereco?.complemento}
             label="Complemento"
           />
         </div>
         <div>
           <Input
             {...register("endereco.bairro")}
-            customError={!!errors?.endereco?.bairro}
+            data-error={!!errors?.endereco?.bairro}
             label="Bairro"
             required
           />
@@ -176,7 +175,7 @@ export const FormUserRegister = ({
             {...register("senha")}
             label="Senha"
             required
-            customError={!!errors?.senha}
+            data-error={!!errors?.senha}
             type="password"
           />
           {errors?.senha?.message && (
@@ -187,7 +186,7 @@ export const FormUserRegister = ({
           <Input
             {...register("confirmSenha")}
             label="Confirmar Senha"
-            customError={!!errors?.confirmSenha}
+            data-error={!!errors?.confirmSenha}
             type="password"
             required
           />

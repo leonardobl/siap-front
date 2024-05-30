@@ -9,6 +9,12 @@ export const Container = styled.div`
     }
   }
 
+  &:not([data-customError="true"]):has(input:focus) {
+    label {
+      color: ${(props) => props.theme.colors["blue-100"]};
+    }
+  }
+
   &:has(.react-select__single-value) {
     label {
       top: -2px;
