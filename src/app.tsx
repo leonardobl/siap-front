@@ -8,6 +8,7 @@ import { Theme } from "./Global/Theme";
 import { Login } from "./Components/Pages/Login";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRegister } from "./Components/Pages/UserRegister";
+import { ProtectedRoute } from "./Components/Atoms/ProtectedRoute";
 
 export function App() {
   return (
@@ -17,7 +18,14 @@ export function App() {
       <ContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
             <Route path="login" element={<Login />} />
             <Route path="cadastro-usuario" element={<UserRegister />} />
           </Routes>

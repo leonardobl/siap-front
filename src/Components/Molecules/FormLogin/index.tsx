@@ -17,9 +17,23 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
     useFormLogin();
 
   return (
-    <S.MyFormLogin {...rest} onSubmit={handleSubmit(submiteForm)}>
-      <img id="fundo" src="/assets/img/fundo.png" alt="background" />
-      <img id="logo" src="/assets/svg/logo-siap-white.svg" alt="logo siap" />
+    <S.Form {...rest} onSubmit={handleSubmit(submiteForm)}>
+      <S.WrapperText>
+        <p>
+          Agendamentos <span>simplificados</span>, <br /> pagamentos
+          <span>automatizados</span>
+        </p>
+      </S.WrapperText>
+
+      <S.Title>
+        Olá,
+        <br /> Bem vindo(a)
+      </S.Title>
+
+      <S.Info>
+        Preencha o formulário para fazer <span>login.</span>
+      </S.Info>
+
       <S.Grid>
         <div>
           <InputLogin
@@ -88,6 +102,6 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
           </div>
         </S.ContentModal>
       </MyModal>
-    </S.MyFormLogin>
+    </S.Form>
   );
 };

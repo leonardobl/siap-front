@@ -1,80 +1,99 @@
 import styled from "styled-components";
 
-export const MyFormLogin = styled.form`
-  padding: 50px 22px;
-  position: relative;
-  width: 312px;
+export const Form = styled.form`
+  width: 270px;
 
-  > img#logo {
+  @media (min-width: ${(props) => props.theme.screens.xl}) {
+    width: 400px;
+  }
+`;
+
+export const WrapperText = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0 16px;
+  margin-bottom: 36px;
+
+  &::before {
+    content: "";
     display: block;
-    margin: 0 auto;
-    margin-bottom: 48px;
+    width: 1px;
+    height: 55px;
+    background-color: ${(props) => props.theme.colors["blue-100"]};
   }
 
-  > img#fundo {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    mix-blend-mode: color-dodge;
+  > p {
+    color: ${(props) => props.theme.colors["blue-300"]};
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+
+    span {
+      font-weight: 700;
+    }
+  }
+`;
+
+export const Title = styled.h1`
+  color: ${(props) => props.theme.colors["blue-300"]};
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 100% */
+  margin-bottom: 16px;
+`;
+
+export const Info = styled.p`
+  color: ${(props) => props.theme.colors["blue-300"]};
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 114.286% */
+  margin-bottom: 32px;
+
+  span {
+    font-weight: 700;
+    display: block;
   }
 `;
 
 export const Grid = styled.div`
   display: grid;
-  position: relative;
-
+  gap: 32px 0;
   grid-template-columns: 1fr;
-  grid-template-areas: "login" "senha" "btnEntrar" "btnCadastro" "btnEsqueceu";
-  gap: 24px 0;
 
-  > :nth-child(1) {
-    grid-area: login;
-  }
-
-  > :nth-child(2) {
-    grid-area: senha;
-  }
-
-  > :nth-child(3) {
-    grid-area: btnEntrar;
-  }
-
-  > :nth-child(4) {
-    grid-area: btnCadastro;
-  }
-
-  > :nth-child(5) {
-    grid-area: btnEsqueceu;
-
-    > a#forgot {
-      color: #e8e8e8;
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 18px;
-    }
+  a#forgot {
+    color: ${(props) => props.theme.colors["blue-100"]};
+    text-align: center;
+    display: block;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    width: 100%;
+    line-height: 18px; /* 150% */
   }
 `;
 
 export const ButtonEnter = styled.button`
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: ${(props) => props.theme.colors["blue-100"]};
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   display: flex;
   width: 100%;
   height: 40px;
-  outline: none;
   padding: 8px 6px;
   justify-content: center;
   align-items: center;
-  border: none;
+  gap: 10px;
+  flex-shrink: 0;
 
-  border-radius: 12px;
-  background: ${(props) => props.theme.colors["blue-100"]};
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-  color: ${(props) => props.theme.colors.white};
+  color: #fff;
+  text-align: center;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -85,32 +104,35 @@ export const ButtonRegister = styled.button`
   display: flex;
   width: 100%;
   height: 40px;
-  outline: none;
   padding: 8px 6px;
   justify-content: center;
   align-items: center;
-  border: none;
-
+  gap: 10px;
+  flex-shrink: 0;
   border-radius: 12px;
   background: ${(props) => props.theme.colors["blue-300"]};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: none;
+  outline: none;
 
-  color: ${(props) => props.theme.colors.white};
+  color: #fff;
+  text-align: center;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 20px; /* 142.857% */
 `;
 
 export const ContentModal = styled.div`
-  background-color: ${(props) => props.theme.colors["blue-100"]};
-  padding: 16px;
-  width: 311px;
+  width: 300px;
+  padding: 10px;
+  background: ${(props) => props.theme.colors["blue-100"]};
+  /* height: 140px; */
 
-  > img#icon-close {
-    display: block;
+  > img {
     margin-left: auto;
-    margin-bottom: 28px;
+    display: block;
+    margin-bottom: 16px;
     cursor: pointer;
   }
 
@@ -120,16 +142,18 @@ export const ContentModal = styled.div`
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 12px;
-    margin-bottom: 28px;
+    line-height: 12px; /* 75% */
+    margin-bottom: 24px;
 
     span {
-      font-weight: 600;
+      font-weight: 700;
     }
   }
 
-  > div.wrapperBtns {
+  > div {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 0 22px;
+    margin-bottom: 16px;
   }
 `;

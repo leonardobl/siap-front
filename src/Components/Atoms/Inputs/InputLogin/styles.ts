@@ -26,7 +26,7 @@ export const Input = styled.input`
   height: 36px;
   border-radius: 12px;
   outline: none;
-  border: none;
+  border: 0.3px solid ${(props) => props.theme.colors["gray-200"]};
 
   width: 100%;
   height: 36px;
