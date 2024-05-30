@@ -12,11 +12,12 @@ export const customSelectStyles = {
     borderRadius: "12px",
     height: "36px",
     fontSize: "12px",
-    borderColor: colors["gray-200"],
+    letterSpacing: "1px",
+    borderColor: state.isFocused ? colors["blue-100"] : colors["gray-200"],
     boxShadow: state.isFocused ? null : null,
-    "&:hover": {
-      borderColor: colors["gray-200"],
-    },
+    // "&:hover": {
+    //   borderColor: colors["gray-200"],
+    // },
   }),
 
   menu: (base: any, state: any) => ({

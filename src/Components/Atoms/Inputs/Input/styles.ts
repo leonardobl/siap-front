@@ -18,6 +18,7 @@ export const MyInput = styled.input<InputCustomProps>`
   height: 36px;
   border-radius: 12px;
   outline: none;
+  letter-spacing: 1px;
   border: 1px solid ${(props) => props.theme.colors["gray-200"]};
   transition: all 0.2s ease-in-out;
 
@@ -74,6 +75,10 @@ export const MyInput = styled.input<InputCustomProps>`
         color: ${(props) => props.theme.colors.red};
       }
     `}
+
+  &:focus {
+    border-color: ${(props) => props.theme.colors["blue-100"]};
+  }
 `;
 
 export const MyLabel = styled.label`

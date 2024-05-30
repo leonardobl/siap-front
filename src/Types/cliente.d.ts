@@ -1,4 +1,7 @@
 import { TipoClienteEnum } from "../enums/tipoCliente";
+import { IPageableObject, ISortObject } from "./delivery";
+import { IEnderecoDTO } from "./endereco";
+import { IPageRequest } from "./page";
 
 export interface IClienteForm {
   cpfCnpj: string;
@@ -21,13 +24,22 @@ export interface IClienteDTO {
   tipo: TipoClienteEnum;
 }
 
-export interface IEnderecoDTO {
-  bairro: string;
-  cep: string;
-  cidade: string;
-  complemento?: string;
-  logradouro: string;
-  numero?: string;
-  uf: string;
-  uuid?: string;
+export interface IPageClienteDTO {
+  content: IClienteDTO[];
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  pageable: IPageableObject;
+  size: number;
+  sort: ISortObject;
+  totalElements: number;
+  totalPages: number;
+}
+
+export interface IConcessionariaProps extends IPageRequest {
+  nome?: string;
+  cpfCnpj?: string;
+  cidade?: string;
 }

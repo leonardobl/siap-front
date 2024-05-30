@@ -60,4 +60,8 @@ export const Input = styled.input`
   &[data-icon-left="true"] {
     padding: 0 36px;
   }
+
+  &:focus {
+    border-color: ${(props) => props.theme.colors["blue-100"]};
+  }
 `;
