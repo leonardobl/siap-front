@@ -11,5 +11,6 @@ declare module "react-select/dist/declarations/src/Select" {
     group?: Group;
     label?: string;
     variant?: "search" | "modal";
+    customError?: boolean;
   }
 }

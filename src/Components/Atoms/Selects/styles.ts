@@ -14,6 +14,12 @@ export const Container = styled.div`
       top: -2px;
     }
   }
+
+  &[data-customError="true"] {
+    .react-select__control {
+      border: 1px solid ${(props) => props.theme.colors.red};
+    }
+  }
 `;
 
 export const Label = styled.label`
@@ -32,6 +38,10 @@ export const Label = styled.label`
   font-weight: 400;
   line-height: 16px;
   pointer-events: none;
+
+  &[data-customError="true"] {
+    color: ${(props) => props.theme.colors.red};
+  }
 `;
 
 export const Required = styled.span`

@@ -19,6 +19,7 @@ export const MyInput = styled.input<InputCustomProps>`
   border-radius: 12px;
   outline: none;
   border: 1px solid ${(props) => props.theme.colors["gray-200"]};
+  transition: all 0.2s ease-in-out;
 
   &::placeholder {
     color: ${(props) => (props.placeholder ? "" : "transparent")};
@@ -63,6 +64,16 @@ export const MyInput = styled.input<InputCustomProps>`
       color: ${(props) => props.theme.colors.red};
     }
   }
+
+  ${(props) =>
+    props.customError &&
+    css`
+      border: 0.5px solid ${(props) => props.theme.colors.red};
+
+      & + label {
+        color: ${(props) => props.theme.colors.red};
+      }
+    `}
 `;
 
 export const MyLabel = styled.label`
