@@ -7,6 +7,8 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from "react-icons/io";
+import { DetailsMenu } from "../../Atoms/DetailsMenu";
+import { NavLink } from "react-router-dom";
 
 interface ILayoutTemplateProps extends ComponentProps<"div"> {
   children?: React.ReactNode;
@@ -59,7 +61,30 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
             />
           </div>
         </S.HeaderMenu>
-        <p>menu</p>
+        <S.WrapperGroupMenu data-borderBottom data-open={menuOpen}>
+          <DetailsMenu title="CADASTRO">
+            <S.MenuItens data-open={menuOpen}>
+              <NavLink to={"/login"}>
+                <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+                <span>Usuários</span>
+              </NavLink>
+              <NavLink to={"/login"}>
+                <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+                <span>Usuários</span>
+              </NavLink>
+
+              <NavLink to={"/login"}>
+                <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+                <span>Usuários</span>
+              </NavLink>
+
+              <NavLink to={"/login"}>
+                <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+                <span>Usuários</span>
+              </NavLink>
+            </S.MenuItens>
+          </DetailsMenu>
+        </S.WrapperGroupMenu>
       </S.Menu>
       <S.Main data-open={menuOpen}>
         <S.MainContent>

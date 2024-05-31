@@ -1,21 +1,25 @@
+import { Theme } from "./../../../Global/Theme";
 import styled, { css, keyframes } from "styled-components";
-import { pxToRem } from "../../../Utils/pxToRem";
 
 const fadeIn = keyframes`
   from {
     opacity: 0;
+   
   }
   to {
     opacity: 1;
+   
   }
 `;
 
 const fadeOut = keyframes`
   from {
     opacity: 1;
+   
   }
   to {
     opacity: 0;
+  
   }
 `;
 
@@ -175,6 +179,54 @@ export const MainHeader = styled.div`
 
     > div#wrapperIconCloseHeader {
       display: none;
+    }
+  }
+`;
+
+export const WrapperGroupMenu = styled.div`
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    padding: 24px 6px;
+
+    &[data-open="true"] {
+      padding: 24px;
+    }
+    &[data-borderBottom="true"] {
+      border-bottom: 1px solid ${(props) => props.theme.colors["gray-200"]};
+    }
+  }
+`;
+
+export const MenuItens = styled.div`
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px 0;
+    align-items: center;
+
+    a {
+      color: #5d7281;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 0 10px;
+
+      span {
+        animation: ${fadeOut} 0.3s ease-in-out forwards;
+        display: none;
+      }
+    }
+
+    &[data-open="true"] {
+      align-items: start;
+      a {
+        span {
+          display: block;
+          opacity: 1;
+          animation: ${fadeIn} 0.3s ease-in-out forwards;
+        }
+      }
     }
   }
 `;
