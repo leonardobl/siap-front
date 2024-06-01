@@ -90,7 +90,9 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
         <S.MainContent>
           <S.MainHeader>
             <div id="wrapperIconCloseHeader">
-              <IoMdMenu
+              <img
+                src="/assets/svg/hamburguermenu.svg"
+                alt="icone menu hamburguer"
                 id="iconCloseHeader"
                 onClick={() => setMenuOpen(true)}
               />

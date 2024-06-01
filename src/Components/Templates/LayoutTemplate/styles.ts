@@ -159,16 +159,15 @@ export const MainHeader = styled.div`
   background-repeat: no-repeat;
 
   > div#wrapperIconCloseHeader {
-    padding: 6px;
-    width: fit-content;
-    border-radius: 50%;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: absolute;
     right: 36px;
-    bottom: -13px;
+    bottom: -20px;
+    width: 40px;
+
+    > img {
+      display: block;
+      width: 100%;
+    }
   }
 
   @media (min-width: ${(props) => props.theme.screens.lg}) {
