@@ -1,5 +1,4 @@
-import { Theme } from "./../../../Global/Theme";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   from {
@@ -47,11 +46,11 @@ export const Menu = styled.nav`
   @media (min-width: ${(props) => props.theme.screens.lg}) {
     position: relative;
     z-index: 0;
-    width: 94px;
+    width: 105px;
     overflow: visible;
 
     &[data-open="true"] {
-      width: 232px;
+      width: 254px;
     }
   }
 `;
@@ -92,7 +91,7 @@ export const HeaderMenu = styled.div`
     div#wrapperArrow {
       display: block;
       position: absolute;
-      right: -16px;
+      right: -14px;
 
       svg,
       img {
@@ -192,41 +191,6 @@ export const WrapperGroupMenu = styled.div`
     }
     &[data-borderBottom="true"] {
       border-bottom: 1px solid ${(props) => props.theme.colors["gray-200"]};
-    }
-  }
-`;
-
-export const MenuItens = styled.div`
-  @media (min-width: ${(props) => props.theme.screens.lg}) {
-    display: flex;
-    flex-direction: column;
-    gap: 24px 0;
-    align-items: center;
-
-    a {
-      color: #5d7281;
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 0 10px;
-
-      span {
-        animation: ${fadeOut} 0.3s ease-in-out forwards;
-        display: none;
-      }
-    }
-
-    &[data-open="true"] {
-      align-items: start;
-      a {
-        span {
-          display: block;
-          opacity: 1;
-          animation: ${fadeIn} 0.3s ease-in-out forwards;
-        }
-      }
     }
   }
 `;

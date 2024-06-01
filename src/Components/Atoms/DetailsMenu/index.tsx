@@ -1,10 +1,10 @@
-import React, { useState, ComponentProps, useEffect } from "react";
+import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { useDetailsMenu } from "./useButtonOptions";
 
 interface IDetailsMenuProps extends ComponentProps<"details"> {
   title: string;
-  children: React.JSX.Element;
+  children: React.JSX.Element | React.JSX.Element[];
 }
 
 export const DetailsMenu = (props: IDetailsMenuProps) => {
