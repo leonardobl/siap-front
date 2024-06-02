@@ -2,11 +2,6 @@ import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Outlet } from "react-router-dom";
 import { useLayout } from "./useLayout";
-import { IoMdMenu } from "react-icons/io";
-import {
-  IoIosArrowDropleftCircle,
-  IoIosArrowDroprightCircle,
-} from "react-icons/io";
 import { DetailsMenu } from "../../Atoms/DetailsMenu";
 import { NavLink } from "react-router-dom";
 
@@ -63,28 +58,35 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
             />
           </div>
         </S.HeaderMenu>
-        <S.WrapperGroupMenu data-borderBottom data-open={menuOpen}>
-          <DetailsMenu title="CADASTRO">
-            <NavLink to={"/"}>
-              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-              <span>Usuários</span>
-            </NavLink>
-            <NavLink to={"/login"}>
-              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-              <span>Usuários</span>
-            </NavLink>
 
-            <NavLink to={"/login"}>
-              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-              <span>Usuários</span>
-            </NavLink>
+        <DetailsMenu title="CADASTRO" data-openmenu={menuOpen}>
+          <NavLink to={"/"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Usuários</span>
+          </NavLink>
+          <NavLink to={"/login"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Serviços</span>
+          </NavLink>
+          <NavLink to={"/login"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Clientes</span>
+          </NavLink>
+          <NavLink to={"/login"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Contratos</span>
+          </NavLink>
 
-            <NavLink to={"/login"}>
-              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-              <span>Usuários</span>
-            </NavLink>
-          </DetailsMenu>
-        </S.WrapperGroupMenu>
+          <NavLink to={"/login"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Prestadores</span>
+          </NavLink>
+
+          <NavLink to={"/login"}>
+            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+            <span>Tipos de Prestadores</span>
+          </NavLink>
+        </DetailsMenu>
       </S.Menu>
       <S.Main data-open={menuOpen}>
         <S.MainContent>

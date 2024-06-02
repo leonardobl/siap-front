@@ -180,16 +180,3 @@ export const MainHeader = styled.div`
     }
   }
 `;
-
-export const WrapperGroupMenu = styled.div`
-  @media (min-width: ${(props) => props.theme.screens.lg}) {
-    padding: 24px 6px;
-
-    &[data-open="true"] {
-      padding: 24px;
-    }
-    &[data-borderBottom="true"] {
-      border-bottom: 1px solid ${(props) => props.theme.colors["gray-200"]};
-    }
-  }
-`;
