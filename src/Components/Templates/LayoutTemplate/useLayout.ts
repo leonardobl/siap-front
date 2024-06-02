@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 import { useContextSite } from "../../../Context/Context";
+import { useMediaQuery } from "react-responsive";
 
 export const useLayout = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: "1020px" });
+  const [menuOpen, setMenuOpen] = useState(isMobile ? false : true);
   const navigate = useNavigate();
   const [token] = useLocalStorage("@token");
   const { pathname } = useLocation();

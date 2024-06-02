@@ -60,7 +60,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
         </S.HeaderMenu>
 
         <S.WrapperGroupMenu data-border-bottom>
-          <DetailsMenu title="CADASTRO" data-openmenu={menuOpen}>
+          <DetailsMenu title="CADASTRO" data-openmenu={menuOpen} open>
             <NavLink to={"/"}>
               <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
               <span>Usuários</span>
@@ -94,7 +94,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
         </S.WrapperGroupMenu>
 
         <S.WrapperGroupMenu>
-          <DetailsMenu title="CONTA" data-openmenu={menuOpen}>
+          <DetailsMenu title="CONTA" data-openmenu={menuOpen} open>
             <button>
               <img src="/assets/svg/icon-logout.svg" alt="icone usuario" />
               <span>Logout</span>

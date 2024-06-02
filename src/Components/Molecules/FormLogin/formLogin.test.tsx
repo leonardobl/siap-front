@@ -70,8 +70,10 @@ describe("<FormLogin />", () => {
     const cpfInput = screen.getByLabelText("CPF/CNPJ*");
     const senhaInput = screen.getByLabelText("Senha*");
 
-    userEvent.type(cpfInput, dataUser.cpfCNPJ);
-    userEvent.type(senhaInput, dataUser.senha);
+    await waitFor(async () => {
+      await userEvent.type(cpfInput, dataUser.cpfCNPJ);
+      await userEvent.type(senhaInput, dataUser.senha);
+    });
 
     fireEvent.submit(buttonEntrar);
 
