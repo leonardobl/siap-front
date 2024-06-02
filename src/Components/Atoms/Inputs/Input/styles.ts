@@ -81,7 +81,7 @@ export const MyInput = styled.input<InputCustomProps>`
   }
 
   ${(props) =>
-    props.iconLeft &&
+    props.iconleft &&
     css`
       padding: 0 32px;
 

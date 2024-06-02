@@ -41,8 +41,9 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
             {...register("cpfCNPJ")}
             label="CPF/CNPJ"
             required
+            id="cpf/cpnj"
             maxLength={18}
-            iconLeft="/assets/svg/icon-avatar.svg"
+            iconleft="/assets/svg/icon-avatar.svg"
             data-error={!!errors?.cpfCNPJ?.message}
           />
           {errors?.cpfCNPJ && (
@@ -55,8 +56,9 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
             {...register("senha")}
             label="Senha"
             required
+            id="senha"
             type="password"
-            iconLeft="/assets/svg/icon-locked.svg"
+            iconleft="/assets/svg/icon-locked.svg"
             data-error={!!errors?.senha?.message}
           />
           {errors?.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}

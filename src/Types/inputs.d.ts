@@ -9,5 +9,5 @@ export interface ISelectOptions {
 interface InputCustomProps extends ComponentProps<"input"> {
   label?: string;
   required?: boolean;
-  iconLeft?: string;
+  iconleft?: string;
 }

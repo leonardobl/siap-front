@@ -1,7 +1,7 @@
 import React from "react";
 import { IClienteForm } from "../../../Types/cliente";
 import { removerCaracteresEspeciais } from "../../../Utils/masks";
-import { TipoClienteEnum } from "../../../Types/tipoCliente";
+import { TipoClienteEnum } from "../../../Enum/tipoCliente";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useContextSite } from "../../../Context/Context";

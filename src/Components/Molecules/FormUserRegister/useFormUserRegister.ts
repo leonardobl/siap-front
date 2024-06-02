@@ -7,7 +7,7 @@ import { z } from "zod";
 import { IClienteForm } from "../../../Types/cliente";
 import { useContextSite } from "../../../Context/Context";
 import { ISelectOptions } from "../../../Types/inputs";
-import { TipoClienteEnum } from "../../../Types/tipoCliente";
+import { TipoClienteEnum } from "../../../Enum/tipoCliente";
 import { Ibge } from "../../../Services/Ibge";
 import { ViaCep } from "../../../Services/ViaCep";
 import { maskCep, maskCnpj, maskCpf, maskPhone } from "../../../Utils/masks";
