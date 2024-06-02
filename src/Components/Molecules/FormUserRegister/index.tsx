@@ -40,6 +40,7 @@ export const FormUserRegister = ({
           <Input
             {...register("nome")}
             autoFocus
+            id="name"
             data-error={!!errors?.nome}
             label="Nome Completo"
             required
@@ -51,6 +52,7 @@ export const FormUserRegister = ({
             {...register("cpfCnpj")}
             data-error={!!errors?.cpfCnpj}
             label="CPF"
+            id="cpf"
             required
             maxLength={18}
           />
@@ -62,6 +64,7 @@ export const FormUserRegister = ({
           <Input
             {...register("telefone")}
             data-error={!!errors?.telefone}
+            id="telefone"
             label="Telefone"
             maxLength={15}
           />
@@ -72,6 +75,7 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("email")}
+            id="email"
             data-error={!!errors?.email}
             label="E-mail"
           />
@@ -83,6 +87,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.cep")}
             required
+            id="cep"
             data-error={!!errors?.endereco?.cep}
             label="CEP"
             onBlur={handleCep}
@@ -96,6 +101,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.logradouro")}
             label="Logradouro"
+            id="logradouro"
             data-error={!!errors?.endereco?.logradouro}
             required
           />
@@ -104,6 +110,7 @@ export const FormUserRegister = ({
           <Input
             {...register("endereco.numero")}
             type="number"
+            id="numero"
             data-error={!!errors?.endereco?.numero}
             label="Número"
             required
@@ -115,6 +122,7 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("endereco.complemento")}
+            id="complemento"
             data-error={!!errors?.endereco?.complemento}
             label="Complemento"
           />
@@ -124,6 +132,7 @@ export const FormUserRegister = ({
             {...register("endereco.bairro")}
             data-error={!!errors?.endereco?.bairro}
             label="Bairro"
+            id="bairro"
             required
           />
           {errors?.endereco?.bairro?.message && (
@@ -139,6 +148,7 @@ export const FormUserRegister = ({
                 options={ufOptions}
                 label={"UF"}
                 required
+                inputId="uf"
                 customError={!!errors?.endereco?.uf}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={ufOptions?.find((i) => i.value === value) || null}
@@ -156,6 +166,7 @@ export const FormUserRegister = ({
             render={({ field: { onChange, value } }) => (
               <SimpleSelect
                 options={cidadesOptions}
+                inputId="cidade"
                 customError={!!errors?.endereco?.cidade}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={cidadesOptions?.find((i) => i.value === value) || null}
@@ -173,6 +184,7 @@ export const FormUserRegister = ({
             {...register("senha")}
             label="Senha"
             required
+            id="senha"
             data-error={!!errors?.senha}
             type="password"
           />
@@ -184,6 +196,7 @@ export const FormUserRegister = ({
           <Input
             {...register("confirmSenha")}
             label="Confirmar Senha"
+            id="confirmSenha"
             data-error={!!errors?.confirmSenha}
             type="password"
             required

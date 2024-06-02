@@ -95,7 +95,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
 
         <S.WrapperGroupMenu>
           <DetailsMenu title="CONTA" data-openmenu={menuOpen} open>
-            <button>
+            <button onClick={logout}>
               <img src="/assets/svg/icon-logout.svg" alt="icone usuario" />
               <span>Logout</span>
             </button>
