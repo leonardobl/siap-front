@@ -59,34 +59,48 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
           </div>
         </S.HeaderMenu>
 
-        <DetailsMenu title="CADASTRO" data-openmenu={menuOpen}>
-          <NavLink to={"/"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Usuários</span>
-          </NavLink>
-          <NavLink to={"/login"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Serviços</span>
-          </NavLink>
-          <NavLink to={"/login"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Clientes</span>
-          </NavLink>
-          <NavLink to={"/login"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Contratos</span>
-          </NavLink>
+        <S.WrapperGroupMenu data-border-bottom>
+          <DetailsMenu title="CADASTRO" data-openmenu={menuOpen}>
+            <NavLink to={"/"}>
+              <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
+              <span>Usuários</span>
+            </NavLink>
+            <NavLink to={"/login"}>
+              <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
+              <span>Serviços</span>
+            </NavLink>
+            <NavLink to={"/login"}>
+              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+              <span>Clientes</span>
+            </NavLink>
+            <NavLink to={"/login"}>
+              <img src="/assets/svg/icon-contracts.svg" alt="icone usuario" />
+              <span>Contratos</span>
+            </NavLink>
 
-          <NavLink to={"/login"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Prestadores</span>
-          </NavLink>
+            <NavLink to={"/login"}>
+              <img src="/assets/svg/icon-prestadores.svg" alt="icone usuario" />
+              <span>Prestadores</span>
+            </NavLink>
 
-          <NavLink to={"/login"}>
-            <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-            <span>Tipos de Prestadores</span>
-          </NavLink>
-        </DetailsMenu>
+            <NavLink to={"/login"}>
+              <img
+                src="/assets/svg/icon-prestadores-plus.svg"
+                alt="icone usuario"
+              />
+              <span>Tipos de Prestadores</span>
+            </NavLink>
+          </DetailsMenu>
+        </S.WrapperGroupMenu>
+
+        <S.WrapperGroupMenu>
+          <DetailsMenu title="CONTA" data-openmenu={menuOpen}>
+            <button>
+              <img src="/assets/svg/icon-logout.svg" alt="icone usuario" />
+              <span>Logout</span>
+            </button>
+          </DetailsMenu>
+        </S.WrapperGroupMenu>
       </S.Menu>
       <S.Main data-open={menuOpen}>
         <S.MainContent>

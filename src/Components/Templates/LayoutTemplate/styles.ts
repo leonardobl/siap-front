@@ -180,3 +180,11 @@ export const MainHeader = styled.div`
     }
   }
 `;
+
+export const WrapperGroupMenu = styled.div`
+  padding: 16px 0 32px;
+
+  &[data-border-bottom="true"] {
+    border-bottom: 1px solid ${(props) => props.theme.colors["gray-200"]};
+  }
+`;

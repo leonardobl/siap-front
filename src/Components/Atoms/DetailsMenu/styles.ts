@@ -72,9 +72,13 @@ export const Details = styled.details`
     align-items: start;
     transition: all 0.3s ease-in-out;
 
-    > a {
+    > a,
+    button {
       display: flex;
       gap: 0 10px;
+      outline: none;
+      border: none;
+      background-color: transparent;
       align-items: start;
       padding: 6px 8px;
 
@@ -111,7 +115,8 @@ export const Details = styled.details`
       animation: flexAnimateClose 0.3s forwards;
       align-items: center;
 
-      > a:hover {
+      > a:hover,
+      > button:hover {
         img {
           filter: brightness(0) saturate(100%) invert(21%) sepia(91%)
             saturate(1251%) hue-rotate(188deg) brightness(91%) contrast(96%);
@@ -123,7 +128,8 @@ export const Details = styled.details`
         }
       }
 
-      > a {
+      > a,
+      > button {
         span {
           opacity: 0;
           display: none;
