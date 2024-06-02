@@ -9,7 +9,7 @@ export const Container = styled.div`
     }
   }
 
-  &:not([data-customError="true"]):has(input:focus) {
+  &:not([data-custom-error="true"]):has(input:focus) {
     label {
       color: ${(props) => props.theme.colors["blue-100"]};
     }
@@ -21,7 +21,7 @@ export const Container = styled.div`
     }
   }
 
-  &[data-customError="true"] {
+  &[data-custom-error="true"] {
     .react-select__control {
       border: 1px solid ${(props) => props.theme.colors.red};
     }
@@ -45,7 +45,7 @@ export const Label = styled.label`
   line-height: 16px;
   pointer-events: none;
 
-  &[data-customError="true"] {
+  &[data-custom-error="true"] {
     color: ${(props) => props.theme.colors.red};
   }
 `;

@@ -5,6 +5,7 @@ import { mockCidades } from "../../../Mocks/mock-cidades";
 import { mockUfs } from "../../../Mocks/mock-ufs";
 
 const mockSubmit = jest.fn();
+jest.mock("axios");
 
 jest.mock("./useFormUserRegister", () => {
   const hook = jest.requireActual("./useFormUserRegister");

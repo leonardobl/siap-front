@@ -51,7 +51,7 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
     };
 
     return (
-      <S.Container data-customError={props?.customError}>
+      <S.Container data-custom-error={props?.customError}>
         <Select
           {...props}
           ref={ref}
@@ -65,7 +65,7 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
         {props?.label && (
           <S.Label
             htmlFor={props.inputId}
-            data-customError={props?.customError}
+            data-custom-error={props?.customError}
           >
             {props.label}
             {props.required && <S.Required>*</S.Required>}
