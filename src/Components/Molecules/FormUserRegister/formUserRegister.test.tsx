@@ -109,25 +109,24 @@ describe("<FormUserRegister />", () => {
 
     const button = screen.getByRole("button", { name: "Cadastrar" });
 
-    await waitFor(async () => {
-      await userEvent.type(nomeInput, dataUser.nome);
-      await userEvent.type(cpfInput, dataUser.cpfCnpj);
-      await userEvent.type(telefoneInput, dataUser.telefone);
-      await userEvent.type(emailInput, dataUser.email);
-      await userEvent.type(cepInput, dataUser.endereco.cep);
-      await userEvent.type(logradouroInput, dataUser.endereco.logradouro);
-      await userEvent.type(numeroInput, dataUser.endereco.numero);
-      await userEvent.type(complementoInput, dataUser.endereco.complemento);
-      await userEvent.type(bairroInput, dataUser.endereco.bairro);
+    await userEvent.type(nomeInput, dataUser.nome);
+    await userEvent.type(cpfInput, dataUser.cpfCnpj);
+    await userEvent.type(telefoneInput, dataUser.telefone);
+    await userEvent.type(emailInput, dataUser.email);
+    await userEvent.type(cepInput, dataUser.endereco.cep);
+    await userEvent.type(logradouroInput, dataUser.endereco.logradouro);
+    await userEvent.type(numeroInput, dataUser.endereco.numero);
+    await userEvent.type(complementoInput, dataUser.endereco.complemento);
+    await userEvent.type(bairroInput, dataUser.endereco.bairro);
+    await userEvent.type(senhaInput, dataUser.senha);
+    await userEvent.type(confirmSenhaInput, dataUser.confirmSenha);
 
+    await waitFor(async () => {
       await userEvent.click(ufInput);
       await userEvent.click(screen.getByText(mockUfs[0].label));
 
       await userEvent.click(cidadeInput);
       await userEvent.click(screen.getByText(mockCidades[0].label));
-
-      await userEvent.type(senhaInput, dataUser.senha);
-      await userEvent.type(confirmSenhaInput, dataUser.confirmSenha);
     });
 
     fireEvent.submit(button);

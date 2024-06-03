@@ -30,7 +30,7 @@ export const Menu = styled.nav`
   position: fixed;
   background: #fff;
   filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.16));
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   -webkit-transition: width 0.3s ease-in-out;
   -moz-transition: width 0.3s ease-in-out;
