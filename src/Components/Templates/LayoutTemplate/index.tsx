@@ -69,7 +69,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
               <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
               <span>Serviços</span>
             </NavLink>
-            <NavLink to={"/login"}>
+            <NavLink to={"/cliente"}>
               <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
               <span>Clientes</span>
             </NavLink>
@@ -114,8 +114,10 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
               />
             </div>
           </S.MainHeader>
-          {props.children}
-          <Outlet />
+          <S.Content>
+            {props.children}
+            <Outlet />
+          </S.Content>
         </S.MainContent>
       </S.Main>
     </S.Container>

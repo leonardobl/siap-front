@@ -188,3 +188,14 @@ export const WrapperGroupMenu = styled.div`
     border-bottom: 1px solid ${(props) => props.theme.colors["gray-200"]};
   }
 `;
+
+export const Content = styled.div`
+  width: 100%;
+  max-width: ${(props) => props.theme.screens.xl};
+  margin: 0 auto;
+  padding: ${(props) => props.theme.padding.mobile} 24px;
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    padding: ${(props) => props.theme.padding.lg} 20px;
+  }
+`;
