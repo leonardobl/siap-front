@@ -9,7 +9,7 @@ import { mockClientList } from "../../../Mocks/mick-clientList";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ClientTemplate = () => {
-  const { filterOpen, setFilterOpen } = useClient();
+  const { filterOpen, setFilterOpen, navigate } = useClient();
 
   return (
     <LayoutTemplate titleHeader="Clientes">
@@ -22,7 +22,12 @@ export const ClientTemplate = () => {
           >
             Filtro
           </Button>
-          <Button iconleft="/assets/svg/icon-plus.svg">Cadastrar</Button>
+          <Button
+            iconleft="/assets/svg/icon-plus.svg"
+            onClick={() => navigate("/cliente/cadastro")}
+          >
+            Cadastrar
+          </Button>
         </S.WrapperButtons>
 
         {filterOpen && (
