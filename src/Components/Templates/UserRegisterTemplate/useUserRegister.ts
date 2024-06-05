@@ -1,7 +1,6 @@
 import React from "react";
 import { IClienteForm } from "../../../Types/cliente";
 import { removerCaracteresEspeciais } from "../../../Utils/masks";
-import { TipoClienteEnum } from "../../../Enum/tipoCliente";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useContextSite } from "../../../Context/Context";
@@ -18,8 +17,7 @@ export const useUserRegister = () => {
       nome: data.nome,
       senha: data.senha,
       telefone: data.telefone,
-      cpfCnpj: removerCaracteresEspeciais(data.cpfCnpj),
-      tipo: TipoClienteEnum.PARTICULAR,
+      cpf: removerCaracteresEspeciais(data.cpf),
     };
 
     setIsLoad(true);

@@ -7,23 +7,24 @@ import { z } from "zod";
 import { IClienteForm } from "../../../Types/cliente";
 import { useContextSite } from "../../../Context/Context";
 import { ISelectOptions } from "../../../Types/inputs";
-import { TipoClienteEnum } from "../../../Enum/tipoCliente";
 import { Ibge } from "../../../Services/Ibge";
 import { ViaCep } from "../../../Services/ViaCep";
-import { maskCep, maskCnpj, maskCpf, maskPhone } from "../../../Utils/masks";
+import { maskCep, maskCpf, maskPhone } from "../../../Utils/masks";
 
 interface IIClienteFormProps extends IClienteForm {
   confirmSenha: string;
 }
+
+const cidadeSchema = z.object({
+  nome: z.string({ message: "Campo obrigatorio" }).min(1, "Campo obrigatorio"),
+});
 
 const enderecoSchema = z.object({
   bairro: z
     .string({ message: "Campo obrigatorio" })
     .min(1, "Campo obrigatorio"),
   cep: z.string({ message: "Campo obrigatorio" }).min(9, "Cep invalido"),
-  cidade: z
-    .string({ message: "Campo obrigatorio" })
-    .min(1, "Campo obrigatorio"),
+  cidade: cidadeSchema,
   complemento: z.string().optional(),
   logradouro: z
     .string({ message: "Campo obrigatorio" })
@@ -36,7 +37,7 @@ const enderecoSchema = z.object({
 
 const schema = z
   .object({
-    cpfCnpj: z
+    cpf: z
       .string({ message: "Campo obrigatorio" })
       .min(14, "CPF/CNPJ invalido"),
     email: z
@@ -80,23 +81,22 @@ export const useFormUserRegister = () => {
     formState: { errors },
   } = useForm<IIClienteFormProps>({
     defaultValues: {
-      cpfCnpj: "",
+      cpf: "",
       email: "",
       nome: "",
       senha: "",
       confirmSenha: "",
       telefone: "",
-      tipo: TipoClienteEnum.PARTICULAR,
-      uuid: "",
       endereco: {
         bairro: "",
         cep: "",
-        cidade: "",
+        cidade: {
+          nome: "",
+        },
         complemento: "",
         logradouro: "",
         numero: "",
         uf: "",
-        uuid: "",
       },
     },
     mode: "all",
@@ -141,7 +141,7 @@ export const useFormUserRegister = () => {
 
   useEffect(() => {
     if (watch("endereco.uf")) {
-      setValue("endereco.cidade", "");
+      setValue("endereco.cidade.nome", "");
       Ibge.CidadesPorEstado({ sigla: watch("endereco.uf") })
         .then(({ data }) => {
           const options = data.map((item) => ({
@@ -150,7 +150,7 @@ export const useFormUserRegister = () => {
             element: item,
           }));
           setCidadesOptions(options);
-          setValue("endereco.cidade", cidadeTemp);
+          setValue("endereco.cidade.nome", cidadeTemp);
         })
         .then(() => {
           setCidadeTemp("");
@@ -164,17 +164,9 @@ export const useFormUserRegister = () => {
   }, [watch("endereco.cep")]);
 
   useEffect(() => {
-    let newvalue = "";
-
-    if (watch("cpfCnpj")?.length > 14) {
-      newvalue = maskCnpj(watch("cpfCnpj"));
-      setValue("cpfCnpj", newvalue);
-      return;
-    }
-
-    newvalue = maskCpf(watch("cpfCnpj"));
-    setValue("cpfCnpj", newvalue);
-  }, [watch("cpfCnpj")]);
+    const newvalue = maskCpf(watch("cpf"));
+    setValue("cpf", newvalue);
+  }, [watch("cpf")]);
 
   useEffect(() => {
     const newPhoneValue = maskPhone(watch("telefone"));

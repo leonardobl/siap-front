@@ -48,16 +48,14 @@ export const FormUserRegister = ({
         </div>
         <div>
           <Input
-            {...register("cpfCnpj")}
-            data-error={!!errors?.cpfCnpj}
+            {...register("cpf")}
+            data-error={!!errors?.cpf}
             label="CPF"
             id="cpf"
             required
-            maxLength={18}
+            maxLength={14}
           />
-          {errors?.cpfCnpj && (
-            <ErrorMessage>{errors?.cpfCnpj?.message}</ErrorMessage>
-          )}
+          {errors?.cpf && <ErrorMessage>{errors?.cpf?.message}</ErrorMessage>}
         </div>
         <div>
           <Input
@@ -161,12 +159,12 @@ export const FormUserRegister = ({
         <div>
           <Controller
             control={control}
-            name="endereco.cidade"
+            name="endereco.cidade.nome"
             render={({ field: { onChange, value } }) => (
               <SimpleSelect
                 options={cidadesOptions}
                 inputId="cidade"
-                customError={!!errors?.endereco?.cidade}
+                customError={!!errors?.endereco?.cidade?.nome}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
                 value={cidadesOptions?.find((i) => i.value === value)}
                 label={"Cidade"}
@@ -174,8 +172,8 @@ export const FormUserRegister = ({
               />
             )}
           />
-          {errors?.endereco?.uf?.message && (
-            <ErrorMessage>{errors.endereco.cidade.message}</ErrorMessage>
+          {errors?.endereco?.cidade?.nome && (
+            <ErrorMessage>{errors.endereco.cidade.nome.message}</ErrorMessage>
           )}
         </div>
         <div>

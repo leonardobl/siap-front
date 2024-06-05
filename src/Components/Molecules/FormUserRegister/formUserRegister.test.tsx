@@ -6,12 +6,12 @@ import { mockUfs } from "../../../Mocks/mock-ufs";
 import userEvent from "@testing-library/user-event";
 
 const dataUser = {
-  cpfCnpj: "123.123.123-04",
+  cpf: "123.123.123-04",
   email: "teste@uol.com.br",
   endereco: {
     bairro: "Ininga",
     cep: "64049-700",
-    cidade: "Teresina",
+    cidade: { nome: "Teresina" },
     complemento: "Complemento",
     logradouro: "Rua 31 de marco",
     numero: "2020",
@@ -21,7 +21,6 @@ const dataUser = {
   senha: "123",
   confirmSenha: "123",
   telefone: "(86) 99523-3237",
-  tipo: "PARTICULAR",
 };
 
 const mockSubmit = jest.fn();
@@ -110,7 +109,7 @@ describe("<FormUserRegister />", () => {
     const button = screen.getByRole("button", { name: "Cadastrar" });
 
     await userEvent.type(nomeInput, dataUser.nome);
-    await userEvent.type(cpfInput, dataUser.cpfCnpj);
+    await userEvent.type(cpfInput, dataUser.cpf);
     await userEvent.type(telefoneInput, dataUser.telefone);
     await userEvent.type(emailInput, dataUser.email);
     await userEvent.type(cepInput, dataUser.endereco.cep);
