@@ -40,5 +40,6 @@ export const FormFilter = styled.form`
     grid-template-columns: 1fr 1fr;
     grid-template-areas: "nome cpf" "telefone email" ". buttons";
     padding: 32px;
+    margin-bottom: 32px;
   }
 `;

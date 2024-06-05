@@ -159,6 +159,10 @@ export const MainHeader = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
 
+  padding-left: 28px;
+  display: flex;
+  align-items: center;
+
   > div#wrapperIconCloseHeader {
     position: absolute;
     right: 36px;
@@ -171,13 +175,33 @@ export const MainHeader = styled.div`
     }
   }
 
+  > h1 {
+    color: #fff;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
   @media (min-width: ${(props) => props.theme.screens.lg}) {
     background-image: url("/assets/img/bg-main-header-lg.png");
     height: 140px;
     position: static;
+    padding-left: 42px;
+    display: flex;
+    align-items: center;
+    padding-left: 42px;
 
     > div#wrapperIconCloseHeader {
       display: none;
+    }
+
+    > h1 {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+      width: fit-content;
     }
   }
 `;
@@ -192,12 +216,13 @@ export const WrapperGroupMenu = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 64px);
   max-width: ${(props) => props.theme.screens.xl};
   margin: 0 auto;
   padding: ${(props) => props.theme.padding.mobile} 24px;
 
   @media (min-width: ${(props) => props.theme.screens.lg}) {
+    min-height: calc(100vh - 140px);
     padding: ${(props) => props.theme.padding.lg} 20px;
   }
 `;

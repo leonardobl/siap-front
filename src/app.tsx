@@ -10,7 +10,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { UserRegister } from "./Components/Pages/UserRegister";
 import { ProtectedRoute } from "./Components/Atoms/ProtectedRoute";
 import { Client } from "./Components/Pages/Client";
-import { LayoutTemplate } from "./Components/Templates/LayoutTemplate";
 
 export function App() {
   return (
@@ -20,14 +19,7 @@ export function App() {
       <ContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <LayoutTemplate />
-                </ProtectedRoute>
-              }
-            >
+            <Route path="/">
               <Route
                 index
                 element={
@@ -36,9 +28,15 @@ export function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="cliente" element={<Client />} />
+              <Route
+                path="cliente"
+                element={
+                  <ProtectedRoute>
+                    <Client />
+                  </ProtectedRoute>
+                }
+              />
             </Route>
-
             <Route path="cadastro-usuario" element={<UserRegister />} />
             <Route path="login" element={<Login />} />
           </Routes>

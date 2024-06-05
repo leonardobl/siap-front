@@ -7,9 +7,14 @@ import { NavLink } from "react-router-dom";
 
 interface ILayoutTemplateProps extends ComponentProps<"div"> {
   children?: React.ReactNode;
+  titleHeader?: string;
 }
 
-export const LayoutTemplate = (props: ILayoutTemplateProps) => {
+export const LayoutTemplate = ({
+  titleHeader,
+  children,
+  ...rest
+}: ILayoutTemplateProps) => {
   const {
     logout,
     menuOpen,
@@ -20,7 +25,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
   } = useLayout();
 
   return (
-    <S.Container {...props}>
+    <S.Container {...rest}>
       <S.Menu data-open={menuOpen}>
         <S.HeaderMenu data-open={menuOpen}>
           <img
@@ -105,6 +110,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
       <S.Main data-open={menuOpen}>
         <S.MainContent>
           <S.MainHeader>
+            <h1>{titleHeader}</h1>
             <div id="wrapperIconCloseHeader">
               <img
                 src="/assets/svg/hamburguermenu.svg"
@@ -115,7 +121,7 @@ export const LayoutTemplate = (props: ILayoutTemplateProps) => {
             </div>
           </S.MainHeader>
           <S.Content>
-            {props.children}
+            {children}
             <Outlet />
           </S.Content>
         </S.MainContent>
