@@ -6,6 +6,7 @@ import { FormFilterClient } from "../../Molecules/Forms/FormFilterClient";
 import { ClientList } from "../../Molecules/Lists/ClientList";
 import { LayoutTemplate } from "../LayoutTemplate";
 import { mockClientList } from "../../../Mocks/mick-clientList";
+import { Pagination } from "../../Atoms/Pagination";
 
 export const ClientTemplate = () => {
   const { filterOpen, setFilterOpen } = useClient();
@@ -33,6 +34,13 @@ export const ClientTemplate = () => {
         )}
 
         <ClientList clients={mockClientList} />
+
+        <Pagination
+          totalPage={5}
+          totalRegister={10}
+          actualPage={0}
+          setNumberPage={undefined}
+        />
       </S.Container>
     </LayoutTemplate>
   );
