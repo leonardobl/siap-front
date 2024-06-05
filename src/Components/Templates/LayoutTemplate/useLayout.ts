@@ -6,7 +6,7 @@ import { useMediaQuery } from "react-responsive";
 
 export const useLayout = () => {
   const isMobile = useMediaQuery({ maxWidth: "1020px" });
-  const [menuOpen, setMenuOpen] = useState(isMobile ? false : true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [token] = useLocalStorage("@token");
   const { pathname } = useLocation();
@@ -26,6 +26,7 @@ export const useLayout = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setMenuOpen(false);
   }, [pathname]);
 
   return {

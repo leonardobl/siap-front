@@ -3,8 +3,11 @@ import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
 import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
+import { useClientRegister } from "./useClientRegister";
 
 export const FormClientRegister = () => {
+  const { navigate } = useClientRegister();
+
   return (
     <S.Form>
       <div>
@@ -52,7 +55,9 @@ export const FormClientRegister = () => {
       </div>
 
       <div id="wrapper-buttons">
-        <Button>Cancelar</Button>
+        <Button type="button" onClick={() => navigate(-1)}>
+          Cancelar
+        </Button>
         <Button variant="blue">Salvar</Button>
       </div>
     </S.Form>
