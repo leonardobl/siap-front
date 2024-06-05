@@ -1,10 +1,14 @@
 export interface IEnderecoDTO {
   bairro: string;
   cep: string;
-  cidade: string;
-  complemento?: string;
+  cidade: ICidadeDTO;
+  complemento: string;
   logradouro: string;
-  numero?: string;
+  numero: string;
   uf: string;
-  uuid?: string;
+}
+
+export interface ICidadeDTO {
+  nome: string;
+  uf: string;
 }

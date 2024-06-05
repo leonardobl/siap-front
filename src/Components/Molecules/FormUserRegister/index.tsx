@@ -39,7 +39,6 @@ export const FormUserRegister = ({
         <div>
           <Input
             {...register("nome")}
-            autoFocus
             id="name"
             data-error={!!errors?.nome}
             label="Nome Completo"
@@ -169,7 +168,7 @@ export const FormUserRegister = ({
                 inputId="cidade"
                 customError={!!errors?.endereco?.cidade}
                 onChange={(e: ISelectOptions) => onChange(e?.value)}
-                value={cidadesOptions?.find((i) => i.value === value) || null}
+                value={cidadesOptions?.find((i) => i.value === value)}
                 label={"Cidade"}
                 required
               />
