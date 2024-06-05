@@ -1,8 +1,10 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
+import { IClienteDTO } from "../../../../Types/cliente";
 
 interface IClientListProps extends ComponentProps<"div"> {
   clients: { nome: string; cpf: string }[];
+  // clients: IClienteDTO[];
 }
 
 export const ClientList = ({ clients, ...rest }: IClientListProps) => {

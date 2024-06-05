@@ -5,13 +5,7 @@ import { useClient } from "./useClient";
 import { FormFilterClient } from "../../Molecules/Forms/FormFilterClient";
 import { ClientList } from "../../Molecules/Lists/ClientList";
 import { LayoutTemplate } from "../LayoutTemplate";
-
-const dataClient = [
-  { nome: "Camilla Santos de Alcântara", cpf: "018.895.983.13" },
-  { nome: "Camilla Santos de Alcântara", cpf: "018.895.983.13" },
-  { nome: "Camilla Santos de Alcântara", cpf: "018.895.983.13" },
-  { nome: "Camilla Santos de Alcântara", cpf: "018.895.983.13" },
-];
+import { mockClientList } from "../../../Mocks/mick-clientList";
 
 export const ClientTemplate = () => {
   const { filterOpen, setFilterOpen } = useClient();
@@ -38,7 +32,7 @@ export const ClientTemplate = () => {
           />
         )}
 
-        <ClientList clients={dataClient} />
+        <ClientList clients={mockClientList} />
       </S.Container>
     </LayoutTemplate>
   );
