@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { FormLogin } from ".";
-import { renderComponent } from "../../../Utils/renderComponent";
 import userEvent from "@testing-library/user-event";
+import { renderComponent } from "../../../../Utils/renderComponent";
 
 const dataUser = {
   cpfCNPJ: "123.269.123-32",

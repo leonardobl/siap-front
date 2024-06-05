@@ -1,12 +1,12 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
-import { Input } from "../../Atoms/Inputs/Input";
-import { SimpleSelect } from "../../Atoms/Selects/SimpleSelect";
-import { Button } from "../../Atoms/Button";
-import { IClienteForm } from "../../../Types/cliente";
+import { IClienteForm } from "../../../../Types/cliente";
 import { useFormUserRegister } from "./useFormUserRegister";
-import { ISelectOptions } from "../../../Types/inputs";
-import { ErrorMessage } from "../../Atoms/ErrorMessage";
+import { Input } from "../../../Atoms/Inputs/Input";
+import { ErrorMessage } from "../../../Atoms/ErrorMessage";
+import { Button } from "../../../Atoms/Button";
+import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
+import { ISelectOptions } from "../../../../Types/inputs";
 
 interface IFormUserRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IClienteForm) => void;

@@ -1,8 +1,8 @@
 import React from "react";
-import { FormUserRegister } from "../../Molecules/FormUserRegister";
 import { useUserRegister } from "./useUserRegister";
 import { LayoutNoLogin } from "../LayoutNoLogin";
 import * as S from "./styles";
+import { FormUserRegister } from "../../Molecules/Forms/FormUserRegister";
 
 export const UserRegisterTemplate = () => {
   const { submitForm } = useUserRegister();

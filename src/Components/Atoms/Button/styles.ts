@@ -9,7 +9,7 @@ export const MyButton = styled.button<IButtonProps>`
   gap: 0 8px;
   width: fit-content;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.16);
-  padding: ${(props) => (!!props.iconLeft ? "7px 18px" : "7px 30px")};
+  padding: ${(props) => (!!props.iconleft ? "7px 18px" : "7px 30px")};
   border-radius: 12px;
   border: 0.3px solid #9d9d9d;
   background: #fff;
@@ -44,7 +44,6 @@ export const MyButton = styled.button<IButtonProps>`
     css`
       background: ${props.theme.colors["blue-300"]};
       color: ${props.theme.colors.white};
-      border: none;
 
       > img {
         filter: brightness(0) saturate(100%) invert(100%) sepia(11%)

@@ -147,6 +147,7 @@ export const HeaderMenu = styled.div`
 
 export const Main = styled.main`
   flex: 1;
+  background: #f6f6f6;
 `;
 
 export const MainContent = styled.div``;
@@ -191,6 +192,7 @@ export const WrapperGroupMenu = styled.div`
 
 export const Content = styled.div`
   width: 100%;
+  min-height: 100vh;
   max-width: ${(props) => props.theme.screens.xl};
   margin: 0 auto;
   padding: ${(props) => props.theme.padding.mobile} 24px;

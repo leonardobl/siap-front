@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { maskCnpj, maskCpf } from "../../../Utils/masks";
-import { IAutenticacaoForm } from "../../../Types/autenticacao";
 import { useNavigate } from "react-router-dom";
+import { IAutenticacaoForm } from "../../../../Types/autenticacao";
+import { maskCnpj, maskCpf } from "../../../../Utils/masks";
 
 const schema = z.object({
   cpfCNPJ: z

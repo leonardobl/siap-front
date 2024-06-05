@@ -1,9 +1,9 @@
 import { fireEvent, screen, waitFor } from "@testing-library/react";
-import { renderComponent } from "../../../Utils/renderComponent";
 import { FormUserRegister } from ".";
-import { mockCidades } from "../../../Mocks/mock-cidades";
-import { mockUfs } from "../../../Mocks/mock-ufs";
 import userEvent from "@testing-library/user-event";
+import { mockCidades } from "../../../../Mocks/mock-cidades";
+import { mockUfs } from "../../../../Mocks/mock-ufs";
+import { renderComponent } from "../../../../Utils/renderComponent";
 
 const dataUser = {
   cpf: "123.123.123-04",

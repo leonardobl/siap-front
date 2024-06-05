@@ -1,13 +1,12 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
-import { useFormLogin } from "./useFormLogin";
-import { InputLogin } from "../../Atoms/Inputs/InputLogin";
-import { ErrorMessage } from "../../Atoms/ErrorMessage";
 import { Link } from "react-router-dom";
-import { IAutenticacaoForm } from "../../../Types/autenticacao";
-import { MyModal } from "../../Atoms/Modal";
-import { Button } from "../../Atoms/Button";
-import { Input } from "../../Atoms/Inputs/Input";
+import { IAutenticacaoForm } from "../../../../Types/autenticacao";
+import { Input } from "../../../Atoms/Inputs/Input";
+import { useFormLogin } from "./useFormLogin";
+import { Button } from "../../../Atoms/Button";
+import { MyModal } from "../../../Atoms/Modal";
+import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
   submiteForm: (data: IAutenticacaoForm) => void;

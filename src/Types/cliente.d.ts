@@ -1,4 +1,5 @@
 import { IEnderecoDTO } from "./endereco";
+import { IPageRequest } from "./page";
 
 export interface IClienteForm {
   cpf: string;
@@ -31,4 +32,11 @@ export interface IPageClienteDTO {
   sort: ISortObject;
   totalElements: number;
   totalPages: number;
+}
+
+export interface IClienteListPros extends IPageRequest {
+  nome?: string;
+  cpf?: string;
+  telefone?: string;
+  email?: string;
 }

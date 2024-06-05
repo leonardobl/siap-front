@@ -1,7 +1,7 @@
 import React from "react";
-import { FormLogin } from "../../Molecules/FormLogin";
 import { useLogin } from "./useLogin";
 import { LayoutNoLogin } from "../LayoutNoLogin";
+import { FormLogin } from "../../Molecules/Forms/FormLogin";
 
 export const LoginTemplate = () => {
   const { submiteForm } = useLogin();

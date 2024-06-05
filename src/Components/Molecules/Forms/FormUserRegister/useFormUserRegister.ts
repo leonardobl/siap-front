@@ -4,12 +4,12 @@ import { toast } from "react-toastify";
 import { Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { IClienteForm } from "../../../Types/cliente";
-import { useContextSite } from "../../../Context/Context";
-import { ISelectOptions } from "../../../Types/inputs";
-import { Ibge } from "../../../Services/Ibge";
-import { ViaCep } from "../../../Services/ViaCep";
-import { maskCep, maskCpf, maskPhone } from "../../../Utils/masks";
+import { IClienteForm } from "../../../../Types/cliente";
+import { useContextSite } from "../../../../Context/Context";
+import { ISelectOptions } from "../../../../Types/inputs";
+import { Ibge } from "../../../../Services/Ibge";
+import { ViaCep } from "../../../../Services/ViaCep";
+import { maskCep, maskCpf, maskPhone } from "../../../../Utils/masks";
 
 interface IIClienteFormProps extends IClienteForm {
   confirmSenha: string;
