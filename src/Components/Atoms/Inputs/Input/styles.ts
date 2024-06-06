@@ -80,6 +80,17 @@ export const MyInput = styled.input<InputCustomProps>`
     }
   }
 
+  &:disabled {
+    background-color: #f0f0f0;
+    border: 1px solid ${(props) => props.theme.colors["gray-200"]};
+    color: ${(props) => props.theme.colors["gray-200"]};
+    cursor: not-allowed;
+
+    + label {
+      background: linear-gradient(to top, #f0f0f0 50%, transparent 50%);
+    }
+  }
+
   ${(props) =>
     props.iconleft &&
     css`

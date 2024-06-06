@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { renderComponent } from "../../../../Utils/renderComponent";
 import { ClientList } from ".";
-import { mockClientList } from "../../../../Mocks/mick-clientList";
+import { mockClientList } from "../../../../Mocks/mock-client";
 
 describe("<ClientList />", () => {
   test("Deve renderizar uma lista de usuarios", () => {

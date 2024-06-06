@@ -5,7 +5,7 @@ import { useClients } from "./useClients";
 import { FormFilterClient } from "../../Molecules/Forms/FormFilterClient";
 import { ClientList } from "../../Molecules/Lists/ClientList";
 import { LayoutTemplate } from "../LayoutTemplate";
-import { mockClientList } from "../../../Mocks/mick-clientList";
+import { mockClientList } from "../../../Mocks/mock-client";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ClientsTemplate = () => {
