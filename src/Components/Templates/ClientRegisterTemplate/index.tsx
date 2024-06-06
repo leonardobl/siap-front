@@ -7,7 +7,7 @@ export const ClientRegisterTemplate = () => {
   return (
     <LayoutTemplate titleHeader="Cadastro de Clientes">
       <S.Container>
-        <FormClientRegister />
+        <FormClientRegister submitForm={(data) => console.log(data)} />
       </S.Container>
     </LayoutTemplate>
   );
