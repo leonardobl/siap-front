@@ -10,7 +10,7 @@ export const DetailsMenu = (props: IDetailsMenuProps) => {
     <S.Details {...props}>
       <summary>
         <div>
-          <span className="summary-title">{props.title}</span>
+          <span className="summary-title">{props.titleheader}</span>
         </div>
         <div className="summary-chevron">
           <img

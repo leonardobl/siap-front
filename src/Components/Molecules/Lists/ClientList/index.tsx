@@ -1,13 +1,16 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { IClienteDTO } from "../../../../Types/cliente";
+import { useClientList } from "./useClientList";
 
 interface IClientListProps extends ComponentProps<"div"> {
-  clients: { nome: string; cpf: string }[];
+  clients: { nome: string; cpf: string; uuid: string }[];
   // clients: IClienteDTO[];
 }
 
 export const ClientList = ({ clients, ...rest }: IClientListProps) => {
+  const { navigate } = useClientList();
+
   return (
     <S.Table {...rest}>
       <S.TableHeader>
@@ -22,7 +25,11 @@ export const ClientList = ({ clients, ...rest }: IClientListProps) => {
               <p>{i?.nome || "---"}</p>
               <p>{i.cpf || "---"}</p>
               <div className="wrapper-eye">
-                <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+                <img
+                  src="/assets/svg/icon-eye-open.svg"
+                  alt="icone olho"
+                  onClick={() => navigate(`/clientes/cliente?id=${i.uuid}`)}
+                />
               </div>
             </S.TableItem>
           ))}

@@ -207,7 +207,7 @@ export const FormClientRegister = ({
       </div>
 
       <div id="wrapper-buttons">
-        <Button type="button" onClick={() => navigate("/cliente")}>
+        <Button type="button" onClick={() => navigate("/clientes")}>
           Cancelar
         </Button>
         <Button variant="blue">Salvar</Button>

@@ -9,8 +9,9 @@ import { Login } from "./Components/Pages/Login";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRegister } from "./Components/Pages/UserRegister";
 import { ProtectedRoute } from "./Components/Atoms/ProtectedRoute";
-import { Client } from "./Components/Pages/Client";
 import { ClientRegister } from "./Components/Pages/ClientRegister";
+import { Clients } from "./Components/Pages/Clients";
+import { Client } from "./Components/Pages/Client";
 
 export function App() {
   return (
@@ -29,12 +30,12 @@ export function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="cliente">
+              <Route path="clientes">
                 <Route
                   index
                   element={
                     <ProtectedRoute>
-                      <Client />
+                      <Clients />
                     </ProtectedRoute>
                   }
                 />
@@ -43,6 +44,15 @@ export function App() {
                   element={
                     <ProtectedRoute>
                       <ClientRegister />
+                    </ProtectedRoute>
+                  }
+                />
+
+                <Route
+                  path="cliente"
+                  element={
+                    <ProtectedRoute>
+                      <Client />
                     </ProtectedRoute>
                   }
                 />

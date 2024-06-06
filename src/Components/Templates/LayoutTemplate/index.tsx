@@ -65,7 +65,7 @@ export const LayoutTemplate = ({
         </S.HeaderMenu>
 
         <S.WrapperGroupMenu data-border-bottom>
-          <DetailsMenu title="CADASTRO" data-openmenu={menuOpen} open>
+          <DetailsMenu titleheader="CADASTRO" data-openmenu={menuOpen} open>
             <NavLink to={"/"}>
               <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
               <span>Usuários</span>
@@ -74,7 +74,7 @@ export const LayoutTemplate = ({
               <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
               <span>Serviços</span>
             </NavLink>
-            <NavLink to={"/cliente"}>
+            <NavLink title="Clientes" to={"/clientes"}>
               <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
               <span>Clientes</span>
             </NavLink>
@@ -99,7 +99,7 @@ export const LayoutTemplate = ({
         </S.WrapperGroupMenu>
 
         <S.WrapperGroupMenu>
-          <DetailsMenu title="CONTA" data-openmenu={menuOpen} open>
+          <DetailsMenu titleheader="CONTA" data-openmenu={menuOpen} open>
             <button onClick={logout}>
               <img src="/assets/svg/icon-logout.svg" alt="icone usuario" />
               <span>Logout</span>
