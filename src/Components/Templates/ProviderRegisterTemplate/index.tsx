@@ -4,6 +4,7 @@ import * as S from "./styles";
 import { TabProviderForms } from "../../Molecules/Tabs/TabProviderForms";
 import { FormProviderBasic } from "../../Molecules/Forms/FormProviderBasic";
 import { useProviderRegister } from "./useProviderRegister";
+import { FormFinanceRegister } from "../../Molecules/Forms/FormFinanceRegister";
 
 export const ProviderRegisterTemplate = () => {
   const { tabIdx, setTabIdx } = useProviderRegister();
@@ -11,13 +12,16 @@ export const ProviderRegisterTemplate = () => {
   return (
     <LayoutTemplate titleHeader="Cadastro de Prestadores">
       <S.Container>
-        <TabProviderForms setTabIndex={setTabIdx} tabIndex={tabIdx}>
+        <TabProviderForms tabIndex={tabIdx}>
           {[
             <FormProviderBasic
-              submitForm={(e) => console.log(e)}
+              submitForm={(e) => {
+                console.log(e);
+                setTabIdx(2);
+              }}
               key={Math.random()}
             />,
-            <p key={Math.random()}>Tab2</p>,
+            <FormFinanceRegister submitForm={(e) => console.log(e)} />,
             <p key={Math.random()}>Tab3</p>,
           ]}
         </TabProviderForms>

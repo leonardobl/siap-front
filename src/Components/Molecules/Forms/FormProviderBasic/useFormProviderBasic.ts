@@ -82,6 +82,7 @@ export const useFormProviderBasic = () => {
       },
     },
     resolver: zodResolver(schemaForm),
+    mode: "all",
   });
 
   const getUfs = useCallback(() => {
