@@ -9,11 +9,13 @@ import { Login } from "./Components/Pages/Login";
 import "react-toastify/dist/ReactToastify.css";
 import { UserRegister } from "./Components/Pages/UserRegister";
 import { ProtectedRoute } from "./Components/Atoms/ProtectedRoute";
-import { ClientRegister } from "./Components/Pages/ClientRegister";
-import { Clients } from "./Components/Pages/Clients";
-import { Client } from "./Components/Pages/Client";
+import { useProvidersRoutes } from "./Routes/useProviders.routes";
+import { useClientRoutes } from "./Routes/useClient.routes";
 
 export function App() {
+  const ProvidersRoutes = useProvidersRoutes();
+  const ClientsRoutes = useClientRoutes();
+
   return (
     <ThemeProvider theme={Theme}>
       <ToastContainer autoClose={2000} />
@@ -21,46 +23,20 @@ export function App() {
       <ContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/">
-              <Route
-                index
-                element={
-                  <ProtectedRoute>
-                    <Home />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="clientes">
-                <Route
-                  index
-                  element={
-                    <ProtectedRoute>
-                      <Clients />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="cadastro"
-                  element={
-                    <ProtectedRoute>
-                      <ClientRegister />
-                    </ProtectedRoute>
-                  }
-                />
-
-                <Route
-                  path="cliente"
-                  element={
-                    <ProtectedRoute>
-                      <Client />
-                    </ProtectedRoute>
-                  }
-                />
-              </Route>
-            </Route>
+            <Route path="/" />
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
 
             <Route path="cadastro-usuario" element={<UserRegister />} />
             <Route path="login" element={<Login />} />
+            {ProvidersRoutes}
+            {ClientsRoutes}
           </Routes>
         </BrowserRouter>
       </ContextProvider>
