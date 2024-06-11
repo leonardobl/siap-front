@@ -1,56 +1,216 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
 import { Button } from "../../../Atoms/Button";
+import { useFormProviderBasic } from "./useFormProviderBasic";
+import { ISelectOptions } from "../../../../Types/inputs";
+import { IPrestadorForm } from "../../../../Types/prestador";
+import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 
-export const FormProviderBasic = () => {
+interface IFormProviderBasicProps extends ComponentProps<"form"> {
+  submitForm: (data: IPrestadorForm) => void;
+}
+
+export const FormProviderBasic = ({
+  submitForm,
+  ...rest
+}: IFormProviderBasicProps) => {
+  const {
+    Controller,
+    control,
+    errors,
+    handleSubmit,
+    register,
+    mockCidades,
+    TipoOptions,
+    mockUfs,
+  } = useFormProviderBasic();
+
   return (
-    <S.Form>
+    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
       <div>
-        <Input id="Nome" label="Nome" required />
+        <Input
+          {...register("nome")}
+          id="Nome"
+          label="Nome"
+          required
+          data-error={!!errors?.nome}
+        />
+        {errors?.nome && <ErrorMessage>{errors?.nome?.message}</ErrorMessage>}
       </div>
       <div>
-        <Input id="social" label="Razão Social" required />
+        <Input
+          {...register("razaoSocial")}
+          id="social"
+          label="Razão Social"
+          required
+          data-error={!!errors?.razaoSocial}
+        />
+        {errors?.razaoSocial && (
+          <ErrorMessage>{errors?.razaoSocial?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <Input id="CNPJ" label="CNPJ" required />
+        <Input
+          {...register("cnpj")}
+          id="CNPJ"
+          label="CNPJ"
+          required
+          maxLength={18}
+          data-error={!!errors?.cnpj}
+        />
+        {errors?.cnpj && <ErrorMessage>{errors?.cnpj?.message}</ErrorMessage>}
       </div>
       <div>
-        <Input id="municipal" label="Inscrição Municipal" />
+        <Input
+          {...register("inscMunicipal")}
+          id="municipal"
+          label="Inscrição Municipal"
+          type="number"
+        />
       </div>
       <div>
-        <Input id="estadual" label="Inscrição Estadual" />
+        <Input
+          {...register("inscEstadual")}
+          id="estadual"
+          label="Inscrição Estadual"
+          type="number"
+        />
       </div>
       <div>
-        <Input label="E-mail" id="email" />
+        <Input
+          {...register("email")}
+          label="E-mail"
+          id="email"
+          data-error={!!errors?.email}
+        />
+        {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
       </div>
       <div>
-        <SimpleSelect inputId="tipo" label="Tipo" required />
+        <Controller
+          control={control}
+          name="tipoNome"
+          render={({ field: { onChange, value } }) => (
+            <SimpleSelect
+              customError={!!errors?.tipoNome}
+              inputId="tipo"
+              label="Tipo"
+              required
+              value={TipoOptions.find((i) => i.value === value) || null}
+              options={TipoOptions}
+              onChange={(e: ISelectOptions) => onChange(e?.value)}
+            />
+          )}
+        />
+        {errors?.tipoNome && (
+          <ErrorMessage>{errors?.tipoNome?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <Input label="Telefone" required id="telefone" />
+        <Input
+          {...register("telefone")}
+          label="Telefone"
+          required
+          id="telefone"
+          maxLength={15}
+          data-error={!!errors.telefone}
+        />
+        {errors?.telefone && (
+          <ErrorMessage>{errors?.telefone?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <Input label="CEP" required id="cep" />
+        <Input
+          {...register("endereco.cep")}
+          label="CEP"
+          required
+          id="cep"
+          maxLength={9}
+          data-error={!!errors?.endereco?.cep}
+        />
+        {errors?.endereco?.cep && (
+          <ErrorMessage>{errors?.endereco?.cep?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <Input label="Logradouro" required id="logradouro" />
+        <Input
+          {...register("endereco.logradouro")}
+          label="Logradouro"
+          required
+          id="logradouro"
+          data-error={!!errors?.endereco?.logradouro}
+        />
+        {errors?.endereco?.logradouro && (
+          <ErrorMessage>{errors?.endereco?.logradouro?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <Input label="Número" id="numero" />
+        <Input
+          {...register("endereco.numero")}
+          label="Número"
+          id="numero"
+          type="number"
+        />
       </div>
       <div>
-        <Input label="Complemento" id="complemento" />
+        <Input
+          {...register("endereco.complemento")}
+          label="Complemento"
+          id="complemento"
+        />
       </div>
       <div>
-        <Input id="bairro" label="Bairro" required />
+        <Input
+          {...register("endereco.bairro")}
+          id="bairro"
+          label="Bairro"
+          required
+          data-error={!!errors?.endereco?.bairro}
+        />
+        {errors?.endereco?.bairro && (
+          <ErrorMessage>{errors?.endereco?.bairro?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <SimpleSelect label="UF" required inputId="uf" />
+        <Controller
+          control={control}
+          name="endereco.uf"
+          render={({ field: { onChange, value } }) => (
+            <SimpleSelect
+              label="UF"
+              required
+              customError={!!errors?.endereco?.uf}
+              inputId="uf"
+              value={mockUfs.find((i) => i.value === value) || null}
+              options={mockUfs}
+              onChange={(e: ISelectOptions) => onChange(e?.value)}
+            />
+          )}
+        />
+        {errors?.endereco?.uf && (
+          <ErrorMessage>{errors?.endereco?.uf?.message}</ErrorMessage>
+        )}
       </div>
       <div>
-        <SimpleSelect label="Cidade" required inputId="cidade" />
+        <Controller
+          control={control}
+          name="endereco.cidade.nome"
+          render={({ field: { onChange, value } }) => (
+            <SimpleSelect
+              label="Cidade"
+              required
+              inputId="cidade"
+              value={mockCidades.find((i) => i.value === value) || null}
+              options={mockCidades}
+              customError={!!errors?.endereco?.cidade?.nome}
+              onChange={(e: ISelectOptions) => onChange(e?.value)}
+            />
+          )}
+        />
+        {errors?.endereco?.cidade?.nome && (
+          <ErrorMessage>{errors?.endereco?.cidade?.nome?.message}</ErrorMessage>
+        )}
       </div>
       <div>
         <Button variant="blue">Avançar</Button>

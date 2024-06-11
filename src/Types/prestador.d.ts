@@ -43,3 +43,15 @@ export interface IPrestadorDTO {
 export interface ITipoPrestadorDTO {
   nome: string;
 }
+
+export interface IPrestadorForm {
+  cnpj: string;
+  email: string;
+  endereco: IEnderecoDTO;
+  inscEstadual: string;
+  inscMunicipal: string;
+  nome: string;
+  razaoSocial: string;
+  telefone: string;
+  tipoNome: string;
+}

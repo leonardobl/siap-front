@@ -12,7 +12,14 @@ export const ProviderRegisterTemplate = () => {
     <LayoutTemplate titleHeader="Cadastro de Prestadores">
       <S.Container>
         <TabProviderForms setTabIndex={setTabIdx} tabIndex={tabIdx}>
-          {[<FormProviderBasic />, <p>Tab2</p>, <p>Tab3</p>]}
+          {[
+            <FormProviderBasic
+              submitForm={(e) => console.log(e)}
+              key={Math.random()}
+            />,
+            <p key={Math.random()}>Tab2</p>,
+            <p key={Math.random()}>Tab3</p>,
+          ]}
         </TabProviderForms>
       </S.Container>
     </LayoutTemplate>
