@@ -4,9 +4,11 @@ import * as S from "./stylest";
 import { Button } from "../../Atoms/Button";
 import { useProviders } from "./useProviders";
 import { FormFilterProviders } from "../../Molecules/Forms/FormFilterProviders";
+import { ProvidersList } from "../../Molecules/Lists/ProvidersList";
+import { Pagination } from "../../Atoms/Pagination";
 
 export const ProvidersTemplate = () => {
-  const { filterOpen, navigate, setFilterOpen } = useProviders();
+  const { filterOpen, navigate, setFilterOpen, isMobile } = useProviders();
 
   return (
     <LayoutTemplate titleHeader="Prestadores">
@@ -29,6 +31,16 @@ export const ProvidersTemplate = () => {
         {filterOpen && (
           <FormFilterProviders submitForm={(data) => console.log(data)} />
         )}
+
+        <ProvidersList prestadores={[]} />
+
+        <Pagination
+          totalPage={12}
+          totalRegister={20}
+          maxPageNumbersDisplayed={isMobile ? 3 : 10}
+          actualPage={0}
+          setNumberPage={() => ""}
+        />
       </S.Container>
     </LayoutTemplate>
   );

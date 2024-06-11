@@ -2,6 +2,7 @@ export const Theme = {
   colors: {
     white: "#fff",
 
+    yellow: "#edbd2e",
     red: "rgba(237, 0, 0, 1)",
     black: "#111",
     "gray-50": "#e8e8e8;",
@@ -11,6 +12,7 @@ export const Theme = {
     green: "#237C54",
     "blue-100": "#2082E3",
     "blue-200": "#0B6884",
+    "blue-50": "#266BF0",
     "blue-300": "#0B4A89",
   },
   padding: {

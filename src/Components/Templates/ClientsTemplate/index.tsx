@@ -9,7 +9,7 @@ import { mockClientList } from "../../../Mocks/mock-client";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ClientsTemplate = () => {
-  const { filterOpen, setFilterOpen, navigate } = useClients();
+  const { filterOpen, setFilterOpen, navigate, isMobile } = useClients();
 
   return (
     <LayoutTemplate titleHeader="Clientes">
@@ -44,6 +44,7 @@ export const ClientsTemplate = () => {
           totalPage={5}
           totalRegister={10}
           actualPage={0}
+          maxPageNumbersDisplayed={isMobile ? 3 : 10}
           setNumberPage={undefined}
         />
       </S.Container>
