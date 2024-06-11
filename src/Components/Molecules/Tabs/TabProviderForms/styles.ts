@@ -7,11 +7,12 @@ export const Container = styled.div`
   border-radius: 12px;
   background: #fff;
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.16);
-  overflow: hidden;
 `;
 
 export const Headers = styled.div`
   display: flex;
+  border-radius: 10px 10px 0px 0px;
+  overflow: hidden;
 `;
 
 export const TabItem = styled.button`

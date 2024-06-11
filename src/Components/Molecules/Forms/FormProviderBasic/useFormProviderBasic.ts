@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { IPrestadorForm } from "../../../../Types/prestador";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { maskCep, maskCnpj, maskPhone } from "../../../../Utils/masks";
-import { mockCidades } from "../../../../Mocks/mock-cidades";
-import { mockUfs } from "../../../../Mocks/mock-ufs";
+import { Ibge } from "../../../../Services/Ibge";
+import { ISelectOptions } from "../../../../Types/inputs";
+import { toast } from "react-toastify";
+import { ViaCep } from "../../../../Services/ViaCep";
+import { useContextSite } from "../../../../Context/Context";
 
 const TipoOptions = [{ value: "Tipo1", label: "Tipo1" }];
 
@@ -42,6 +45,13 @@ const schemaForm = z.object({
 });
 
 export const useFormProviderBasic = () => {
+  const [ufOptions, setUfOptions] = useState<ISelectOptions[]>(
+    [] as ISelectOptions[]
+  );
+  const [cidadeTemp, setCidadeTemp] = useState("");
+  const { setIsLoad } = useContextSite();
+  const [cidadesOptions, setCidadesOptions] = useState<ISelectOptions[]>([]);
+
   const {
     control,
     formState: { errors },
@@ -74,6 +84,62 @@ export const useFormProviderBasic = () => {
     resolver: zodResolver(schemaForm),
   });
 
+  const getUfs = useCallback(() => {
+    Ibge.UFs()
+      .then(({ data }) => {
+        const options = data.map((item) => ({
+          value: item.sigla,
+          label: item.sigla,
+          element: item,
+        }));
+
+        setUfOptions(options);
+      })
+      .catch((erro) => toast.error("Erro ao requisitar as UFs"));
+  }, []);
+
+  useEffect(() => {
+    getUfs();
+  }, [getUfs]);
+
+  function handleCep() {
+    if (watch("endereco.cep").length === 9) {
+      setIsLoad(true);
+      setTimeout(() => {
+        ViaCep.get(watch("endereco.cep"))
+          .then(({ data }) => {
+            setValue("endereco.logradouro", data.logradouro);
+            setValue("endereco.bairro", data.bairro);
+            // setValue("endereco.cidade", data.localidade);
+            setValue("endereco.uf", data.uf);
+            setCidadeTemp(data.localidade);
+          })
+          .catch((erro) => toast.error("Cep não encontrado"))
+          .finally(() => setIsLoad(false));
+      }, 1000);
+    }
+  }
+
+  useEffect(() => {
+    if (watch("endereco.uf")) {
+      setValue("endereco.cidade.nome", "");
+      Ibge.CidadesPorEstado({ sigla: watch("endereco.uf") })
+        .then(({ data }) => {
+          const options = data.map((item) => ({
+            value: item.nome,
+            label: item.nome,
+            element: item,
+          }));
+          setCidadesOptions(options);
+          setValue("endereco.cidade.nome", cidadeTemp);
+        })
+        .then(() => {
+          setCidadeTemp("");
+        })
+        .catch((erro) => toast.error("Erro ao requisitar a lista de cidades"));
+    }
+  }, [watch("endereco.uf")]);
+
   useEffect(() => {
     setValue("endereco.cep", maskCep(watch("endereco.cep")));
   }, [watch("endereco.cep")]);
@@ -93,7 +159,8 @@ export const useFormProviderBasic = () => {
     register,
     handleSubmit,
     TipoOptions,
-    mockUfs,
-    mockCidades,
+    cidadesOptions,
+    ufOptions,
+    handleCep,
   };
 };

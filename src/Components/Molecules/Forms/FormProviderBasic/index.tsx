@@ -22,9 +22,10 @@ export const FormProviderBasic = ({
     errors,
     handleSubmit,
     register,
-    mockCidades,
     TipoOptions,
-    mockUfs,
+    handleCep,
+    ufOptions,
+    cidadesOptions,
   } = useFormProviderBasic();
 
   return (
@@ -127,6 +128,7 @@ export const FormProviderBasic = ({
           required
           id="cep"
           maxLength={9}
+          onBlur={handleCep}
           data-error={!!errors?.endereco?.cep}
         />
         {errors?.endereco?.cep && (
@@ -182,8 +184,8 @@ export const FormProviderBasic = ({
               required
               customError={!!errors?.endereco?.uf}
               inputId="uf"
-              value={mockUfs.find((i) => i.value === value) || null}
-              options={mockUfs}
+              value={ufOptions.find((i) => i.value === value) || null}
+              options={ufOptions}
               onChange={(e: ISelectOptions) => onChange(e?.value)}
             />
           )}
@@ -201,8 +203,8 @@ export const FormProviderBasic = ({
               label="Cidade"
               required
               inputId="cidade"
-              value={mockCidades.find((i) => i.value === value) || null}
-              options={mockCidades}
+              value={cidadesOptions.find((i) => i.value === value) || null}
+              options={cidadesOptions}
               customError={!!errors?.endereco?.cidade?.nome}
               onChange={(e: ISelectOptions) => onChange(e?.value)}
             />
