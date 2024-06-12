@@ -5,9 +5,20 @@ import { Button } from "../../Atoms/Button";
 import { useServices } from "./useServices";
 import { ServicesList } from "../../Molecules/Lists/ServicesList";
 import { FormFilterServices } from "../../Molecules/Forms/FormFilterServices";
+import { MyModal } from "../../Atoms/Modal";
+import { FormServiceRegister } from "../../Molecules/Forms/FormServiceRegister";
+
+const fakeServices = ["Teste1", "Teste2", "Teste3", "Teste4"];
 
 export const ServicesTemplate = () => {
-  const { filterOpen, isMobile, navigate, setFilterOpen } = useServices();
+  const {
+    filterOpen,
+    isMobile,
+    navigate,
+    setFilterOpen,
+    modalOpen,
+    setModalOpen,
+  } = useServices();
 
   return (
     <LayoutTemplate titleHeader="Serviços">
@@ -22,7 +33,7 @@ export const ServicesTemplate = () => {
           </Button>
           <Button
             iconleft="/assets/svg/icon-plus.svg"
-            onClick={() => navigate("/clientes/cadastro")}
+            onClick={() => setModalOpen(true)}
           >
             Cadastrar
           </Button>
@@ -32,7 +43,21 @@ export const ServicesTemplate = () => {
           <FormFilterServices submitForm={(e) => console.log(e)} />
         )}
 
-        <ServicesList />
+        <ServicesList servicesList={fakeServices} />
+
+        <MyModal isOpen={modalOpen}>
+          <S.ContentModal>
+            <S.HeaderModal>
+              <img
+                src="/assets/svg/icon-close-gray.svg"
+                alt="icone fechar"
+                onClick={() => setModalOpen(false)}
+              />
+            </S.HeaderModal>
+            <h1>Cadastro de Serviços</h1>
+            <FormServiceRegister submitForm={(e) => console.log(e)} />
+          </S.ContentModal>
+        </MyModal>
       </S.Container>
     </LayoutTemplate>
   );

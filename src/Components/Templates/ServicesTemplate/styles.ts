@@ -16,3 +16,33 @@ export const WrapperButtons = styled.div`
     margin-bottom: 32px;
   }
 `;
+
+export const ContentModal = styled.div`
+  width: 100%;
+  max-width: 600px;
+
+  h1 {
+    color: ${(props) => props.theme.colors["blue-300"]};
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    h1 {
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+  }
+`;
+
+export const HeaderModal = styled.div`
+  display: flex;
+  justify-content: end;
+
+  > img {
+    cursor: pointer;
+  }
+`;

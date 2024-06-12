@@ -4,8 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 export const useServices = () => {
   const [filterOpen, setFilterOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "640px" });
 
-  return { filterOpen, setFilterOpen, isMobile, navigate };
+  return {
+    filterOpen,
+    setFilterOpen,
+    isMobile,
+    navigate,
+    modalOpen,
+    setModalOpen,
+  };
 };
