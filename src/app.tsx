@@ -6,13 +6,15 @@ import { BrowserRouter, Routes } from "react-router-dom";
 import { Theme } from "./Global/Theme";
 import "react-toastify/dist/ReactToastify.css";
 import { useProvidersRoutes } from "./Routes/useProviders.routes";
-import { useClientRoutes } from "./Routes/useClient.routes";
+import { useClientsRoutes } from "./Routes/useClients.routes";
 import { useMainRoutes } from "./Routes/useMain.routes";
+import { useServicesRoutes } from "./Routes/useServices.routes";
 
 export function App() {
   const ProvidersRoutes = useProvidersRoutes();
-  const ClientsRoutes = useClientRoutes();
+  const ClientsRoutes = useClientsRoutes();
   const MainRoutes = useMainRoutes();
+  const ServicesRoutes = useServicesRoutes();
 
   return (
     <ThemeProvider theme={Theme}>
@@ -24,6 +26,7 @@ export function App() {
             {MainRoutes}
             {ProvidersRoutes}
             {ClientsRoutes}
+            {ServicesRoutes}
           </Routes>
         </BrowserRouter>
       </ContextProvider>

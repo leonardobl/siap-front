@@ -5,7 +5,7 @@ import { Clients } from "../Components/Pages/Clients";
 import { ClientRegister } from "../Components/Pages/ClientRegister";
 import { Client } from "../Components/Pages/Client";
 
-export const useClientRoutes = () => {
+export const useClientsRoutes = () => {
   return (
     <Route path="clientes">
       <Route
