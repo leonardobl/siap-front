@@ -47,11 +47,18 @@ export interface ITipoPrestadorDTO {
 export interface IPrestadorForm {
   cnpj: string;
   email: string;
-  endereco: IEnderecoDTO;
-  inscEstadual: string;
-  inscMunicipal: string;
+  endereco?: IEnderecoDTO;
+  inscEstadual?: string;
+  inscMunicipal?: string;
   nome: string;
   razaoSocial: string;
   telefone: string;
   tipoNome: string;
+}
+
+export interface IDadosFinanceirosForm {
+  agencia: string;
+  codigoBanco: string;
+  conta: string;
+  operacao: string;
 }

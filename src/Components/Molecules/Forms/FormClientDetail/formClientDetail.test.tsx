@@ -32,7 +32,7 @@ describe("<FormClientDetail />", () => {
     expect(cidadeInput).toBeVisible();
   });
 
-  test("Deve exibir os dados preenchidos no input", async () => {
+  test("Deve exibir os dados preenchidos no input", () => {
     renderComponent(<FormClientDetail client={mockClientDetail} />);
 
     const nameInput = screen.getByLabelText("Nome Completo");

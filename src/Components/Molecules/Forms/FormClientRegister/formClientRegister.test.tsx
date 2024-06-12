@@ -120,15 +120,13 @@ describe("<FormClientRegister />", () => {
     await userEvent.type(senhaInput, dataUser.senha);
     await userEvent.type(confirmSenhaInput, dataUser.confirmSenha);
 
-    await waitFor(async () => {
-      await userEvent.click(ufInput);
-      await userEvent.click(await screen.findByText(mockUfs[0].label));
+    await userEvent.click(ufInput);
+    await userEvent.click(screen.queryByText(mockUfs[0].label));
 
-      await userEvent.click(cidadeInput);
-      await userEvent.click(await screen.findByText(mockCidades[0].label));
-    });
+    await userEvent.click(cidadeInput);
+    await userEvent.click(screen.queryByText(mockCidades[0].label));
 
-    await fireEvent.submit(button);
+    fireEvent.submit(button);
 
     await waitFor(async () => {
       expect(mockSubmit).toHaveBeenCalledWith(dataUser, expect.anything());

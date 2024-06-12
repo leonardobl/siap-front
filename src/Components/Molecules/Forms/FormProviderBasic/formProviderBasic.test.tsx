@@ -92,10 +92,14 @@ describe("<FormProviderBasic />", () => {
 
     const erroMessages = await screen.findAllByTestId("erro-message");
 
+    for (let erro of erroMessages) {
+      expect(erro).toBeVisible();
+    }
+
     expect(erroMessages).toHaveLength(10);
   });
 
-  test("Deve submeter mensagens de erro ao submeter o form sem preencher", async () => {
+  test("Deve submeter ao preencher o form", async () => {
     renderComponent(<FormProviderBasic submitForm={mockSubmt} />);
     const nameInput = screen.getByLabelText("Nome*");
     const razaoInput = screen.getByLabelText("Razão Social*");
@@ -130,12 +134,10 @@ describe("<FormProviderBasic />", () => {
     await userEvent.type(bairroInput, dataForm.endereco.bairro);
 
     await userEvent.click(ufInput);
-    await userEvent.click(await screen.findByText(dataForm.endereco.uf));
+    await userEvent.click(screen.queryByText(dataForm.endereco.uf));
 
     await userEvent.click(cidadeInput);
-    await userEvent.click(
-      await screen.findByText(dataForm.endereco.cidade.nome)
-    );
+    await userEvent.click(screen.queryByText(dataForm.endereco.cidade.nome));
 
     await fireEvent.submit(buttom);
 
