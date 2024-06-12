@@ -60,5 +60,5 @@ export interface IDadosFinanceirosForm {
   agencia: string;
   codigoBanco: string;
   conta: string;
-  operacao: string;
+  operacao?: string;
 }

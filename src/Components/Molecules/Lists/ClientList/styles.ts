@@ -18,11 +18,15 @@ export const TableHeader = styled.div`
     grid-template-columns: 2fr 2fr 0.1fr;
     padding: 12px 16px;
 
-    h2 {
+    > h2 {
       color: #fff;
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
+    }
+
+    > h2 + h2 {
+      padding-left: 8px;
     }
   }
 `;
@@ -62,6 +66,13 @@ export const TableItem = styled.div`
 
   & + div {
     margin-top: 16px;
+  }
+
+  > p + p {
+    border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
+    padding-left: 8px;
+    height: fit-content;
+    width: fit-content;
   }
 
   div.wrapper-eye {

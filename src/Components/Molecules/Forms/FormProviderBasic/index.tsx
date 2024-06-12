@@ -84,6 +84,7 @@ export const FormProviderBasic = ({
           {...register("email")}
           label="E-mail"
           id="email"
+          required
           data-error={!!errors?.email}
         />
         {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}

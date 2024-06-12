@@ -9,7 +9,7 @@ export const MyButton = styled.button<IButtonProps>`
   gap: 0 8px;
   width: fit-content;
   box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.16);
-  padding: ${(props) => (!!props.iconleft ? "7px 18px" : "7px 30px")};
+  padding: 7px 18px;
   border-radius: 12px;
   border: 0.3px solid #9d9d9d;
   background: #fff;
@@ -40,9 +40,41 @@ export const MyButton = styled.button<IButtonProps>`
   }
 
   ${(props) =>
-    props.variant &&
+    props.variant === "blue" &&
     css`
       background: ${props.theme.colors["blue-300"]};
+      color: ${props.theme.colors.white};
+
+      > img {
+        filter: brightness(0) saturate(100%) invert(100%) sepia(11%)
+          saturate(7495%) hue-rotate(292deg) brightness(112%) contrast(117%);
+      }
+
+      &:active {
+        color: ${(props) => props.theme.colors.white};
+        background: ${(props) => props.theme.colors["blue-100"]};
+        > img {
+          filter: brightness(0) saturate(100%) invert(100%) sepia(11%)
+            saturate(7495%) hue-rotate(292deg) brightness(112%) contrast(117%);
+        }
+      }
+
+      &:disabled {
+        cursor: default;
+        color: ${(props) => props.theme.colors["gray-200"]};
+        background: #cbcbcb;
+
+        > img {
+          filter: brightness(0) saturate(100%) invert(66%) sepia(1%)
+            saturate(530%) hue-rotate(336deg) brightness(97%) contrast(82%);
+        }
+      }
+    `}
+
+  ${(props) =>
+    props.variant === "filter" &&
+    css`
+      background: ${props.theme.colors["blue-100"]};
       color: ${props.theme.colors.white};
 
       > img {

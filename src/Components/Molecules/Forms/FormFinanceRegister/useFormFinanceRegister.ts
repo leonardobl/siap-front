@@ -9,7 +9,7 @@ const schema = z.object({
   agencia: z.string().min(3, { message: "Campo obrigatorio" }),
   codigoBanco: z.string().min(1, { message: "Campo obrigatorio" }),
   conta: z.string().min(3, { message: "Campo obrigatorio" }),
-  operacao: z.string().min(1, { message: "Campo obrigatorio" }),
+  operacao: z.string().optional(),
 });
 
 export const useFormFinanceRegister = () => {

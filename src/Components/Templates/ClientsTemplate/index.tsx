@@ -17,7 +17,7 @@ export const ClientsTemplate = () => {
         <S.WrapperButtons>
           <Button
             iconleft="/assets/svg/icon-filter.svg"
-            variant={filterOpen ? "blue" : null}
+            variant={filterOpen ? "filter" : null}
             onClick={() => setFilterOpen((prev) => !prev)}
           >
             Filtro

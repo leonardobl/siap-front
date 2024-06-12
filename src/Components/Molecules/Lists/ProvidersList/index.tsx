@@ -59,7 +59,9 @@ export const ProvidersList = ({
             <p>São Luís/MA</p>
             <p>Clínica</p>
             <S.Status data-suspenso>Suspenso</S.Status>
-            <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            <div>
+              <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            </div>
           </S.TableItem>
 
           <S.TableItem>
@@ -68,7 +70,9 @@ export const ProvidersList = ({
             <p>São Luís/MA</p>
             <p>Clínica</p>
             <S.Status data-ativo>Ativo</S.Status>
-            <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            <div>
+              <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            </div>
           </S.TableItem>
 
           <S.TableItem>
@@ -77,7 +81,9 @@ export const ProvidersList = ({
             <p>São Luís/MA</p>
             <p>Clínica</p>
             <S.Status data-suspenso>Suspenso</S.Status>
-            <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            <div>
+              <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+            </div>
           </S.TableItem>
         </S.TableItens>
       )}

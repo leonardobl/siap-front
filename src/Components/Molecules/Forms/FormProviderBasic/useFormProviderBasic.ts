@@ -32,9 +32,8 @@ const schemaForm = z.object({
     .min(18, { message: "CNPJ invalido" }),
   email: z
     .string()
-    .email({ message: "Email invalido" })
-    .optional()
-    .or(z.literal("")),
+    .min(1, { message: "Campo obrigatorio" })
+    .email({ message: "Email invalido" }),
   endereco: schemaEndereco,
   inscEstadual: z.string().optional().or(z.literal("")),
   inscMunicipal: z.string().optional().or(z.literal("")),
