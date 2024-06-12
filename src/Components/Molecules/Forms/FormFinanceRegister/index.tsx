@@ -16,8 +16,15 @@ export const FormFinanceRegister = ({
   submitForm,
   ...rest
 }: IFormFinanceRegisterProps) => {
-  const { Controller, control, errors, handleSubmit, register, bancoOptions } =
-    useFormFinanceRegister();
+  const {
+    Controller,
+    control,
+    errors,
+    handleSubmit,
+    register,
+    bancoOptions,
+    bancosFakeOptions,
+  } = useFormFinanceRegister();
 
   return (
     <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
@@ -30,8 +37,8 @@ export const FormFinanceRegister = ({
               customError={!!errors?.codigoBanco}
               label="Banco"
               required
-              options={bancoOptions}
-              value={bancoOptions.find((i) => i.value === value) || null}
+              options={bancosFakeOptions}
+              value={bancosFakeOptions.find((i) => i.value === value) || null}
               inputId="banco"
               onChange={(e: ISelectOptions) => onChange(e?.value)}
             />

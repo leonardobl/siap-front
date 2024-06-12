@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { useNavigate } from "react-router-dom";
 
 export const useProviderRegister = () => {
-  const [tabIdx, setTabIdx] = useState(3);
+  const [tabIdx, setTabIdx] = useState(1);
   const [filterOpen, setFilterOpen] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "640px" });

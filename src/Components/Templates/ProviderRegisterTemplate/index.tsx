@@ -92,7 +92,12 @@ export const ProviderRegisterTemplate = () => {
               }}
               key={Math.random()}
             />,
-            <FormFinanceRegister submitForm={(e) => console.log(e)} />,
+            <FormFinanceRegister
+              submitForm={(e) => {
+                console.log(e);
+                setTabIdx(3);
+              }}
+            />,
             <S.WrapperProfessional>
               <S.WrapperButtons>
                 <Button
@@ -138,7 +143,10 @@ export const ProviderRegisterTemplate = () => {
             <h1>Cadastro Profissional</h1>
             <FormProfessionalRegister
               onCancel={() => setModalOpen(false)}
-              submitForm={(e) => console.log(e)}
+              submitForm={(e) => {
+                console.log(e);
+                navigate("/prestadores");
+              }}
             />
           </S.ContentModal>
         </MyModal>

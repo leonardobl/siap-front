@@ -12,6 +12,11 @@ const schema = z.object({
   operacao: z.string().optional(),
 });
 
+const bancosFakeOptions = [
+  { value: "bancoFake1", label: "bancoFake1" },
+  { value: "bancoFake2", label: "bancoFake2" },
+];
+
 export const useFormFinanceRegister = () => {
   const {
     control,
@@ -33,5 +38,13 @@ export const useFormFinanceRegister = () => {
     [] as ISelectOptions[]
   );
 
-  return { Controller, errors, control, handleSubmit, register, bancoOptions };
+  return {
+    Controller,
+    errors,
+    control,
+    handleSubmit,
+    register,
+    bancoOptions,
+    bancosFakeOptions,
+  };
 };
