@@ -28,7 +28,9 @@ export const ServicesTemplate = () => {
           </Button>
         </S.WrapperButtons>
 
-        {filterOpen && <FormFilterServices />}
+        {filterOpen && (
+          <FormFilterServices submitForm={(e) => console.log(e)} />
+        )}
 
         <ServicesList />
       </S.Container>
