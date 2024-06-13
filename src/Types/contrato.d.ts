@@ -49,3 +49,18 @@ export interface IContratoListProps extends IPageRequest {
   dataFim?: string;
   servico?: string;
 }
+
+export interface IContratoForm {
+  dataFinal: string;
+  dataInicial: string;
+  uuidPrestador: string;
+}
+
+export interface IServicoContratadoForm {
+  uuidServico: string;
+  valor: number;
+}
+
+export interface IContratoCompletoForm extends IContratoForm {
+  servicos: IServicoContratadoForm[];
+}

@@ -5,8 +5,8 @@ import AsyncSelect, { AsyncProps } from "react-select/async";
 import { GroupBase, components } from "react-select";
 
 import Select from "react-select/dist/declarations/src/Select";
-import { lighten } from "polished";
 import { IoCloseOutline } from "react-icons/io5";
+import { customSelectStyles } from "../CustomSelectStyles";
 
 export function AsyncSimpleSelect<
   Option = unknown,
@@ -18,71 +18,12 @@ export function AsyncSimpleSelect<
 ) {
   const myVariant = props.variant;
 
-  const customStyles = {
-    control: (base: any, state: { isFocused: any }) => ({
-      ...base,
-      background: "#fff",
-      // match with the menu
-      borderRadius: 10,
-      // letterSpacing: 1,
-      padding: props.variant ? "0 40px" : "0 20px",
-      fontFamily: "Mulish",
-      // color: state.isSelected ? "red" : "blue",
-      // Overwrittes the different states of border
-      borderColor: "#9d9d9d",
-      fontWeight: 600,
-      // Removes weird border around container
-      boxShadow: state.isFocused ? null : null,
-      "&:hover": {
-        // Overwrittes the different states of border
-        borderColor: "#9d9d9d",
-      },
-    }),
-    menu: (base: any, state: any) => ({
-      ...base,
-      // override border radius to match the box
-      width: "100%",
-      // kill the gap
-      // marginTop: 0,
-      zIndex: 2,
-      // backgroundColor: "#E1F2EE",
-    }),
-    menuList: (base: any, state: any) => ({
-      ...base,
-      // kill the white space on first and last option
-      padding: "0",
-
-      borderRadius: 10,
-      borderColor: "#9d9d9d",
-    }),
-    singleValue: (provided: any, state: any) => ({
-      ...provided,
-      color: "#111",
-    }),
-    option: (styles: any, { isFocused, isSelected }: any) => ({
-      // ...styles,
-      backgroundColor: isFocused ? lighten(0.4, "#9d9d9d") : "transparent",
-      color: "#111",
-      fontWeight: 600,
-      // letterSpacing: 1,
-      zindex: 2,
-      padding: "10px 20px",
-      cursor: "pointer",
-      // paddingLeft: "20px",
-      fontFamily: "Mulish",
-      borderBottom: "1px solid rgba(103, 122, 118, 0.40)",
-    }),
-    valueContainer: (provided: any, state: any) => ({
-      ...provided,
-    }),
-  };
-
   const DropdownIndicator = (props) => {
     return !myVariant
       ? components.DropdownIndicator && (
           <components.DropdownIndicator {...props}>
             <img
-              src="/assets/svgs/arrowDownSelect.svg"
+              src="/assets/svg/icon-search.svg"
               alt="icone arrow"
               style={{ cursor: "pointer" }}
             />
@@ -107,17 +48,19 @@ export function AsyncSimpleSelect<
   return (
     <S.Container>
       {props.label && (
-        <S.Label>
+        <S.Label htmlFor={props?.inputId}>
           {props.label}
           {props?.required && <S.Required>*</S.Required>}
         </S.Label>
       )}
       <AsyncSelect
         {...props}
+        required={false}
         name={props.name}
+        placeholder={props.placeholder || ""}
         components={{ DropdownIndicator, ClearIndicator }}
-        theme={(theme) => ({ ...theme, borderRadius: 10 })}
-        styles={customStyles}
+        // theme={(theme) => ({ ...theme, borderRadius: 10 })}
+        styles={customSelectStyles}
       />
       {myVariant && (
         <S.IconSearch src="/assets/svgs/icon-search.svg" alt="icone lupa" />
