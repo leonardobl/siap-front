@@ -14,10 +14,12 @@ export const InputDate = (props: InputDateProps) => {
   registerLocale("ptBR", ptBR);
 
   return (
-    <S.Container $showIcon={props.showIcon}>
+    <S.Container
+      $showIcon={props.showIcon}
+      data-error={props?.["data-error"] ? true : false}
+    >
       <DatePicker
         {...props}
-        className={props?.["data-error"] ? "data-error" : ""}
         placeholderText={""}
         // selected={value ? value : props.selected}
         onChange={(e, v) => {
@@ -80,40 +82,45 @@ export const InputDate = (props: InputDateProps) => {
               fill="#0B4A89"
             />
             <path
-              d="M3.11035 6.92236H3.88813V7.70014H3.11035V6.92236Z"
+              d="M3.11035 6.92242H3.88813V7.7002H3.11035V6.92242Z"
               fill="#0B4A89"
             />
             <path
-              d="M6.22266 6.92236H7.77821V7.70014H6.22266V6.92236Z"
+              d="M6.22302 6.92242H7.77858V7.7002H6.22302V6.92242Z"
               fill="#0B4A89"
             />
             <path
-              d="M10.1104 6.92236H10.8881V7.70014H10.1104V6.92236Z"
+              d="M10.1104 6.92242H10.8881V7.7002H10.1104V6.92242Z"
               fill="#0B4A89"
             />
             <path
-              d="M3.11035 9.25537H3.88813V10.0331H3.11035V9.25537Z"
+              d="M3.11035 9.25519H3.88813V10.033H3.11035V9.25519Z"
               fill="#0B4A89"
             />
             <path
-              d="M6.22266 9.25537H7.77821V10.0331H6.22266V9.25537Z"
+              d="M6.22302 9.25519H7.77858V10.033H6.22302V9.25519Z"
               fill="#0B4A89"
             />
             <path
-              d="M3.11035 11.5884H3.88813V12.3662H3.11035V11.5884Z"
+              d="M3.11035 11.5885H3.88813V12.3663H3.11035V11.5885Z"
               fill="#0B4A89"
             />
             <path
-              d="M6.22266 11.5884H7.77821V12.3662H6.22266V11.5884Z"
+              d="M6.22302 11.5885H7.77858V12.3663H6.22302V11.5885Z"
               fill="#0B4A89"
             />
           </svg>
         }
       />
       {props.label && (
-        <S.Label className={props?.["data-error"] ? "data-error" : ""}>
+        <S.Label
+          className={props?.["data-error"] ? "data-error" : ""}
+          htmlFor={props?.id}
+        >
           {props.label}
-          <S.Required $isRequired={!!props.required}>*</S.Required>
+          {props.required && (
+            <S.Required $isRequired={!!props.required}>*</S.Required>
+          )}
         </S.Label>
       )}
     </S.Container>

@@ -4,15 +4,30 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
   ${({ $showIcon }) => css`
     position: relative;
 
-    &:has(input:focus) {
+    &:has(input:focus),
+    &:has(input:not(:placeholder-shown)) {
       label {
         top: -2px;
       }
     }
 
-    &:has(input:not(:placeholder-shown)) {
+    &:not([data-error="true"]):has(input:focus) {
+      .react-datepicker__input-container input {
+        border-color: ${(props) => props.theme.colors["blue-100"]};
+      }
+
       label {
-        top: -2px;
+        color: ${(props) => props.theme.colors["blue-100"]};
+      }
+    }
+
+    &[data-error="true"] {
+      .react-datepicker__input-container input {
+        border: 1px solid red;
+      }
+
+      label {
+        color: red;
       }
     }
 
@@ -80,23 +95,25 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
         background: #fff;
 
         padding: 0 16px;
-        color: ${(props) => props.theme.colors["gray-200"]};
-        font-size: 14px;
+        color: ${(props) => props.theme.colors["blue-300"]};
+        font-size: 12px;
         font-weight: 400;
+        outline: none;
+        letter-spacing: 1px;
 
-        &:focus {
-          /* outline: 1px solid #12d1a7; */
+        /* &:focus {
+          border: 1px solid ${(props) => props.theme.colors["blue-100"]};
           outline: none;
-        }
+        } */
 
         &:disabled {
           cursor: not-allowed;
         }
       }
 
-      .data-error {
+      /* .data-error {
         border: 1px solid red;
-      }
+      } */
     }
 
     input:-webkit-autofill,
@@ -122,6 +139,7 @@ export const Label = styled.label`
   transform: translateY(-50%);
   background: linear-gradient(to top, #fff 50%, transparent 50%);
   display: flex;
+  pointer-events: none;
 
   padding: 0 4px;
   color: rgba(0, 0, 0, 0.56);
@@ -132,9 +150,9 @@ export const Label = styled.label`
   line-height: 16px;
   transition: all 0.2s ease-in-out;
 
-  &.data-error {
+  /* &.data-error {
     color: red;
-  }
+  } */
 `;
 
 export const ImgLoad = styled.img`
