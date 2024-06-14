@@ -22,6 +22,8 @@ export const customSelectStyles = {
 
   multiValue: (props) => ({
     ...props,
+    backgroundColor: "#E4F2FF",
+    color: "#2082E3",
   }),
 
   menu: (base: any, state: any) => ({
