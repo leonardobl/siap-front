@@ -66,7 +66,7 @@ export const LayoutTemplate = ({
 
         <S.WrapperGroupMenu data-border-bottom>
           <DetailsMenu titleheader="CADASTRO" data-openmenu={menuOpen} open>
-            <NavLink to={"/"}>
+            <NavLink to={"/usuarios"} title="Usuários">
               <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
               <span>Usuários</span>
             </NavLink>

@@ -39,7 +39,7 @@ export const useLogin = () => {
 
         toast.success("Login efetuado com sucesso");
         setTimeout(() => {
-          navigate("/");
+          navigate("/usuarios");
         }, 2000);
       })
       .catch(
