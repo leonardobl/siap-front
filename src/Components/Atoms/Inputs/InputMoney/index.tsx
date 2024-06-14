@@ -21,7 +21,7 @@ export const InputMoney = (props: IInputMoneyProps) => {
       {props?.label && (
         <S.MyLabel htmlFor={props?.name}>
           {props?.label}
-          {props?.required && <span>*</span>}
+          {props?.required && <span id="asterisk">*</span>}
         </S.MyLabel>
       )}
     </S.Container>
