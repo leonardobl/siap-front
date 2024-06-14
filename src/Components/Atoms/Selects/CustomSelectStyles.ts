@@ -26,6 +26,23 @@ export const customSelectStyles = {
     color: "#2082E3",
   }),
 
+  multiValueLabel: (styles, { data }) => ({
+    ...styles,
+    color: "#9d9d9d",
+    fontSize: "12px",
+  }),
+
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    cursor: "pointer",
+
+    // color: data.color,
+    // ":hover": {
+    //   backgroundColor: data.color,
+    //   color: "white",
+    // },
+  }),
+
   menu: (base: any, state: any) => ({
     ...base,
     width: "100%",

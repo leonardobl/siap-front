@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { useMediaQuery } from "react-responsive";
+import { ISelectOptions } from "../../../Types/inputs";
 
 const options = [
   {
@@ -24,6 +26,21 @@ export const useUsers = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: "640px" });
+  const [teste, setTeste] = useState<ISelectOptions[]>([] as ISelectOptions[]);
+
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm();
+
+  const { append, remove } = useFieldArray({
+    control,
+    name: "",
+  });
 
   return {
     filterOpen,
@@ -32,5 +49,18 @@ export const useUsers = () => {
     openModal,
     setOpenModal,
     options,
+
+    teste,
+    setTeste,
+
+    control,
+    register,
+    handleSubmit,
+    errors,
+    setValue,
+    watch,
+    Controller,
+    append,
+    remove,
   };
 };

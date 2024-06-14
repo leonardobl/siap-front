@@ -42,6 +42,8 @@ export const UsersTemplate = () => {
     openModal,
     setOpenModal,
     options,
+    teste,
+    setTeste,
   } = useUsers();
 
   return (
@@ -110,6 +112,8 @@ export const UsersTemplate = () => {
                   required
                   inputId="perfil"
                   isMulti
+                  value={teste}
+                  onChange={setTeste}
                   options={options}
                 />
               </div>
