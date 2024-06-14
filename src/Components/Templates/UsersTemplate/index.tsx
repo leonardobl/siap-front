@@ -7,6 +7,9 @@ import { FormFilterUsers } from "../../Molecules/Forms/FormFilterUsers";
 import { UsersList } from "../../Molecules/Lists/UsersList";
 import { Pagination } from "../../Atoms/Pagination";
 import { IUsuarioDTO } from "../../../Types/usuario";
+import { MyModal } from "../../Atoms/Modal";
+import { Input } from "../../Atoms/Inputs/Input";
+import { SimpleSelect } from "../../Atoms/Selects/SimpleSelect";
 
 const usersList = [
   {
@@ -32,7 +35,14 @@ const usersList = [
 ] as IUsuarioDTO[];
 
 export const UsersTemplate = () => {
-  const { filterOpen, isMobile, navigate, setFilterOpen } = useUsers();
+  const {
+    filterOpen,
+    isMobile,
+    setFilterOpen,
+    openModal,
+    setOpenModal,
+    options,
+  } = useUsers();
 
   return (
     <LayoutTemplate titleHeader="Usuário">
@@ -47,7 +57,7 @@ export const UsersTemplate = () => {
           </Button>
           <Button
             iconleft="/assets/svg/icon-plus.svg"
-            onClick={() => navigate("/usuarios/cadastro")}
+            onClick={() => setOpenModal(true)}
           >
             Cadastrar
           </Button>
@@ -64,6 +74,55 @@ export const UsersTemplate = () => {
           setNumberPage={() => ""}
           maxPageNumbersDisplayed={isMobile ? 3 : 10}
         />
+
+        <MyModal isOpen={openModal}>
+          <S.ContentModal>
+            <S.ModalHeader>
+              <img
+                src="/assets/svg/icon-close-gray.svg"
+                alt="icone fechar"
+                onClick={() => setOpenModal(false)}
+              />
+            </S.ModalHeader>
+
+            <h2>Cadastro de Usuário</h2>
+
+            <S.FormModal>
+              <div>
+                <Input label="Nome" required id="nome" />
+              </div>
+
+              <div>
+                <Input label="CPF" required id="cpf" />
+              </div>
+
+              <div>
+                <Input label="Telefone" required id="telefone" />
+              </div>
+
+              <div>
+                <Input label="E-mail" id="email" />
+              </div>
+
+              <div>
+                <SimpleSelect
+                  label="Perfil"
+                  required
+                  inputId="perfil"
+                  isMulti
+                  options={options}
+                />
+              </div>
+
+              <div>
+                <Button type="button" onClick={() => setOpenModal(false)}>
+                  Cancelar
+                </Button>
+                <Button variant="blue">Salvar</Button>
+              </div>
+            </S.FormModal>
+          </S.ContentModal>
+        </MyModal>
       </S.Container>
     </LayoutTemplate>
   );

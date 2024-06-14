@@ -10,7 +10,7 @@ export const customSelectStyles = {
 
     minHeight: "36px",
     borderRadius: "12px",
-    height: "36px",
+    height: "auto",
     fontSize: "12px",
     letterSpacing: "1px",
     borderColor: state.isFocused ? colors["blue-100"] : colors["gray-200"],
@@ -18,6 +18,10 @@ export const customSelectStyles = {
     // "&:hover": {
     //   borderColor: colors["gray-200"],
     // },
+  }),
+
+  multiValue: (props) => ({
+    ...props,
   }),
 
   menu: (base: any, state: any) => ({
@@ -46,7 +50,7 @@ export const customSelectStyles = {
   }),
   valueContainer: (provided: any, state: any) => ({
     ...provided,
-    height: "36px",
+    height: "auto",
     padding: "0 6px",
   }),
 

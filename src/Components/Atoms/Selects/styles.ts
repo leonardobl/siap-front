@@ -21,6 +21,12 @@ export const Container = styled.div`
     }
   }
 
+  &:has(.react-select__multi-value) {
+    label {
+      top: -2px;
+    }
+  }
+
   &[data-custom-error="true"] {
     .react-select__control {
       border: 1px solid ${(props) => props.theme.colors.red};
