@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
 
 export const useProviderType = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: "640px" });
+  const [modalOpen, setModalOpen] = useState(false);
 
-  return { filterOpen, setFilterOpen, isMobile };
+  return { filterOpen, setFilterOpen, isMobile, modalOpen, setModalOpen };
 };

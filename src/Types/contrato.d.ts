@@ -1,6 +1,7 @@
 import { IDadosFinanceirosDTO } from "./banco";
 import { IEnderecoDTO } from "./endereco";
 import { IPageRequest } from "./page";
+import { ITipoPrestadorDTO } from "./tipoPrestador";
 
 export interface IContratoCompletoDTO {
   dataFinal: string;
@@ -24,10 +25,6 @@ export interface IPrestadorDTO {
   telefone: string;
   tipo: ITipoPrestadorDTO;
   uuid: string;
-}
-
-export interface ITipoPrestadorDTO {
-  nome: string;
 }
 
 export interface IServicoContratadoDTO {
