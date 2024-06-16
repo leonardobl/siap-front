@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "../Components/Atoms/ProtectedRoute";
 import { Home } from "../Components/Pages/Home";
 import { UserRegister } from "../Components/Pages/UserRegister";
@@ -11,9 +11,10 @@ export const useMainRoutes = () => {
       <Route
         index
         element={
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          //   <Home />
+          // </ProtectedRoute>
+          <Navigate to={"/usuarios"} />
         }
       />
       <Route path="cadastro-usuario" element={<UserRegister />} />
