@@ -7,10 +7,12 @@ import { IServicosListProps } from "../../../../Types/servicos";
 
 interface IFormFilterServicesProps extends ComponentProps<"form"> {
   submitForm: (data: IServicosListProps) => void;
+  onClean?: () => void;
 }
 
 export const FormFilterServices = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterServicesProps) => {
   const { handleSubmit, register, reset } = useFormFilterServices();
@@ -21,7 +23,13 @@ export const FormFilterServices = ({
         <Input {...register("nome")} label="Serviços" id="servicos" />
       </div>
       <div>
-        <Button type="reset" onClick={() => reset()}>
+        <Button
+          type="reset"
+          onClick={() => {
+            reset();
+            onClean();
+          }}
+        >
           Limpar
         </Button>
         <Button variant="blue">Buscar</Button>

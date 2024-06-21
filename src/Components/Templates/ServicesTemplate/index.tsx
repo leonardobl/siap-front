@@ -15,9 +15,12 @@ export const ServicesTemplate = () => {
     filterOpen,
     isMobile,
     navigate,
+    servicos,
     setFilterOpen,
     modalOpen,
     setModalOpen,
+    handleSubmitFilter,
+    handleClean,
   } = useServices();
 
   return (
@@ -40,10 +43,13 @@ export const ServicesTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterServices submitForm={(e) => console.log(e)} />
+          <FormFilterServices
+            onClean={handleClean}
+            submitForm={handleSubmitFilter}
+          />
         )}
 
-        <ServicesList servicesList={fakeServices} />
+        <ServicesList servicesList={servicos} />
 
         <MyModal isOpen={modalOpen}>
           <S.ContentModal>
