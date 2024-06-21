@@ -3,10 +3,10 @@ import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
 import { useFormFilterServices } from "./useFormFilterServices";
-import { IServicosListProps } from "../../../../Types/servicos";
+import { IServicoForm } from "../../../../Types/servico";
 
 interface IFormFilterServicesProps extends ComponentProps<"form"> {
-  submitForm: (data: IServicosListProps) => void;
+  submitForm: (data: IServicoForm) => void;
   onClean?: () => void;
 }
 

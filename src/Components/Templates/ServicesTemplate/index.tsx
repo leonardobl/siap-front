@@ -8,19 +8,16 @@ import { FormFilterServices } from "../../Molecules/Forms/FormFilterServices";
 import { MyModal } from "../../Atoms/Modal";
 import { FormServiceRegister } from "../../Molecules/Forms/FormServiceRegister";
 
-const fakeServices = ["Teste1", "Teste2", "Teste3", "Teste4"];
-
 export const ServicesTemplate = () => {
   const {
     filterOpen,
-    isMobile,
-    navigate,
     servicos,
     setFilterOpen,
     modalOpen,
     setModalOpen,
     handleSubmitFilter,
     handleClean,
+    handleCreate,
   } = useServices();
 
   return (
@@ -61,7 +58,7 @@ export const ServicesTemplate = () => {
               />
             </S.HeaderModal>
             <h1>Cadastro de Serviços</h1>
-            <FormServiceRegister submitForm={(e) => console.log(e)} />
+            <FormServiceRegister submitForm={handleCreate} />
           </S.ContentModal>
         </MyModal>
       </S.Container>

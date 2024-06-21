@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
 import { Servico } from "../../../Services/Servico";
 import { toast } from "react-toastify";
 import { useContextSite } from "../../../Context/Context";
-import { IServicoDTO } from "../../../Types/servico";
-import { IServicoForm } from "../../../Types/servicos";
+import { IServicoDTO, IServicoForm } from "../../../Types/servico";
 
 export const useServices = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const navigate = useNavigate();
-  const isMobile = useMediaQuery({ maxWidth: "640px" });
   const { setIsLoad } = useContextSite();
   const [servicos, setServicos] = useState<IServicoDTO[]>([] as IServicoDTO[]);
 
@@ -47,15 +42,31 @@ export const useServices = () => {
     getServicos();
   }
 
+  function handleCreate(data: IServicoForm) {
+    Servico.create(data)
+      .then(() => {
+        getServicos();
+      })
+      .catch(
+        ({
+          response: {
+            data: { mensagem },
+          },
+        }) => toast.error(mensagem)
+      )
+      .finally(() => {
+        setModalOpen(false);
+      });
+  }
+
   return {
     filterOpen,
     setFilterOpen,
-    isMobile,
-    navigate,
     modalOpen,
     setModalOpen,
     servicos,
     handleSubmitFilter,
     handleClean,
+    handleCreate,
   };
 };

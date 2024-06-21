@@ -22,3 +22,7 @@ export interface IServicoDTO {
   nome: string;
   uuid: string;
 }
+
+export interface IServicoForm {
+  nome: string;
+}

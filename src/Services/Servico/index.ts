@@ -1,6 +1,11 @@
 import { AxiosResponse } from "axios";
 import { SiapApi } from "../../Apis/SiapApi";
-import { IPageServicoDTO, IServicoProps } from "../../Types/servico";
+import {
+  IPageServicoDTO,
+  IServicoDTO,
+  IServicoForm,
+  IServicoProps,
+} from "../../Types/servico";
 import { removeEmpty } from "../../Utils/removeEmpty";
 import objectToParams from "../../Utils/objectToParams";
 
@@ -18,5 +23,11 @@ export class Servico {
     return SiapApi.get(
       params ? `${basePath}/listar?${params}` : `${basePath}/listar`
     );
+  }
+
+  static async create(
+    props: IServicoForm
+  ): Promise<AxiosResponse<IServicoDTO>> {
+    return SiapApi.post(`${basePath}/cadastrar`, props);
   }
 }
