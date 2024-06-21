@@ -2,19 +2,33 @@ import React, { useEffect, useState } from "react";
 import { Servico } from "../../../Services/Servico";
 import { toast } from "react-toastify";
 import { useContextSite } from "../../../Context/Context";
-import { IServicoDTO, IServicoForm } from "../../../Types/servico";
+import {
+  IServicoDTO,
+  IServicoForm,
+  IServicoProps,
+} from "../../../Types/servico";
+import { useMediaQuery } from "react-responsive";
+import { IPagination } from "../../../Types/pagination";
 
 export const useServices = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const { setIsLoad } = useContextSite();
+  const isMobile = useMediaQuery({ maxWidth: "640px" });
   const [servicos, setServicos] = useState<IServicoDTO[]>([] as IServicoDTO[]);
+  const [pagination, setPagination] = useState<IPagination>({} as IPagination);
+  const [numberPage, setNumberPage] = useState(0);
 
-  function getServicos(data?: IServicoForm) {
+  function getServicos(data?: IServicoProps) {
     setIsLoad(true);
-    Servico.list(data)
+    Servico.list({ ...data, size: 7 })
       .then(({ data }) => {
         setServicos(data.content);
+        setPagination({
+          actualPage: data.number,
+          totalPage: data.totalPages,
+          totalRegister: data.totalElements,
+        });
       })
       .catch(
         ({
@@ -39,6 +53,7 @@ export const useServices = () => {
   }
 
   function handleClean() {
+    setNumberPage(0);
     getServicos();
   }
 
@@ -59,6 +74,10 @@ export const useServices = () => {
       });
   }
 
+  useEffect(() => {
+    getServicos({ page: numberPage });
+  }, [numberPage]);
+
   return {
     filterOpen,
     setFilterOpen,
@@ -68,5 +87,9 @@ export const useServices = () => {
     handleSubmitFilter,
     handleClean,
     handleCreate,
+    isMobile,
+    pagination,
+    setNumberPage,
+    numberPage,
   };
 };
