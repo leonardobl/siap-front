@@ -3,14 +3,16 @@ import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
 import { useFormFilterServices } from "./useFormFilterServices";
-import { IServicosListProps } from "../../../../Types/servicos";
+import { IServicoForm } from "../../../../Types/servico";
 
 interface IFormFilterServicesProps extends ComponentProps<"form"> {
-  submitForm: (data: IServicosListProps) => void;
+  submitForm: (data: IServicoForm) => void;
+  onClean?: () => void;
 }
 
 export const FormFilterServices = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterServicesProps) => {
   const { handleSubmit, register, reset } = useFormFilterServices();
@@ -21,7 +23,13 @@ export const FormFilterServices = ({
         <Input {...register("nome")} label="Serviços" id="servicos" />
       </div>
       <div>
-        <Button type="reset" onClick={() => reset()}>
+        <Button
+          type="reset"
+          onClick={() => {
+            reset();
+            onClean();
+          }}
+        >
           Limpar
         </Button>
         <Button variant="blue">Buscar</Button>

@@ -3,7 +3,8 @@ import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
 import { useFormServiceRegister } from "./useFormServiceRegister";
-import { IServicoForm } from "../../../../Types/servicos";
+import { IServicoForm } from "../../../../Types/servico";
+import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 
 interface IFormServiceRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IServicoForm) => void;
@@ -13,12 +14,18 @@ export const FormServiceRegister = ({
   submitForm,
   ...rest
 }: IFormServiceRegisterProps) => {
-  const { handleSubmit, register, reset } = useFormServiceRegister();
+  const { handleSubmit, register, reset, errors } = useFormServiceRegister();
 
   return (
     <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
       <div>
-        <Input {...register("nome")} label="Nome" id="nome" />
+        <Input
+          {...register("nome")}
+          label="Nome"
+          id="nome"
+          data-error={!!errors?.nome}
+        />
+        {errors?.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
       </div>
 
       <div>

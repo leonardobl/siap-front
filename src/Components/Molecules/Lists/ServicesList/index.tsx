@@ -1,9 +1,10 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { useServicesList } from "./useServicesList";
+import { IServicoDTO } from "../../../../Types/servico";
 
 interface IServicesListProps extends ComponentProps<"div"> {
-  servicesList: string[];
+  servicesList: IServicoDTO[];
 }
 
 export const ServicesList = ({ servicesList, ...rest }: IServicesListProps) => {
@@ -11,17 +12,23 @@ export const ServicesList = ({ servicesList, ...rest }: IServicesListProps) => {
 
   return (
     <S.Table {...rest}>
-      <S.TableHeader>
-        <h2>Serviços</h2>
-      </S.TableHeader>
+      {servicesList?.length > 0 ? (
+        <>
+          <S.TableHeader>
+            <h2>Serviços</h2>
+          </S.TableHeader>
 
-      <S.TableItens>
-        {servicesList.map((i) => (
-          <S.TableItem key={Math.random()}>
-            <p>{i}</p>
-          </S.TableItem>
-        ))}
-      </S.TableItens>
+          <S.TableItens>
+            {servicesList.map((i) => (
+              <S.TableItem key={Math.random()}>
+                <p>{i.nome}</p>
+              </S.TableItem>
+            ))}
+          </S.TableItens>
+        </>
+      ) : (
+        <p>Nenhum registro encontrado!</p>
+      )}
     </S.Table>
   );
 };

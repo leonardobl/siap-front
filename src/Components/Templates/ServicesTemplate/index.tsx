@@ -7,17 +7,22 @@ import { ServicesList } from "../../Molecules/Lists/ServicesList";
 import { FormFilterServices } from "../../Molecules/Forms/FormFilterServices";
 import { MyModal } from "../../Atoms/Modal";
 import { FormServiceRegister } from "../../Molecules/Forms/FormServiceRegister";
-
-const fakeServices = ["Teste1", "Teste2", "Teste3", "Teste4"];
+import { Pagination } from "../../Atoms/Pagination";
 
 export const ServicesTemplate = () => {
   const {
     filterOpen,
-    isMobile,
-    navigate,
+    servicos,
     setFilterOpen,
     modalOpen,
     setModalOpen,
+    handleSubmitFilter,
+    handleClean,
+    handleCreate,
+    isMobile,
+    pagination,
+    numberPage,
+    setNumberPage,
   } = useServices();
 
   return (
@@ -40,10 +45,24 @@ export const ServicesTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterServices submitForm={(e) => console.log(e)} />
+          <FormFilterServices
+            onClean={handleClean}
+            submitForm={handleSubmitFilter}
+          />
         )}
 
-        <ServicesList servicesList={fakeServices} />
+        <ServicesList servicesList={servicos} />
+
+        {servicos.length && (
+          <Pagination
+            totalPage={pagination?.totalPage}
+            totalRegister={pagination?.totalRegister}
+            actualPage={pagination?.actualPage}
+            key={`${isMobile} - ${numberPage} - ${Math.random()}`}
+            setNumberPage={setNumberPage}
+            maxPageNumbersDisplayed={isMobile ? 3 : 10}
+          />
+        )}
 
         <MyModal isOpen={modalOpen}>
           <S.ContentModal>
@@ -55,7 +74,7 @@ export const ServicesTemplate = () => {
               />
             </S.HeaderModal>
             <h1>Cadastro de Serviços</h1>
-            <FormServiceRegister submitForm={(e) => console.log(e)} />
+            <FormServiceRegister submitForm={handleCreate} />
           </S.ContentModal>
         </MyModal>
       </S.Container>
