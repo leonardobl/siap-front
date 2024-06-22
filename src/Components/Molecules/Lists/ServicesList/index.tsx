@@ -12,7 +12,7 @@ export const ServicesList = ({ servicesList, ...rest }: IServicesListProps) => {
 
   return (
     <S.Table {...rest}>
-      {servicesList?.length > 0 ? (
+      {servicesList?.length ? (
         <>
           <S.TableHeader>
             <h2>Serviços</h2>
