@@ -30,4 +30,8 @@ export class Cliente {
       params ? `${basePath}/listar?${params}` : `${basePath}/listar`
     );
   }
+
+  static byId({ uuid }: { uuid: string }): Promise<AxiosResponse<IClienteDTO>> {
+    return SiapApi.get(`${basePath}/${uuid}`);
+  }
 }
