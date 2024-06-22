@@ -2,6 +2,7 @@ import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { IClienteDTO } from "../../../../Types/cliente";
 import { useClientList } from "./useClientList";
+import { maskCpf } from "../../../../Utils/masks";
 
 interface IClientListProps extends ComponentProps<"div"> {
   clients: IClienteDTO[];
@@ -22,7 +23,7 @@ export const ClientList = ({ clients, ...rest }: IClientListProps) => {
           clients.map((i) => (
             <S.TableItem key={Math.random()}>
               <p>{i?.nome || "---"}</p>
-              <p>{i.cpf || "---"}</p>
+              <p>{maskCpf(i.cpf) || "---"}</p>
               <div className="wrapper-eye">
                 <img
                   src="/assets/svg/icon-eye-open.svg"
