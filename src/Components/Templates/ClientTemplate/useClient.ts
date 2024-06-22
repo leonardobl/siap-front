@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { IClienteDTO } from "../../../Types/cliente";
 import { Cliente } from "../../../Services/Cliente";
 import { toast } from "react-toastify";
