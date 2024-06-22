@@ -27,7 +27,7 @@ export const FormFilterServices = ({
           type="reset"
           onClick={() => {
             reset();
-            onClean();
+            onClean && onClean();
           }}
         >
           Limpar

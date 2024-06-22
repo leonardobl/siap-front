@@ -43,8 +43,8 @@ export const useServices = () => {
   }
 
   useEffect(() => {
-    getServicos();
-  }, []);
+    getServicos({ page: numberPage });
+  }, [numberPage]);
 
   function handleSubmitFilter(data: IServicoForm) {
     if (data?.nome) {
@@ -73,10 +73,6 @@ export const useServices = () => {
         setModalOpen(false);
       });
   }
-
-  useEffect(() => {
-    getServicos({ page: numberPage });
-  }, [numberPage]);
 
   return {
     filterOpen,

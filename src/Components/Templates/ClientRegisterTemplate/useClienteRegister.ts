@@ -36,6 +36,13 @@ export const useClienteRegister = () => {
           navigate("/clientes");
         }, 2000);
       })
+      .catch(
+        ({
+          response: {
+            data: { mensagem },
+          },
+        }) => toast.error(mensagem)
+      )
       .finally(() => {
         setIsLoad(false);
       });

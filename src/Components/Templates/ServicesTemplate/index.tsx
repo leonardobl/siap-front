@@ -53,7 +53,7 @@ export const ServicesTemplate = () => {
 
         <ServicesList servicesList={servicos} />
 
-        {servicos.length && (
+        {servicos?.length > 0 && (
           <Pagination
             totalPage={pagination?.totalPage}
             totalRegister={pagination?.totalRegister}
