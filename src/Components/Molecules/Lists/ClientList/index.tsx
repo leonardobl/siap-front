@@ -4,8 +4,7 @@ import { IClienteDTO } from "../../../../Types/cliente";
 import { useClientList } from "./useClientList";
 
 interface IClientListProps extends ComponentProps<"div"> {
-  clients: { nome: string; cpf: string; uuid: string }[];
-  // clients: IClienteDTO[];
+  clients: IClienteDTO[];
 }
 
 export const ClientList = ({ clients, ...rest }: IClientListProps) => {
