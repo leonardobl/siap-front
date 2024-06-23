@@ -5,34 +5,18 @@ import { Button } from "../../Atoms/Button";
 import { useContracts } from "./useContracts";
 import { FormFilterContracts } from "../../Molecules/Forms/FormFilterContracts";
 import { ContractsList } from "../../Molecules/Lists/ContractsList";
-import { IContratoCompletoDTO } from "../../../Types/contrato";
 import { Pagination } from "../../Atoms/Pagination";
 
-const list: IContratoCompletoDTO[] = [
-  {
-    dataFinal: "03/05/2023",
-    status: "Ativo",
-    prestador: { nome: "Teste1", cnpj: "123456789" },
-  },
-  {
-    dataFinal: "03/05/2023",
-    status: "Suspenso",
-    prestador: { nome: "Teste2", cnpj: "123456789" },
-  },
-  {
-    dataFinal: "03/05/2023",
-    status: "Inativo",
-    prestador: { nome: "Teste3", cnpj: "123456789" },
-  },
-  {
-    dataFinal: "03/05/2023",
-    status: "Ativo",
-    prestador: { nome: "Teste4", cnpj: "123456789" },
-  },
-] as IContratoCompletoDTO[];
-
 export const ContractsTemplate = () => {
-  const { filterOpen, isMobile, navigate, setFilterOpen } = useContracts();
+  const {
+    filterOpen,
+    isMobile,
+    navigate,
+    setFilterOpen,
+    contratos,
+    setNumberPage,
+    pagination,
+  } = useContracts();
 
   return (
     <LayoutTemplate titleHeader="Contratos">
@@ -57,15 +41,18 @@ export const ContractsTemplate = () => {
           <FormFilterContracts submitForm={(e) => console.log(e)} />
         )}
 
-        <ContractsList contracts={list} />
+        <ContractsList contracts={contratos} />
 
-        <Pagination
-          totalPage={10}
-          totalRegister={10}
-          actualPage={0}
-          setNumberPage={() => ""}
-          maxPageNumbersDisplayed={isMobile ? 3 : 10}
-        />
+        {contratos?.length > 0 && (
+          <Pagination
+            totalPage={pagination.totalPage}
+            totalRegister={pagination.totalRegister}
+            actualPage={pagination.actualPage}
+            key={`${isMobile} - ${Math.random()} - ${pagination}`}
+            setNumberPage={setNumberPage}
+            maxPageNumbersDisplayed={isMobile ? 3 : 10}
+          />
+        )}
       </S.Container>
     </LayoutTemplate>
   );
