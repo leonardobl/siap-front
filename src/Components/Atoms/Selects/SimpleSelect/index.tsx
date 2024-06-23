@@ -3,7 +3,6 @@ import * as S from "../styles";
 
 import Select, {
   GroupBase,
-  PlaceholderProps,
   Props,
   SelectInstance,
   components,
@@ -11,6 +10,7 @@ import Select, {
 import { IoCloseOutline } from "react-icons/io5";
 
 import { customSelectStyles } from "../CustomSelectStyles";
+import MultiValue from "react-select/dist/declarations/src/components/MultiValue";
 
 export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
   function ReactSelect<
@@ -57,7 +57,10 @@ export const SimpleSelect = React.forwardRef<SelectInstance, Props>(
           ref={ref}
           required={false}
           placeholder={props.placeholder || ""}
-          components={{ DropdownIndicator, ClearIndicator }}
+          components={{
+            DropdownIndicator,
+            ClearIndicator,
+          }}
           className="react-select-container"
           classNamePrefix="react-select"
           styles={customSelectStyles}

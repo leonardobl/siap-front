@@ -10,13 +10,36 @@ export const customSelectStyles = {
 
     minHeight: "36px",
     borderRadius: "12px",
-    height: "36px",
+    height: "auto",
     fontSize: "12px",
     letterSpacing: "1px",
     borderColor: state.isFocused ? colors["blue-100"] : colors["gray-200"],
     boxShadow: state.isFocused ? null : null,
     // "&:hover": {
     //   borderColor: colors["gray-200"],
+    // },
+  }),
+
+  multiValue: (props) => ({
+    ...props,
+    backgroundColor: "#E4F2FF",
+    color: "#2082E3",
+  }),
+
+  multiValueLabel: (styles, { data }) => ({
+    ...styles,
+    color: "#9d9d9d",
+    fontSize: "12px",
+  }),
+
+  multiValueRemove: (styles, { data }) => ({
+    ...styles,
+    cursor: "pointer",
+
+    // color: data.color,
+    // ":hover": {
+    //   backgroundColor: data.color,
+    //   color: "white",
     // },
   }),
 
@@ -46,7 +69,7 @@ export const customSelectStyles = {
   }),
   valueContainer: (provided: any, state: any) => ({
     ...provided,
-    height: "36px",
+    height: "auto",
     padding: "0 6px",
   }),
 

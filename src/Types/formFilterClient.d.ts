@@ -3,4 +3,5 @@ import { IClienteListPros } from "./cliente";
 
 export interface IFormFilterClientProps extends ComponentProps<"form"> {
   submitForm: (data: IClienteListPros) => void;
+  onClean?: () => void;
 }

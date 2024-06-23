@@ -8,6 +8,7 @@ import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 
 export const FormFilterClient = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterClientProps) => {
   const { register, handleSubmit, errors, reset } = useFormFilterClient();
@@ -33,7 +34,13 @@ export const FormFilterClient = ({
       </div>
 
       <div>
-        <Button type="reset" onClick={() => reset()}>
+        <Button
+          type="reset"
+          onClick={() => {
+            reset();
+            onClean && onClean();
+          }}
+        >
           Limpar
         </Button>
         <Button variant="blue">Buscar</Button>

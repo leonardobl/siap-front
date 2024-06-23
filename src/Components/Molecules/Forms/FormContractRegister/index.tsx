@@ -43,11 +43,13 @@ export const FormContractRegister = ({
             inputId="prestador"
             label="Prestador"
             isClearable
+            required
           />
         </div>
         <div>
           <InputDate
             id="inicial"
+            required
             label="Data Inicial"
             showIcon
             onChange={() => ""}
@@ -58,15 +60,16 @@ export const FormContractRegister = ({
             label="Data final"
             id="final"
             showIcon
+            required
             onChange={() => ""}
           />
         </div>
         <div>
-          <SimpleSelect label="Serviço" id="servico" />
+          <SimpleSelect required label="Serviço" id="servico" />
         </div>
 
         <div>
-          <InputMoney id="money" label="Valor" />{" "}
+          <InputMoney required id="money" label="Valor" />{" "}
           <Button type="button" variant="blue">
             Inserir
           </Button>

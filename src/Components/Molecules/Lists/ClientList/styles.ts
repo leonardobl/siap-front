@@ -69,8 +69,6 @@ export const TableItem = styled.div`
   }
 
   > p + p {
-    border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
-    padding-left: 8px;
     height: fit-content;
     width: fit-content;
   }
@@ -88,6 +86,11 @@ export const TableItem = styled.div`
   }
 
   @media (min-width: ${(props) => props.theme.screens.lg}) {
+    > p + p {
+      border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
+      padding-left: 8px;
+    }
+
     padding: 12px 16px;
     grid-template-columns: 2fr 2fr 0.1fr;
     grid-template-areas: "nome cpf eye";

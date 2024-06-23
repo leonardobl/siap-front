@@ -5,11 +5,20 @@ import { useClients } from "./useClients";
 import { FormFilterClient } from "../../Molecules/Forms/FormFilterClient";
 import { ClientList } from "../../Molecules/Lists/ClientList";
 import { LayoutTemplate } from "../LayoutTemplate";
-import { mockClientList } from "../../../Mocks/mock-client";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ClientsTemplate = () => {
-  const { filterOpen, setFilterOpen, navigate, isMobile } = useClients();
+  const {
+    filterOpen,
+    setFilterOpen,
+    navigate,
+    isMobile,
+    clientes,
+    handleClean,
+    pagination,
+    setNumberpage,
+    handleFilter,
+  } = useClients();
 
   return (
     <LayoutTemplate titleHeader="Clientes">
@@ -31,22 +40,21 @@ export const ClientsTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterClient
-            submitForm={(data) => {
-              console.log(data);
-            }}
-          />
+          <FormFilterClient onClean={handleClean} submitForm={handleFilter} />
         )}
 
-        <ClientList clients={mockClientList} />
+        <ClientList clients={clientes} />
 
-        <Pagination
-          totalPage={5}
-          totalRegister={10}
-          actualPage={0}
-          maxPageNumbersDisplayed={isMobile ? 3 : 10}
-          setNumberPage={undefined}
-        />
+        {clientes.length > 0 && (
+          <Pagination
+            totalPage={pagination.totalPage}
+            totalRegister={pagination.totalRegister}
+            actualPage={pagination.actualPage}
+            maxPageNumbersDisplayed={isMobile ? 3 : 10}
+            setNumberPage={setNumberpage}
+            key={`${isMobile} - ${pagination} - ${Math.random()}`}
+          />
+        )}
       </S.Container>
     </LayoutTemplate>
   );

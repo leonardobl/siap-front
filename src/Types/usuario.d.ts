@@ -1,4 +1,5 @@
 import { TipoPessoaEnum } from "../enums/pessoas";
+import { IPageRequest } from "./page";
 
 interface IUsuarioForm {
   cpfCnpj: string;
@@ -40,14 +41,21 @@ export interface IUsuarioCompletoDTO {
 export interface IAuthority {
   ativo: boolean;
   authority?: string;
-  createdAt: Date;
+  createdAt: string;
   id: number;
   nome: string;
-  rescursos?: Authority[];
+  rescursos?: IAuthority[];
   updateReason: string;
-  updatedAt: Date;
+  updatedAt: string;
   userNameUpdate: string;
   uuid: string;
   uuidUserUpdate: string;
   version: number;
+}
+
+export interface IUsuariosListProps extends IPageRequest {
+  nome?: string;
+  cpfCnpj?: string;
+  telefone?: string;
+  email?: string;
 }

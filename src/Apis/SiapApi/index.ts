@@ -1,14 +1,14 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const ApiBrave = axios.create({
-  baseURL: process.env.REACT_APP_BRAVE_API_URL,
+export const SiapApi = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "Content-type": "application/json; charset=UTF-8",
   },
 });
 
-ApiBrave.interceptors.request.use((config) => {
+SiapApi.interceptors.request.use((config) => {
   let token = "";
   if (typeof window !== "undefined") {
     const localToken = localStorage.getItem("@token");
@@ -25,7 +25,7 @@ ApiBrave.interceptors.request.use((config) => {
   return config;
 });
 
-ApiBrave.interceptors.response.use(
+SiapApi.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response.status === 403) {
