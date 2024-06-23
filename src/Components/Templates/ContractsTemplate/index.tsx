@@ -16,6 +16,8 @@ export const ContractsTemplate = () => {
     contratos,
     setNumberPage,
     pagination,
+    handleFilter,
+    handleClean,
   } = useContracts();
 
   return (
@@ -38,7 +40,10 @@ export const ContractsTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterContracts submitForm={(e) => console.log(e)} />
+          <FormFilterContracts
+            submitForm={handleFilter}
+            onClean={handleClean}
+          />
         )}
 
         <ContractsList contracts={contratos} />

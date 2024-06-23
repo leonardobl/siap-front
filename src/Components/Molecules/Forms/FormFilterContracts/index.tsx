@@ -9,10 +9,12 @@ import { reverseToIsoDate } from "../../../../Utils/dateTransform";
 
 interface IFormFilterContractsProps extends ComponentProps<"form"> {
   submitForm: (data: IContratoListProps) => void;
+  onClean?: () => void;
 }
 
 export const FormFilterContracts = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterContractsProps) => {
   const {
@@ -85,6 +87,7 @@ export const FormFilterContracts = ({
         <Button
           type="reset"
           onClick={() => {
+            onClean && onClean();
             reset();
             setDataFinal(null);
             setDataInicial(null);

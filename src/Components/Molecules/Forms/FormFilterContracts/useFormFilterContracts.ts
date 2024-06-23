@@ -6,12 +6,12 @@ import { z } from "zod";
 import { maskCnpj } from "../../../../Utils/masks";
 
 const schema = z.object({
-  cnpj: z.string().optional().or(z.literal("")),
-  dataFim: z.string().optional().or(z.literal("")),
-  dataInicio: z.string().optional().or(z.literal("")),
-  nome: z.string().optional().or(z.literal("")),
-  servico: z.string().optional().or(z.literal("")),
-  razaoSocial: z.string().optional().or(z.literal("")),
+  cnpj: z.string().optional(),
+  dataFim: z.string().optional(),
+  dataInicio: z.string().optional(),
+  nome: z.string().optional(),
+  servico: z.string().optional(),
+  razaoSocial: z.string().optional(),
 });
 
 export const useFormFilterContracts = () => {
