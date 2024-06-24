@@ -88,7 +88,7 @@ export const LayoutTemplate = ({
               <span>Prestadores</span>
             </NavLink>
 
-            <NavLink to={"/login"}>
+            <NavLink to={"/tipo-prestadores"} title="Tipos de Prestadores">
               <img
                 src="/assets/svg/icon-prestadores-plus.svg"
                 alt="icone usuario"

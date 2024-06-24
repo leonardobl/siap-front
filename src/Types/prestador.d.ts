@@ -2,6 +2,7 @@ import { StatusEnum } from "../Enum/status";
 import { IDadosFinanceirosDTO } from "./banco";
 import { IEnderecoDTO } from "./endereco";
 import { IPageRequest, IPageableObject, ISortObject } from "./page";
+import { ITipoPrestadorDTO } from "./tipoPrestador";
 
 export interface IPrestadorProps extends IPageRequest {
   nome?: string;
@@ -38,10 +39,6 @@ export interface IPrestadorDTO {
   telefone: string;
   tipo: ITipoPrestadorDTO;
   uuid: string;
-}
-
-export interface ITipoPrestadorDTO {
-  nome: string;
 }
 
 export interface IPrestadorForm {
