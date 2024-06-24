@@ -20,6 +20,8 @@ export const ProviderTypeTemplate = () => {
     tipos,
     pagination,
     handleSubmit,
+    handleFilter,
+    handleClean,
   } = useProviderType();
 
   return (
@@ -42,7 +44,10 @@ export const ProviderTypeTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterProviderType submitForm={(e) => console.log(e)} />
+          <FormFilterProviderType
+            onClean={handleClean}
+            submitForm={handleFilter}
+          />
         )}
 
         <ProviderTypeList providersTypes={tipos} />

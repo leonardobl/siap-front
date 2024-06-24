@@ -69,15 +69,27 @@ export const useProviderType = () => {
       });
   }
 
+  function handleFilter(data: ITipoPrestadorDTO) {
+    setNumberPage(0);
+    getTipos({ page: 0, ...data });
+  }
+
+  function handleClean() {
+    setNumberPage(0);
+    getTipos({ page: 0 });
+  }
+
   return {
     filterOpen,
     setFilterOpen,
     isMobile,
     modalOpen,
     setModalOpen,
+    handleClean,
     tipos,
     setNumberPage,
     pagination,
     handleSubmit,
+    handleFilter,
   };
 };

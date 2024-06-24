@@ -5,16 +5,21 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  nome: z.string().optional(),
+  nome: z.string().min(1, "Campo obrigatorio"),
 });
 
 export const useFormFilterProviderType = () => {
-  const { register, handleSubmit, reset } = useForm<ITipoPrestadorProps>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ITipoPrestadorProps>({
     defaultValues: {
       nome: "",
     },
     resolver: zodResolver(schema),
   });
 
-  return { register, handleSubmit, reset };
+  return { register, handleSubmit, reset, errors };
 };
