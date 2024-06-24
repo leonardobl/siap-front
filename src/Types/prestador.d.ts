@@ -59,3 +59,7 @@ export interface IDadosFinanceirosForm {
   conta: string;
   operacao?: string;
 }
+
+export interface IVinculoPrestadorFinanceiro extends IDadosFinanceirosForm {
+  uuid: string;
+}

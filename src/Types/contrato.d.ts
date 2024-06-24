@@ -1,10 +1,6 @@
 import { IPageRequest, IPageableObject, ISortObject } from "./page";
 import { IPrestadorDTO } from "./prestador";
 import { IServicoDTO } from "./servico";
-import { IDadosFinanceirosDTO } from "./banco";
-import { IEnderecoDTO } from "./endereco";
-import { IPageRequest } from "./page";
-import { ITipoPrestadorDTO } from "./tipoPrestador";
 
 export interface IContratoCompletoDTO {
   dataFinal: string;
@@ -12,21 +8,6 @@ export interface IContratoCompletoDTO {
   prestador: IPrestadorDTO;
   servicos: IServicoContratadoDTO[];
   status: string;
-  uuid: string;
-}
-
-export interface IPrestadorDTO {
-  cnpj: string;
-  dadosfinanceiros: IDadosFinanceirosDTO;
-  email: string;
-  endereco: IEnderecoDTO;
-  inscEstadual: string;
-  inscMunicipal: string;
-  nome: string;
-  razaoSocial: string;
-  status: string;
-  telefone: string;
-  tipo: ITipoPrestadorDTO;
   uuid: string;
 }
 

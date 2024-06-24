@@ -22,7 +22,7 @@ export const FormProviderBasic = ({
     errors,
     handleSubmit,
     register,
-    TipoOptions,
+    tiposOptions,
     handleCep,
     ufOptions,
     cidadesOptions,
@@ -99,8 +99,8 @@ export const FormProviderBasic = ({
               inputId="tipo"
               label="Tipo"
               required
-              value={TipoOptions.find((i) => i.value === value) || null}
-              options={TipoOptions}
+              value={tiposOptions.find((i) => i.value === value) || null}
+              options={tiposOptions}
               onChange={(e: ISelectOptions) => onChange(e?.value)}
             />
           )}

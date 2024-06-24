@@ -6,5 +6,13 @@ export const useProviders = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "640px" });
-  return { filterOpen, setFilterOpen, navigate, isMobile };
+  const [prestadores, setPrestadores] = useState([]);
+
+  return {
+    filterOpen,
+    setFilterOpen,
+    navigate,
+    isMobile,
+    prestadores,
+  };
 };

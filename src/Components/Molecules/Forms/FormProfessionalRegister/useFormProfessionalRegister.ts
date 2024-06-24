@@ -12,18 +12,11 @@ import { toast } from "react-toastify";
 const schema = z.object({
   conselho: z.string().min(1, { message: "Campo obrigatorio" }),
   cpf: z.string().min(14, { message: "CPF invalido" }),
-  email: z
-    .string()
-    .email({ message: "Email invalido" })
-    .optional()
-    .or(z.literal("")),
+  email: z.string().email({ message: "Email invalido" }),
+
   nome: z.string().min(1, { message: "Campo obrigatorio" }),
   numeroConselho: z.string().min(1, { message: "Campo obrigatorio" }),
-  telefone: z
-    .string()
-    .min(14, { message: "Campo obrigatorio" })
-    .optional()
-    .or(z.literal("")),
+  telefone: z.string().min(14, { message: "Campo obrigatorio" }),
   ufConselho: z.string().min(1, { message: "Campo obrigatorio" }),
 });
 

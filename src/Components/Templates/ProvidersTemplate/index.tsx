@@ -8,7 +8,8 @@ import { ProvidersList } from "../../Molecules/Lists/ProvidersList";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ProvidersTemplate = () => {
-  const { filterOpen, navigate, setFilterOpen, isMobile } = useProviders();
+  const { filterOpen, navigate, setFilterOpen, isMobile, prestadores } =
+    useProviders();
 
   return (
     <LayoutTemplate titleHeader="Prestadores">

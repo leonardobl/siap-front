@@ -8,76 +8,27 @@ import { FormFinanceRegister } from "../../Molecules/Forms/FormFinanceRegister";
 import { Button } from "../../Atoms/Button";
 import { FormFilterProfessional } from "../../Molecules/Forms/FormFilterProfessional";
 import { ProfessionalsList } from "../../Molecules/Lists/ProfessionalsList";
-import { IProfissionalDTO } from "../../../Types/profissional";
-import { v4 } from "uuid";
-import { ConselhoEnum } from "../../../Enum/conselho";
 import { Pagination } from "../../Atoms/Pagination";
 import { MyModal } from "../../Atoms/Modal";
 import { FormProfessionalRegister } from "../../Molecules/Forms/FormProfessionalRegister";
 
-const fakeProfessional: IProfissionalDTO[] = [
-  {
-    conselho: ConselhoEnum.COREN,
-    cpf: "01426904304",
-    email: "email@teste.com.br",
-    nome: "Leonardo Lima",
-    numeroConselho: "123",
-    telefone: "86995233237",
-    ufConselho: "PI",
-    uuid: v4(),
-  },
-  {
-    conselho: ConselhoEnum.COREN,
-    cpf: "01426904304",
-    email: "email@teste.com.br",
-    nome: "Leonardo Lima",
-    numeroConselho: "123",
-    telefone: "86995233237",
-    ufConselho: "PI",
-    uuid: v4(),
-  },
-  {
-    conselho: ConselhoEnum.COREN,
-    cpf: "01426904304",
-    email: "email@teste.com.br",
-    nome: "Leonardo Lima",
-    numeroConselho: "123",
-    telefone: "86995233237",
-    ufConselho: "PI",
-    uuid: v4(),
-  },
-  {
-    conselho: ConselhoEnum.COREN,
-    cpf: "01426904304",
-    email: "email@teste.com.br",
-    nome: "Leonardo Lima",
-    numeroConselho: "123",
-    telefone: "86995233237",
-    ufConselho: "PI",
-    uuid: v4(),
-  },
-  {
-    conselho: ConselhoEnum.COREN,
-    cpf: "01426904304",
-    email: "email@teste.com.br",
-    nome: "Leonardo Lima",
-    numeroConselho: "123",
-    telefone: "86995233237",
-    ufConselho: "PI",
-    uuid: v4(),
-  },
-];
-
 export const ProviderRegisterTemplate = () => {
   const {
     tabIdx,
-    setTabIdx,
     filterOpen,
     navigate,
     setFilterOpen,
     isMobile,
     modalOpen,
     setModalOpen,
+    handleSubmitProvider,
+    handleSubmitFinance,
+    handleSubmitProfessional,
+    profissionais,
+    setNumberPage,
+    pagination,
+    handleFilterProfessional,
+    handleClean,
   } = useProviderRegister();
 
   return (
@@ -85,20 +36,12 @@ export const ProviderRegisterTemplate = () => {
       <S.Container>
         <TabProviderForms tabIndex={tabIdx}>
           {[
-            <FormProviderBasic
-              submitForm={(e) => {
-                console.log(e);
-                setTabIdx(2);
-              }}
-              key={Math.random()}
-            />,
+            <FormProviderBasic submitForm={handleSubmitProvider} key={"123"} />,
             <FormFinanceRegister
-              submitForm={(e) => {
-                console.log(e);
-                setTabIdx(3);
-              }}
+              key={"1236"}
+              submitForm={handleSubmitFinance}
             />,
-            <S.WrapperProfessional>
+            <S.WrapperProfessional key={"1234"}>
               <S.WrapperButtons>
                 <Button
                   iconleft="/assets/svg/icon-filter.svg"
@@ -114,19 +57,26 @@ export const ProviderRegisterTemplate = () => {
                   Cadastrar
                 </Button>
               </S.WrapperButtons>
+
               {filterOpen && (
-                <FormFilterProfessional submitForm={(e) => console.log(e)} />
+                <FormFilterProfessional
+                  onClean={handleClean}
+                  submitForm={handleFilterProfessional}
+                />
               )}
 
-              <ProfessionalsList professionals={fakeProfessional} />
+              <ProfessionalsList professionals={profissionais} />
 
-              <Pagination
-                totalPage={10}
-                totalRegister={20}
-                actualPage={0}
-                maxPageNumbersDisplayed={isMobile ? 3 : 10}
-                setNumberPage={() => ""}
-              />
+              {profissionais?.length > 0 && (
+                <Pagination
+                  totalPage={pagination.totalPage}
+                  totalRegister={pagination.totalRegister}
+                  actualPage={pagination.actualPage}
+                  key={`${pagination} - ${isMobile} - ${Math.random()}`}
+                  maxPageNumbersDisplayed={isMobile ? 3 : 10}
+                  setNumberPage={setNumberPage}
+                />
+              )}
             </S.WrapperProfessional>,
           ]}
         </TabProviderForms>
@@ -143,10 +93,7 @@ export const ProviderRegisterTemplate = () => {
             <h1>Cadastro Profissional</h1>
             <FormProfessionalRegister
               onCancel={() => setModalOpen(false)}
-              submitForm={(e) => {
-                console.log(e);
-                navigate("/prestadores");
-              }}
+              submitForm={handleSubmitProfessional}
             />
           </S.ContentModal>
         </MyModal>

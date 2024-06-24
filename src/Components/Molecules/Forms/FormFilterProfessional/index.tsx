@@ -9,10 +9,12 @@ import { ISelectOptions } from "../../../../Types/inputs";
 
 interface IFormFilterProfessionalProps extends ComponentProps<"form"> {
   submitForm: (data: IProfissionalListProps) => void;
+  onClean?: () => void;
 }
 
 export const FormFilterProfessional = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterProfessionalProps) => {
   const {
@@ -58,7 +60,13 @@ export const FormFilterProfessional = ({
       </div>
 
       <div>
-        <Button type="reset" onClick={() => reset()}>
+        <Button
+          type="reset"
+          onClick={() => {
+            reset();
+            onClean && onClean();
+          }}
+        >
           Limpar
         </Button>
         <Button variant="blue">Buscar</Button>

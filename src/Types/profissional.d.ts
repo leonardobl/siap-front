@@ -1,5 +1,5 @@
 import { ConselhoEnum } from "../Enum/conselho";
-import { IPageRequest } from "./page";
+import { IPageRequest, IPageableObject, ISortObject } from "./page";
 
 export interface IProfissionalListProps extends IPageRequest {
   uuidPrestador: string;
@@ -29,4 +29,18 @@ export interface IProfissionalForm {
   telefone?: string;
   ufConselho: string;
   uuidPrestador: string;
+}
+
+export interface IPageProfissionalDTO {
+  content: IProfissionalDTO[];
+  empty: boolean;
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  pageable: IPageableObject;
+  size: number;
+  sort: ISortObject;
+  totalElements: number;
+  totalPages: number;
 }

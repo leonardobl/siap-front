@@ -9,8 +9,7 @@ import { ISelectOptions } from "../../../../Types/inputs";
 import { toast } from "react-toastify";
 import { ViaCep } from "../../../../Services/ViaCep";
 import { useContextSite } from "../../../../Context/Context";
-
-const TipoOptions = [{ value: "Tipo1", label: "Tipo1" }];
+import { TipoPrestador } from "../../../../Services/TipoPrestador";
 
 const schemaCidade = z.object({
   nome: z.string().min(1, { message: "Campo obrigatorio" }),
@@ -50,6 +49,9 @@ export const useFormProviderBasic = () => {
   const [cidadeTemp, setCidadeTemp] = useState("");
   const { setIsLoad } = useContextSite();
   const [cidadesOptions, setCidadesOptions] = useState<ISelectOptions[]>([]);
+  const [tiposOptions, setTiposOptions] = useState<ISelectOptions[]>(
+    [] as ISelectOptions[]
+  );
 
   const {
     control,
@@ -101,6 +103,31 @@ export const useFormProviderBasic = () => {
   useEffect(() => {
     getUfs();
   }, [getUfs]);
+
+  const getTipos = useCallback(() => {
+    TipoPrestador.list()
+      .then(({ data }) => {
+        const options = data?.content?.map((i) => ({
+          value: i.nome,
+          label: i.nome,
+        }));
+
+        setTiposOptions(options);
+      })
+      .catch(
+        ({
+          response: {
+            data: { mensagem },
+          },
+        }) => {
+          toast.error(mensagem);
+        }
+      );
+  }, []);
+
+  useEffect(() => {
+    getTipos();
+  }, []);
 
   function handleCep() {
     if (watch("endereco.cep").length === 9) {
@@ -158,7 +185,7 @@ export const useFormProviderBasic = () => {
     errors,
     register,
     handleSubmit,
-    TipoOptions,
+    tiposOptions,
     cidadesOptions,
     ufOptions,
     handleCep,
