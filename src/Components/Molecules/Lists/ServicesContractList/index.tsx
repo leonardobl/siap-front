@@ -1,17 +1,16 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
-
-type servicesValues = {
-  nome: string;
-  valor: string;
-};
+import { IServicoContratadoFormRHF } from "../../../../Types/contrato";
+import { maskMoney } from "../../../../Utils/masks";
 
 interface IServicesContractListProps extends ComponentProps<"div"> {
-  services: servicesValues[];
+  services: IServicoContratadoFormRHF[];
+  onDeleteItem: (id: string) => void;
 }
 
 export const ServicesContractList = ({
   services,
+  onDeleteItem,
   ...rest
 }: IServicesContractListProps) => {
   return (
@@ -22,12 +21,16 @@ export const ServicesContractList = ({
       </S.TableHeader>
 
       <S.TableItens>
-        {services.map((i) => (
+        {services?.map((i) => (
           <S.TableItem key={Math.random()}>
-            <p>{i.nome}</p>
-            <p>{i.valor}</p>
+            <p>{i.value}</p>
+            <p>{maskMoney(i.valor)}</p>
             <div>
-              <img src="/assets/svg/icon-trash-red.svg" alt="icone lixeira" />
+              <img
+                src="/assets/svg/icon-trash-red.svg"
+                alt="icone lixeira"
+                onClick={() => onDeleteItem(i.value)}
+              />
             </div>
           </S.TableItem>
         ))}

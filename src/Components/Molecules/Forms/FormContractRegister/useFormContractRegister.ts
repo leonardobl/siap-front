@@ -56,6 +56,7 @@ export const useFormContractRegister = () => {
     setValue,
     trigger,
     watch,
+    reset,
     formState: { errors },
   } = useForm<IContratoCompletoFormRHF>({
     defaultValues: {
@@ -107,13 +108,23 @@ export const useFormContractRegister = () => {
 
     const { servico, valor } = getValues();
     setValue("servicos", [...servicos, { value: servico, valor }]);
-    setValue("servico", ""); // Reset the service field
-    setValue("valor", 0); // Reset the value field
+    setValue("servico", "");
+    setValue("valor", 0);
+    setPriceValue("");
   };
 
-  useEffect(() => {
-    console.log(watch("servicos"));
-  }, [watch("servicos")]);
+  const handleDeleteItem = (id: string) => {
+    const { servicos } = getValues();
+    const updatedServicos = servicos.filter((servico) => servico.value !== id);
+    setValue("servicos", updatedServicos);
+  };
+
+  function handleClean() {
+    reset();
+    setPriceValue("");
+    setDataFim(null);
+    setDataIni(null);
+  }
 
   return {
     Controller,
@@ -128,5 +139,8 @@ export const useFormContractRegister = () => {
     onInsert,
     priceValue,
     setPriceValue,
+    watch,
+    handleDeleteItem,
+    handleClean,
   };
 };

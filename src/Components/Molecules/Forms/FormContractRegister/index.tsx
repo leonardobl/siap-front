@@ -16,21 +16,6 @@ interface IFormContractRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IContratoCompletoFormRHF) => void;
 }
 
-const servicos = [
-  {
-    nome: "Exame Médico",
-    valor: "R$ 195,00",
-  },
-  {
-    nome: "Exame Toxicológico",
-    valor: "R$ 179,00",
-  },
-  {
-    nome: "Exame Psicológico ",
-    valor: "R$ 145,00",
-  },
-];
-
 export const FormContractRegister = ({
   submitForm,
   ...rest
@@ -48,6 +33,9 @@ export const FormContractRegister = ({
     onInsert,
     priceValue,
     setPriceValue,
+    watch,
+    handleDeleteItem,
+    handleClean,
   } = useFormContractRegister();
 
   return (
@@ -150,11 +138,16 @@ export const FormContractRegister = ({
           </Button>
         </div>
       </S.FormContent>
-      {/* <p>{JSON.stringify(errors)}</p> */}
-      <ServicesContractList services={servicos} />
+
+      <ServicesContractList
+        onDeleteItem={handleDeleteItem}
+        services={watch("servicos")}
+      />
 
       <S.WrapperButtons>
-        <Button>Limpar</Button>
+        <Button type="reset" onClick={handleClean}>
+          Limpar
+        </Button>
         <Button variant="blue">Cadastrar</Button>
       </S.WrapperButtons>
     </S.Form>
