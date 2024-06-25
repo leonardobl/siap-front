@@ -16,6 +16,8 @@ export const ProvidersTemplate = () => {
     prestadores,
     pagination,
     setNumberPage,
+    handleFilter,
+    handleClean,
   } = useProviders();
 
   return (
@@ -37,7 +39,10 @@ export const ProvidersTemplate = () => {
           </Button>
         </S.WrapperButtons>
         {filterOpen && (
-          <FormFilterProviders submitForm={(data) => console.log(data)} />
+          <FormFilterProviders
+            onClean={handleClean}
+            submitForm={handleFilter}
+          />
         )}
 
         <ProvidersList prestadores={prestadores} />
@@ -48,7 +53,7 @@ export const ProvidersTemplate = () => {
             totalRegister={pagination.totalRegister}
             maxPageNumbersDisplayed={isMobile ? 3 : 10}
             actualPage={pagination.actualPage}
-            key={`${isMobile} - ${pagination}`}
+            key={`${isMobile} - ${pagination} - ${Math.random()}`}
             setNumberPage={setNumberPage}
           />
         )}

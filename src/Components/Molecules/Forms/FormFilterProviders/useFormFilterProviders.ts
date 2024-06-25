@@ -1,11 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { IPrestadorProps } from "../../../../Types/prestador";
 import { StatusEnum } from "../../../../Enum/status";
 import { maskCnpj } from "../../../../Utils/masks";
 import { ISelectOptions } from "../../../../Types/inputs";
+import { TipoPrestador } from "../../../../Services/TipoPrestador";
+import { toast } from "react-toastify";
 
 const schema = z.object({
   nome: z.string().optional().or(z.literal("")),
@@ -51,6 +53,24 @@ export const useFormFilterProviders = () => {
     mode: "all",
     resolver: zodResolver(schema),
   });
+
+  const getTipos = useCallback(() => {
+    TipoPrestador.list()
+      .then(({ data }) => {
+        const options = data.content.map((i) => ({
+          value: i.nome,
+          label: i.nome,
+        }));
+        setTipoOptions(options);
+      })
+      .catch(({ response: { data: mensagem } }) => {
+        toast.error(mensagem);
+      });
+  }, []);
+
+  useEffect(() => {
+    getTipos();
+  }, []);
 
   useEffect(() => {
     setValue("cnpj", maskCnpj(watch("cnpj")));

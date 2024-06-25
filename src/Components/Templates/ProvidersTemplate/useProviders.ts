@@ -5,7 +5,7 @@ import { IPageRequest } from "../../../Types/page";
 import { Prestador } from "../../../Services/Prestador";
 import { useContextSite } from "../../../Context/Context";
 import { toast } from "react-toastify";
-import { IPrestadorDTO } from "../../../Types/prestador";
+import { IPrestadorDTO, IPrestadorProps } from "../../../Types/prestador";
 import { IPagination } from "../../../Types/pagination";
 
 export const useProviders = () => {
@@ -47,6 +47,19 @@ export const useProviders = () => {
     getPrestadores({ page: numberPage });
   }, [numberPage]);
 
+  function handleFilter(data: IPrestadorProps) {
+    const hasFilter = Object.values(data).some((i) => i);
+
+    if (hasFilter) {
+      getPrestadores({ page: 0, ...data });
+    }
+  }
+
+  function handleClean() {
+    getPrestadores({ page: 0 });
+    setNumberPage(0);
+  }
+
   return {
     filterOpen,
     setFilterOpen,
@@ -55,5 +68,7 @@ export const useProviders = () => {
     prestadores,
     setNumberPage,
     pagination,
+    handleFilter,
+    handleClean,
   };
 };

@@ -10,10 +10,12 @@ import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 
 interface IFormFilterProvidersProps extends ComponentProps<"form"> {
   submitForm: (data: IPrestadorProps) => void;
+  onClean?: () => void;
 }
 
 export const FormFilterProviders = ({
   submitForm,
+  onClean,
   ...rest
 }: IFormFilterProvidersProps) => {
   const {
@@ -92,7 +94,13 @@ export const FormFilterProviders = ({
         />
       </div>
       <div>
-        <Button type="reset" onClick={() => reset()}>
+        <Button
+          type="reset"
+          onClick={() => {
+            reset();
+            onClean && onClean();
+          }}
+        >
           Limpar
         </Button>
         <Button variant="blue">Buscar</Button>
