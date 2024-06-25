@@ -23,16 +23,19 @@ export const FormContent = styled.div`
 
   > :nth-child(5) {
     grid-area: valor;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
 
-    > :nth-child(1) {
-      flex: 1;
-    }
+    > div:first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
 
-    button {
-      margin-left: auto;
+      > :nth-child(1) {
+        flex: 1;
+      }
+
+      button {
+        margin-left: auto;
+      }
     }
   }
 
@@ -57,11 +60,12 @@ export const FormContent = styled.div`
     }
 
     > :nth-child(5) {
-      grid-area: valor;
-      flex-direction: row;
+      div:first-child {
+        flex-direction: row;
 
-      :nth-child(1) {
-        flex: 1;
+        /* :nth-child(1) {
+          flex: 1;
+        } */
       }
     }
   }

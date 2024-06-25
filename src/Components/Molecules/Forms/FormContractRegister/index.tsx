@@ -53,6 +53,9 @@ export const FormContractRegister = ({
               />
             )}
           />
+          {errors?.uuidPrestador && (
+            <ErrorMessage>{errors.uuidPrestador.message}</ErrorMessage>
+          )}
         </div>
         <div>
           <Controller
@@ -73,6 +76,9 @@ export const FormContractRegister = ({
               />
             )}
           />
+          {errors?.dataInicial && (
+            <ErrorMessage>{errors.dataInicial.message}</ErrorMessage>
+          )}
         </div>
         <div>
           <Controller
@@ -93,6 +99,9 @@ export const FormContractRegister = ({
               />
             )}
           />
+          {errors?.dataFinal && (
+            <ErrorMessage>{errors.dataFinal.message}</ErrorMessage>
+          )}
         </div>
 
         <div>
@@ -113,29 +122,38 @@ export const FormContractRegister = ({
               />
             )}
           />
+          {errors?.servico && (
+            <ErrorMessage>{errors.servico.message}</ErrorMessage>
+          )}
         </div>
 
         <div>
-          <Controller
-            control={control}
-            name="valor"
-            render={({ field: { onChange, value } }) => (
-              <InputMoney
-                data-error={!!errors?.valor}
-                required
-                id="money"
-                label="Valor"
-                value={priceValue}
-                onValueChange={(value, name, values) => {
-                  setPriceValue(value);
-                  onChange(values?.float);
-                }}
-              />
-            )}
-          />
-          <Button variant="blue" type="button" onClick={onInsert}>
-            Inserir
-          </Button>
+          <div>
+            <Controller
+              control={control}
+              name="valor"
+              render={({ field: { onChange, value } }) => (
+                <InputMoney
+                  data-error={!!errors?.valor}
+                  required
+                  id="money"
+                  label="Valor"
+                  value={priceValue}
+                  onValueChange={(value, name, values) => {
+                    setPriceValue(value);
+                    onChange(values?.float);
+                  }}
+                />
+              )}
+            />
+            <Button variant="blue" type="button" onClick={onInsert}>
+              Inserir
+            </Button>
+          </div>
+
+          {errors?.servico && (
+            <ErrorMessage>{errors.servico.message}</ErrorMessage>
+          )}
         </div>
       </S.FormContent>
 

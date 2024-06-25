@@ -59,6 +59,8 @@ export function AsyncSimpleSelect<
       <AsyncSelect
         {...props}
         required={false}
+        className="react-select-container"
+        classNamePrefix="react-select"
         name={props.name}
         placeholder={props.placeholder || ""}
         components={{ DropdownIndicator, ClearIndicator }}
