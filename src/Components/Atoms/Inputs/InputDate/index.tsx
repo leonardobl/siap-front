@@ -20,6 +20,7 @@ export const InputDate = (props: InputDateProps) => {
     >
       <DatePicker
         {...props}
+        required={false}
         placeholderText={""}
         // selected={value ? value : props.selected}
         onChange={(e, v) => {

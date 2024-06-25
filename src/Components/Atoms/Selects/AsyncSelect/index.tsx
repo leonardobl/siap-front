@@ -46,9 +46,12 @@ export function AsyncSimpleSelect<
   };
 
   return (
-    <S.Container>
+    <S.Container data-custom-error={props?.customError}>
       {props.label && (
-        <S.Label htmlFor={props?.inputId}>
+        <S.Label
+          htmlFor={props?.inputId}
+          data-custom-error={props?.customError}
+        >
           {props.label}
           {props?.required && <S.Required>*</S.Required>}
         </S.Label>

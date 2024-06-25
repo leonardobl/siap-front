@@ -1,17 +1,19 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
-import { IContratoCompletoForm } from "../../../../Types/contrato";
 import { useFormContractRegister } from "./useFormContractRegister";
 import { AsyncSimpleSelect } from "../../../Atoms/Selects/AsyncSelect";
 import { InputDate } from "../../../Atoms/Inputs/InputDate";
-import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
-import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
-import { InputMoney } from "../../../Atoms/Inputs/InputMoney";
 import { ServicesContractList } from "../../Lists/ServicesContractList";
+import { reverseToIsoDate } from "../../../../Utils/dateTransform";
+import { IContratoCompletoFormRHF } from "../../../../Types/contrato";
+import { ErrorMessage } from "../../../Atoms/ErrorMessage";
+import { ISelectOptions } from "../../../../Types/inputs";
+import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
+import { InputMoney } from "../../../Atoms/Inputs/InputMoney";
 
 interface IFormContractRegisterProps extends ComponentProps<"form"> {
-  submitForm: (data: IContratoCompletoForm) => void;
+  submitForm: (data: IContratoCompletoFormRHF) => void;
 }
 
 const servicos = [
@@ -33,49 +35,122 @@ export const FormContractRegister = ({
   submitForm,
   ...rest
 }: IFormContractRegisterProps) => {
-  const { handleSubmit } = useFormContractRegister();
+  const {
+    handleSubmit,
+    Controller,
+    control,
+    errors,
+    dataFim,
+    dataIni,
+    setDataFim,
+    servicosOptions,
+    setDataIni,
+    onInsert,
+    priceValue,
+    setPriceValue,
+  } = useFormContractRegister();
 
   return (
     <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
       <S.FormContent>
         <div>
-          <AsyncSimpleSelect
-            inputId="prestador"
-            label="Prestador"
-            isClearable
-            required
+          <Controller
+            control={control}
+            name="uuidPrestador"
+            render={({ field: { onChange, value } }) => (
+              <AsyncSimpleSelect
+                customError={!!errors.uuidPrestador}
+                label="Prestador"
+                required
+              />
+            )}
           />
         </div>
         <div>
-          <InputDate
-            id="inicial"
-            required
-            label="Data Inicial"
-            showIcon
-            onChange={() => ""}
+          <Controller
+            control={control}
+            name="dataInicial"
+            render={({ field: { onChange, value } }) => (
+              <InputDate
+                id="inicial"
+                required
+                data-error={!!errors.dataInicial}
+                label="Data Inicial"
+                showIcon
+                selected={dataIni}
+                onChange={(e) => {
+                  setDataIni(e);
+                  onChange(reverseToIsoDate(e?.toDateString()) || "");
+                }}
+              />
+            )}
           />
         </div>
         <div>
-          <InputDate
-            label="Data final"
-            id="final"
-            showIcon
-            required
-            onChange={() => ""}
+          <Controller
+            control={control}
+            name="dataFinal"
+            render={({ field: { onChange, value } }) => (
+              <InputDate
+                data-error={!!errors.dataFinal}
+                label="Data final"
+                id="final"
+                showIcon
+                required
+                selected={dataFim}
+                onChange={(e) => {
+                  setDataFim(e);
+                  onChange(reverseToIsoDate(e?.toDateString()) || "");
+                }}
+              />
+            )}
           />
-        </div>
-        <div>
-          <SimpleSelect required label="Serviço" id="servico" />
         </div>
 
         <div>
-          <InputMoney required id="money" label="Valor" />{" "}
-          <Button type="button" variant="blue">
+          <Controller
+            control={control}
+            name="servico"
+            render={({ field: { value, onChange } }) => (
+              <SimpleSelect
+                options={servicosOptions}
+                required
+                customError={!!errors?.servico}
+                value={servicosOptions.find((i) => i.value === value) || null}
+                label="Serviço"
+                id="servico"
+                onChange={(e: ISelectOptions) => {
+                  onChange(e?.value);
+                }}
+              />
+            )}
+          />
+        </div>
+
+        <div>
+          <Controller
+            control={control}
+            name="valor"
+            render={({ field: { onChange, value } }) => (
+              <InputMoney
+                data-error={!!errors?.valor}
+                required
+                id="money"
+                label="Valor"
+                value={priceValue}
+                onValueChange={(value, name, values) => {
+                  setPriceValue(value);
+                  onChange(values?.float);
+                }}
+              />
+            )}
+          />
+          <Button variant="blue" type="button" onClick={onInsert}>
             Inserir
           </Button>
         </div>
       </S.FormContent>
-
+      {/* <p>{JSON.stringify(errors)}</p> */}
       <ServicesContractList services={servicos} />
 
       <S.WrapperButtons>

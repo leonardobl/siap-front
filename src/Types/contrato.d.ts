@@ -41,6 +41,12 @@ export interface IContratoCompletoForm extends IContratoForm {
   servicos: IServicoContratadoForm[];
 }
 
+export interface IContratoCompletoFormRHF extends IContratoForm {
+  servico: "";
+  valor: number;
+  servicos: { value: string; valor: number }[];
+}
+
 //
 
 export interface IPageContratoDTO {
