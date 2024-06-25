@@ -36,6 +36,7 @@ export const FormContractRegister = ({
     watch,
     handleDeleteItem,
     handleClean,
+    getPrestadores,
   } = useFormContractRegister();
 
   return (
@@ -49,6 +50,8 @@ export const FormContractRegister = ({
               <AsyncSimpleSelect
                 customError={!!errors.uuidPrestador}
                 label="Prestador"
+                loadOptions={getPrestadores}
+                onChange={(e) => onChange(e?.value)}
                 required
               />
             )}
@@ -71,7 +74,7 @@ export const FormContractRegister = ({
                 selected={dataIni}
                 onChange={(e) => {
                   setDataIni(e);
-                  onChange(reverseToIsoDate(e?.toDateString()) || "");
+                  onChange(reverseToIsoDate(e?.toLocaleDateString()) || "");
                 }}
               />
             )}
@@ -94,7 +97,7 @@ export const FormContractRegister = ({
                 selected={dataFim}
                 onChange={(e) => {
                   setDataFim(e);
-                  onChange(reverseToIsoDate(e?.toDateString()) || "");
+                  onChange(reverseToIsoDate(e?.toLocaleDateString()) || "");
                 }}
               />
             )}

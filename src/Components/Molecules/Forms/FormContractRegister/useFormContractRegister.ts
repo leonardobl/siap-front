@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ISelectOptions } from "../../../../Types/inputs";
 import { Servico } from "../../../../Services/Servico";
 import { toast } from "react-toastify";
+import { Prestador } from "../../../../Services/Prestador";
+import { maskCnpj } from "../../../../Utils/masks";
 
 const schema = z
   .object({
@@ -77,6 +79,16 @@ export const useFormContractRegister = () => {
   );
   const [priceValue, setPriceValue] = useState("");
 
+  const getPrestadores = async (txt: string): Promise<ISelectOptions[]> => {
+    return Prestador.list({ nome: txt, size: 5 }).then(({ data }) =>
+      data.content.map((i) => ({
+        value: i.uuid,
+        label: `${i.nome} - ${maskCnpj(i.cnpj)}`,
+        element: i,
+      }))
+    );
+  };
+
   const getServicos = useCallback(() => {
     Servico.list()
       .then(({ data }) => {
@@ -145,5 +157,6 @@ export const useFormContractRegister = () => {
     watch,
     handleDeleteItem,
     handleClean,
+    getPrestadores,
   };
 };

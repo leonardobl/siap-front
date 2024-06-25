@@ -3,10 +3,10 @@ import {
   IPagePrestadorDTO,
   IPrestadorDTO,
   IPrestadorForm,
+  IPrestadorProps,
   IVinculoPrestadorFinanceiro,
 } from "../../Types/prestador";
 import { SiapApi } from "../../Apis/SiapApi";
-import { IPageRequest } from "../../Types/page";
 import { removeEmpty } from "../../Utils/removeEmpty";
 import objectToParams from "../../Utils/objectToParams";
 
@@ -27,7 +27,7 @@ export class Prestador {
   }
 
   static async list(
-    props?: IPageRequest
+    props?: IPrestadorProps
   ): Promise<AxiosResponse<IPagePrestadorDTO>> {
     let params = "";
 
