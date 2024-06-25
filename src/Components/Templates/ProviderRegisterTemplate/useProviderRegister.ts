@@ -161,6 +161,15 @@ export const useProviderRegister = () => {
     setNumberPage(0);
   }
 
+  function handleSave() {
+    setIsLoad(true);
+
+    setTimeout(() => {
+      navigate("/prestadores");
+      setIsLoad(false);
+    }, 2000);
+  }
+
   return {
     tabIdx,
     filterOpen,
@@ -177,5 +186,6 @@ export const useProviderRegister = () => {
     pagination,
     handleFilterProfessional,
     handleClean,
+    handleSave,
   };
 };

@@ -29,6 +29,7 @@ export const ProviderRegisterTemplate = () => {
     pagination,
     handleFilterProfessional,
     handleClean,
+    handleSave,
   } = useProviderRegister();
 
   return (
@@ -77,6 +78,11 @@ export const ProviderRegisterTemplate = () => {
                   setNumberPage={setNumberPage}
                 />
               )}
+              <S.WrapperButtonSave>
+                <Button variant="blue" type="button" onClick={handleSave}>
+                  Salvar
+                </Button>
+              </S.WrapperButtonSave>
             </S.WrapperProfessional>,
           ]}
         </TabProviderForms>

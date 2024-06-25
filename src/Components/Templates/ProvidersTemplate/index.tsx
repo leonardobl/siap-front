@@ -8,8 +8,15 @@ import { ProvidersList } from "../../Molecules/Lists/ProvidersList";
 import { Pagination } from "../../Atoms/Pagination";
 
 export const ProvidersTemplate = () => {
-  const { filterOpen, navigate, setFilterOpen, isMobile, prestadores } =
-    useProviders();
+  const {
+    filterOpen,
+    navigate,
+    setFilterOpen,
+    isMobile,
+    prestadores,
+    pagination,
+    setNumberPage,
+  } = useProviders();
 
   return (
     <LayoutTemplate titleHeader="Prestadores">
@@ -33,15 +40,18 @@ export const ProvidersTemplate = () => {
           <FormFilterProviders submitForm={(data) => console.log(data)} />
         )}
 
-        <ProvidersList prestadores={[]} />
+        <ProvidersList prestadores={prestadores} />
 
-        <Pagination
-          totalPage={12}
-          totalRegister={20}
-          maxPageNumbersDisplayed={isMobile ? 3 : 10}
-          actualPage={0}
-          setNumberPage={() => ""}
-        />
+        {prestadores?.length > 0 && (
+          <Pagination
+            totalPage={pagination.totalPage}
+            totalRegister={pagination.totalRegister}
+            maxPageNumbersDisplayed={isMobile ? 3 : 10}
+            actualPage={pagination.actualPage}
+            key={`${isMobile} - ${pagination}`}
+            setNumberPage={setNumberPage}
+          />
+        )}
       </S.Container>
     </LayoutTemplate>
   );

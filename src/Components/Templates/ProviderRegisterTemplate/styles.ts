@@ -46,3 +46,10 @@ export const HeaderModal = styled.div`
     cursor: pointer;
   }
 `;
+
+export const WrapperButtonSave = styled.div`
+  margin-top: 24px;
+  button {
+    margin-left: auto;
+  }
+`;
