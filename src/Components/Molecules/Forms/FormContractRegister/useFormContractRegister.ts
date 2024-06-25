@@ -107,10 +107,13 @@ export const useFormContractRegister = () => {
     }
 
     const { servico, valor } = getValues();
-    setValue("servicos", [...servicos, { value: servico, valor }]);
-    setValue("servico", "");
-    setValue("valor", 0);
-    setPriceValue("");
+
+    if (servico && valor) {
+      setValue("servicos", [...servicos, { value: servico, valor }]);
+      setValue("servico", "");
+      setValue("valor", 0);
+      setPriceValue("");
+    }
   };
 
   const handleDeleteItem = (id: string) => {

@@ -140,6 +140,7 @@ export const FormContractRegister = ({
       </S.FormContent>
 
       <ServicesContractList
+        servicesOptions={servicosOptions}
         onDeleteItem={handleDeleteItem}
         services={watch("servicos")}
       />

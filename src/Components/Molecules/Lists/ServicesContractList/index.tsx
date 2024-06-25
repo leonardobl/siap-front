@@ -2,15 +2,18 @@ import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { IServicoContratadoFormRHF } from "../../../../Types/contrato";
 import { maskMoney } from "../../../../Utils/masks";
+import { ISelectOptions } from "../../../../Types/inputs";
 
 interface IServicesContractListProps extends ComponentProps<"div"> {
   services: IServicoContratadoFormRHF[];
   onDeleteItem: (id: string) => void;
+  servicesOptions: ISelectOptions[];
 }
 
 export const ServicesContractList = ({
   services,
   onDeleteItem,
+  servicesOptions,
   ...rest
 }: IServicesContractListProps) => {
   return (
@@ -23,7 +26,10 @@ export const ServicesContractList = ({
       <S.TableItens>
         {services?.map((i) => (
           <S.TableItem key={Math.random()}>
-            <p>{i.value}</p>
+            <p>
+              {servicesOptions?.find((service) => service.value === i?.value)
+                ?.label || " --- "}
+            </p>
             <p>{maskMoney(i.valor)}</p>
             <div>
               <img
