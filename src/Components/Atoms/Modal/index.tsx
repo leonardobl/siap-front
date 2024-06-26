@@ -16,7 +16,7 @@ export const MyModal = ({ children, ...rest }: IMyModalProps) => {
           left: 0,
           right: 0,
           bottom: 0,
-          zIndex: 9999,
+          zIndex: 9998,
           backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
         content: {
@@ -28,6 +28,7 @@ export const MyModal = ({ children, ...rest }: IMyModalProps) => {
           outline: "none",
           // padding: "20px",
           width: "fit-content",
+          maxWidth: "90vw",
           height: "fit-content",
           margin: "0 auto",
           transform: "translateY(-50%)",
