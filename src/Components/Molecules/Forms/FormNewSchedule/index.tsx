@@ -4,23 +4,33 @@ import { useFormNewSchedule } from "./useFormNewSchedule";
 import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
 import { AsyncSimpleSelect } from "../../../Atoms/Selects/AsyncSelect";
 import { Button } from "../../../Atoms/Button";
+import { v4 } from "uuid";
 
 export const FormNewSchedule = () => {
-  const {} = useFormNewSchedule();
+  const { getPrestadores, servicosOptions, navigate } = useFormNewSchedule();
 
   return (
     <S.Form>
       <div>
-        <SimpleSelect label="Serviço" />
+        <SimpleSelect required options={servicosOptions} label="Serviço" />
       </div>
       <div>
-        <SimpleSelect label="Cidade" />
+        <SimpleSelect required label="Cidade" />
       </div>
       <div>
-        <AsyncSimpleSelect label="Prestador" />
+        <AsyncSimpleSelect
+          required
+          loadOptions={getPrestadores}
+          label="Prestador"
+        />
       </div>
       <div>
-        <Button variant="blue">Avançar</Button>
+        <Button
+          onClick={() => navigate(`/novo-agendamento/agendamento?id=${v4()}`)}
+          variant="blue"
+        >
+          Avançar
+        </Button>
       </div>
     </S.Form>
   );
