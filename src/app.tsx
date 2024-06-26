@@ -12,6 +12,7 @@ import { useServicesRoutes } from "./Routes/useServices.routes";
 import { useContractsRoutes } from "./Routes/useContracts.routes";
 import { useUserRoutes } from "./Routes/useUser.routes";
 import { useProviderTypeRoutes } from "./Routes/ useProviderType.routes";
+import { useSchedulesRoutes } from "./Routes/useSchedules.routes";
 
 export function App() {
   const ProvidersRoutes = useProvidersRoutes();
@@ -21,6 +22,7 @@ export function App() {
   const ContractsRoutes = useContractsRoutes();
   const UsersRoutes = useUserRoutes();
   const ProviderTypeRoutes = useProviderTypeRoutes();
+  const SchedulesRoutes = useSchedulesRoutes();
 
   return (
     <ThemeProvider theme={Theme}>
@@ -36,6 +38,7 @@ export function App() {
             {ContractsRoutes}
             {UsersRoutes}
             {ProviderTypeRoutes}
+            {SchedulesRoutes}
           </Routes>
         </BrowserRouter>
       </ContextProvider>

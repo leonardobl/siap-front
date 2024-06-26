@@ -46,7 +46,7 @@ export const Menu = styled.nav`
   @media (min-width: ${(props) => props.theme.screens.lg}) {
     position: relative;
     z-index: 0;
-    width: 105px;
+    width: 120px;
     overflow: visible;
 
     &[data-open="true"] {

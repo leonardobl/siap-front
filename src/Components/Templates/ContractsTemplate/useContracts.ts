@@ -23,6 +23,11 @@ export const useContracts = () => {
     Contrato.list({ ...data, size: 3, page: numberPage })
       .then(({ data }) => {
         setContratos(data.content);
+        setPagination({
+          actualPage: data.number,
+          totalPage: data.totalPages,
+          totalRegister: data.totalElements,
+        });
       })
       .catch(
         ({
