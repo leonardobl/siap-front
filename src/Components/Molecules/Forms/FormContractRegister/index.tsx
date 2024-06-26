@@ -131,6 +131,9 @@ export const FormContractRegister = ({
               />
             )}
           />
+          {errors?.servicos && (
+            <ErrorMessage>{errors.servicos.message}</ErrorMessage>
+          )}
         </div>
 
         <div>
@@ -157,10 +160,6 @@ export const FormContractRegister = ({
             </Button>
           </div>
         </div>
-
-        {errors?.servicos && (
-          <ErrorMessage>{errors.servicos.message}</ErrorMessage>
-        )}
       </S.FormContent>
 
       <ServicesContractList
