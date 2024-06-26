@@ -80,6 +80,9 @@ export const useFormContractRegister = () => {
     [] as ISelectOptions[]
   );
   const [priceValue, setPriceValue] = useState("");
+  const [prestador, setPrestador] = useState<ISelectOptions>(
+    {} as ISelectOptions
+  );
 
   const getPrestadores = async (txt: string): Promise<ISelectOptions[]> => {
     return Prestador.list({ nome: txt, size: 5 }).then(({ data }) =>
@@ -140,6 +143,7 @@ export const useFormContractRegister = () => {
     setPriceValue("");
     setDataFim(null);
     setDataIni(null);
+    setPrestador(null);
   }
 
   return {
@@ -159,5 +163,7 @@ export const useFormContractRegister = () => {
     handleDeleteItem,
     handleClean,
     getPrestadores,
+    setPrestador,
+    prestador,
   };
 };

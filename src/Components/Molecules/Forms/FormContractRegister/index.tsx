@@ -37,6 +37,8 @@ export const FormContractRegister = ({
     handleDeleteItem,
     handleClean,
     getPrestadores,
+    setPrestador,
+    prestador,
   } = useFormContractRegister();
 
   return (
@@ -50,8 +52,12 @@ export const FormContractRegister = ({
               <AsyncSimpleSelect
                 customError={!!errors.uuidPrestador}
                 label="Prestador"
+                value={prestador}
                 loadOptions={getPrestadores}
-                onChange={(e) => onChange(e?.value)}
+                onChange={(e) => {
+                  onChange(e?.value);
+                  setPrestador(e);
+                }}
                 required
               />
             )}
