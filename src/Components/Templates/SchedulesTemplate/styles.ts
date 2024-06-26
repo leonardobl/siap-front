@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin: 0 auto;
+`;
 
 export const WrapperButtons = styled.div`
   display: flex;
