@@ -70,6 +70,13 @@ export const LayoutTemplate = ({
               <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
               <span>Agendamentos</span>
             </NavLink>
+            <NavLink to={"/novo-agendamento"} title="Novo Agendamento">
+              <img
+                src="/assets/svg/icon-new-agendamento.svg"
+                alt="icone usuario"
+              />
+              <span>Novo Agendamento</span>
+            </NavLink>
           </DetailsMenu>
         </S.WrapperGroupMenu>
 
