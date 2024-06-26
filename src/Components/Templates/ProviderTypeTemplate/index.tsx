@@ -3,7 +3,7 @@ import * as S from "./styles";
 import { LayoutTemplate } from "../LayoutTemplate";
 import { Button } from "../../Atoms/Button";
 import { useProviderType } from "./useProviderType";
-import { FormFilterProviderType } from "../../Molecules/Forms/FomrFilterProviderType";
+import { FormFilterProviderType } from "../../Molecules/Forms/FormFilterProviderType";
 import { ProviderTypeList } from "../../Molecules/Lists/ProviderTypeList";
 import { Pagination } from "../../Atoms/Pagination";
 import { MyModal } from "../../Atoms/Modal";

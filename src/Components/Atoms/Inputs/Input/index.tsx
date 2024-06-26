@@ -45,6 +45,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputCustomProps>(
             {props.required && <span id="asterisk">*</span>}
           </S.MyLabel>
         )}
+
+        {props?.iconright && (
+          <img src={props.iconright} alt="icone" id="iconRight" />
+        )}
       </S.Container>
     );
   }
