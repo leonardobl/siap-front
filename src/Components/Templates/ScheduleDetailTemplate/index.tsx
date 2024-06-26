@@ -5,7 +5,7 @@ import { LayoutTemplate } from "../LayoutTemplate";
 
 export const ScheduleDetailTemplate = () => {
   return (
-    <LayoutTemplate>
+    <LayoutTemplate titleHeader="Dados do Agendamento">
       <S.Container>
         <FormSheduleDetail />
       </S.Container>
