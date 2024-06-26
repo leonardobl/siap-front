@@ -20,8 +20,8 @@ const schema = z
     uuidPrestador: z
       .string({ message: "Campo obrigatorio" })
       .min(1, { message: "Campo obrigatorio" }),
-    servico: z.string({ message: "Campo obrigatório" }).optional(),
-    valor: z.number().optional(),
+    servico: z.string({ message: "Campo obrigatório" }),
+    valor: z.number(),
     servicos: z
       .array(
         z.object({
@@ -33,20 +33,20 @@ const schema = z
   })
   .superRefine((data, ctx) => {
     if (data.servicos.length === 0) {
-      if (!data.servico) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["servico"],
-          message: "Campo obrigatório se não houver serviços adicionados",
-        });
-      }
-      if (!data.valor || data.valor <= 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          path: ["valor"],
-          message: "Campo obrigatório se não houver serviços adicionados",
-        });
-      }
+      // if (!data.servico) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["servico"],
+        message: "Campo obrigatório se não houver serviços adicionados",
+      });
+      // }
+      // if (!data.valor || data.valor <= 0) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["valor"],
+        message: "Campo obrigatório se não houver serviços adicionados",
+      });
+      // }
     }
   });
 
@@ -56,8 +56,8 @@ export const useFormContractRegister = () => {
     handleSubmit,
     getValues,
     setValue,
-    trigger,
     watch,
+    clearErrors,
     reset,
     formState: { errors },
   } = useForm<IContratoCompletoFormRHF>({
@@ -70,6 +70,8 @@ export const useFormContractRegister = () => {
       servicos: [],
     },
     resolver: zodResolver(schema),
+    mode: "all",
+    criteriaMode: "all",
   });
 
   const [dataIni, setDataIni] = useState<Date | null>(null);
@@ -113,10 +115,6 @@ export const useFormContractRegister = () => {
 
   const onInsert = async () => {
     const { servicos } = getValues();
-    if (servicos.length === 0) {
-      const isValid = await trigger(["servico", "valor"]);
-      if (!isValid) return;
-    }
 
     const { servico, valor } = getValues();
 
@@ -125,6 +123,9 @@ export const useFormContractRegister = () => {
       setValue("servico", "");
       setValue("valor", 0);
       setPriceValue("");
+      clearErrors("servicos");
+      clearErrors("servico");
+      clearErrors("valor");
     }
   };
 
