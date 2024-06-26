@@ -1,6 +1,7 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { useSheduleList } from "./useSheduleList";
+import { v4 } from "uuid";
 
 interface IScheduleListProps extends ComponentProps<"div"> {
   Schedules: [];
@@ -59,7 +60,7 @@ const Items = [
 ];
 
 export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
-  const { StatusColors, isMobile } = useSheduleList();
+  const { StatusColors, isMobile, navigate } = useSheduleList();
 
   return (
     <S.Container {...rest}>
@@ -85,7 +86,13 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                       </S.StatusAgendamento>
                     </div>
                   </S.WrapperContentMobile>
-                  <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+                  <img
+                    src="/assets/svg/icon-eye-open.svg"
+                    alt="icone olho"
+                    onClick={() =>
+                      navigate(`/agendamentos/agendamento?id=${v4()}`)
+                    }
+                  />
                 </S.TableMobileItem>
               ))}
             </S.TableItems>
@@ -101,7 +108,13 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                   <S.StatusAgendamento statuscolor={StatusColors[i.Status]}>
                     {i.Status}
                   </S.StatusAgendamento>
-                  <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+                  <img
+                    src="/assets/svg/icon-eye-open.svg"
+                    alt="icone olho"
+                    onClick={() =>
+                      navigate(`/agendamentos/agendamento?id=${v4()}`)
+                    }
+                  />
                 </S.TableItem>
               ))}
             </S.TableItems>

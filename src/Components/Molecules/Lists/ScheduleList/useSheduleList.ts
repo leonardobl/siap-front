@@ -1,5 +1,6 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 const StatusColors = {
   "Aguardando Pagamento": "#DEC800",
@@ -11,6 +12,7 @@ const StatusColors = {
 
 export const useSheduleList = () => {
   const isMobile = useMediaQuery({ maxWidth: "640px" });
+  const navigate = useNavigate();
 
-  return { StatusColors, isMobile };
+  return { StatusColors, isMobile, navigate };
 };
