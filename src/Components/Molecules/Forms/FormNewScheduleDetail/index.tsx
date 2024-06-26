@@ -2,8 +2,11 @@ import React from "react";
 import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
+import { useFormNewScheduleDetail } from "./useFormNewScheduleDetail";
+import { v4 } from "uuid";
 
 export const FormNewScheduleDetail = () => {
+  const { navigate } = useFormNewScheduleDetail();
   return (
     <S.Form>
       <div>
@@ -36,7 +39,12 @@ export const FormNewScheduleDetail = () => {
         <Input label="E-mail" value={"clinicarealtran@gmail.com"} disabled />
       </div>
       <div>
-        <Button variant="blue">Avançar</Button>
+        <Button
+          variant="blue"
+          onClick={() => navigate(`/pagamento?id=${v4()}`)}
+        >
+          Avançar
+        </Button>
       </div>
     </S.Form>
   );
