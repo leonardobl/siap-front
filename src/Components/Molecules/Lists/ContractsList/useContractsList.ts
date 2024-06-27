@@ -2,11 +2,10 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 const StatusColors = {
-  Suspenso: "#2082E3",
-  Inativo: "#EDBD2E",
-  Ativo: "#ED0000",
+  Ativo: "#2082E3",
+  Inativo: "#ED0000",
+  Suspenso: "#EDBD2E",
 };
-
 export const useContractsList = () => {
   const isMobile = useMediaQuery({ maxWidth: "640px" });
 

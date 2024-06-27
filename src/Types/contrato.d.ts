@@ -1,6 +1,6 @@
 import { IPageRequest, IPageableObject, ISortObject } from "./page";
 import { IPrestadorDTO } from "./prestador";
-import { IServicoDTO } from "./servico";
+import { IServicoContratadoForm, IServicoDTO } from "./servico";
 
 export interface IContratoCompletoDTO {
   dataFinal: string;
@@ -24,17 +24,6 @@ export interface IContratoListProps extends IPageRequest {
   dataInicio?: string;
   dataFim?: string;
   servico?: string;
-}
-
-export interface IContratoForm {
-  dataFinal: string;
-  dataInicial: string;
-  uuidPrestador: string;
-}
-
-export interface IServicoContratadoForm {
-  uuidServico: string;
-  valor: number;
 }
 
 export interface IServicoContratadoFormRHF {
@@ -77,3 +66,10 @@ export interface IContratoDTO {
 }
 
 //
+
+export interface IContratoForm {
+  dataFinal: string;
+  dataInicial: string;
+  servicosContratados: IServicoContratadoForm[];
+  uuidPrestador: string;
+}

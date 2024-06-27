@@ -20,7 +20,7 @@ export const useContracts = () => {
 
   function getContratos(data?: IContratoListProps) {
     setIsLoad(true);
-    Contrato.list({ ...data, size: 3, page: numberPage })
+    Contrato.list({ ...data, size: 5, page: numberPage })
       .then(({ data }) => {
         setContratos(data.content);
         setPagination({

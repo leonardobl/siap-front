@@ -4,6 +4,8 @@ import * as S from "./styles";
 import { maskCnpj } from "../../../../Utils/masks";
 import { useContractsList } from "./useContractsList";
 import { Status } from "../../../Atoms/Status";
+import { reverseToBrDate } from "../../../../Utils/dateTransform";
+import { Capitalize } from "../../../../Utils/capitalize";
 
 interface IContractsListProps extends ComponentProps<"div"> {
   contracts: IContratoDTO[];
@@ -30,8 +32,8 @@ export const ContractsList = ({ contracts, ...rest }: IContractsListProps) => {
                 <S.TableMobileItem key={Math.random()}>
                   <div className="WrapperContent">
                     <p>{i?.prestador?.nome}</p>
-                    <Status textcolor={StatusColors[i?.status]}>
-                      {i.status}
+                    <Status textcolor={StatusColors[i?.status.toLowerCase()]}>
+                      {Capitalize(i.status)}
                     </Status>
                   </div>
                   <div>
@@ -46,9 +48,9 @@ export const ContractsList = ({ contracts, ...rest }: IContractsListProps) => {
                 <S.TableItem key={Math.random()}>
                   <p>{i?.prestador?.nome}</p>
                   <p>{maskCnpj(i?.prestador?.cnpj)}</p>
-                  <p>{i?.dataFinal}</p>
-                  <Status textcolor={StatusColors[i?.status]}>
-                    {i.status}
+                  <p>{reverseToBrDate(i?.dataFinal)}</p>
+                  <Status textcolor={StatusColors[Capitalize(i.status)]}>
+                    {Capitalize(i.status)}
                   </Status>
                   <div>
                     <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />

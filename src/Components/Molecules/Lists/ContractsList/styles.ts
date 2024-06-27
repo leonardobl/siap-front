@@ -61,7 +61,7 @@ export const TableItem = styled.div`
   }
 
   > div {
-    padding-left: 16px;
+    padding-left: 8px;
     border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
 
     > img {

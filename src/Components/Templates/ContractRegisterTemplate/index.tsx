@@ -5,11 +5,11 @@ import { FormContractRegister } from "../../Molecules/Forms/FormContractRegister
 import { useContractRegister } from "./useContractRegister";
 
 export const ContractRegisterTemplate = () => {
-  const {} = useContractRegister();
+  const { handleSubmit } = useContractRegister();
   return (
     <LayoutTemplate titleHeader="Cadastro Novo Contrato">
       <S.Container>
-        <FormContractRegister submitForm={(e) => console.log(e)} />
+        <FormContractRegister submitForm={handleSubmit} />
       </S.Container>
     </LayoutTemplate>
   );
