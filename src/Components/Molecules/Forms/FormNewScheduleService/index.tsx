@@ -5,14 +5,14 @@ import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
 import { AsyncSimpleSelect } from "../../../Atoms/Selects/AsyncSelect";
 import { Button } from "../../../Atoms/Button";
 
-interface IFormNewScheduleProps extends ComponentProps<"form"> {
+interface IFormNewScheduleServiceProps extends ComponentProps<"form"> {
   submitForm: () => void;
 }
 
-export const FormNewSchedule = ({
+export const FormNewScheduleService = ({
   submitForm,
   ...rest
-}: IFormNewScheduleProps) => {
+}: IFormNewScheduleServiceProps) => {
   const { getPrestadores, servicosOptions } = useFormNewSchedule();
 
   return (

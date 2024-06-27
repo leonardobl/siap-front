@@ -34,7 +34,6 @@ export const ButtonFile = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0 0.5rem;
-  margin-left: auto;
 
   cursor: pointer;
   color: #fff;
@@ -75,6 +74,16 @@ export const HeaderModal = styled.div`
 
 export const WrapperButtonModal = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: center;
   gap: 0 1rem;
+`;
+
+export const WrapperButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 0 1rem;
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    justify-content: end;
+  }
 `;

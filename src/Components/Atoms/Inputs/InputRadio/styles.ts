@@ -47,6 +47,10 @@ export const InpLabel = styled.label`
         hue-rotate(58deg) brightness(104%) contrast(104%);
     }
   }
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    min-width: 10rem;
+  }
 `;
 
 export const InpRadio = styled.input`

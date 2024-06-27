@@ -4,8 +4,11 @@ import * as S from "./styles";
 import { Button } from "../../Atoms/Button";
 import { PaymentCodContainer } from "../../Atoms/PaymentCodContainer";
 import { v4 } from "uuid";
+import { usePix } from "./usePix";
 
 export const PixTemplate = () => {
+  const {} = usePix();
+
   return (
     <LayoutTemplate titleHeader="Pagamento PIX">
       <S.Container>
