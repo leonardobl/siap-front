@@ -1,13 +1,13 @@
 import React from "react";
 import { LayoutTemplate } from "../LayoutTemplate";
-import { FormNewSchedule } from "../../Molecules/Forms/FormNewSchedule";
 import { useNewSchedule } from "./useNewSchedule";
+import { FormNewScheduleService } from "../../Molecules/Forms/FormNewScheduleService";
 
-export const NewScheduleTemplate = () => {
+export const NewScheduleServiceTemplate = () => {
   const { handleSubmit } = useNewSchedule();
   return (
     <LayoutTemplate titleHeader="Novo Agendamento">
-      <FormNewSchedule submitForm={handleSubmit} />
+      <FormNewScheduleService submitForm={handleSubmit} />
     </LayoutTemplate>
   );
 };

@@ -1,31 +1,27 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import { ProtectedRoute } from "../Components/Atoms/ProtectedRoute";
-import { NewSchedule } from "../Components/Pages/NewSchedule";
-import { NewScheduleDetail } from "../Components/Pages/NewScheduleDetail";
+
 import { usePaymentRoutes } from "./usePayment.routes";
+import { useNewScheduleServiceRoutes } from "./useNewScheduleService.routes";
+import { NewScheduleServiceDetail } from "../Components/Pages/NewScheduleServiceDetail";
 
 export const useNewScheduleRoutes = () => {
   const PaymentRoutes = usePaymentRoutes();
+  const NewScheduleServiceRoutes = useNewScheduleServiceRoutes();
 
   return (
     <Route path="/novo-agendamento">
-      <Route
-        index
-        element={
-          <ProtectedRoute>
-            <NewSchedule />
-          </ProtectedRoute>
-        }
-      />
+      <Route index element={<Navigate to={"servico"} />} />
       <Route
         path="agendamento"
         element={
           <ProtectedRoute>
-            <NewScheduleDetail />
+            <NewScheduleServiceDetail />
           </ProtectedRoute>
         }
       />
+      {NewScheduleServiceRoutes}
       {PaymentRoutes}
     </Route>
   );

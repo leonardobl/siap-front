@@ -6,7 +6,7 @@ export const useNewSchedule = () => {
   const navigate = useNavigate();
 
   function handleSubmit() {
-    navigate(`/novo-agendamento/agendamento?id=${v4()}`);
+    navigate(`/novo-agendamento/servico/detalhe?id=${v4()}`);
   }
   return { handleSubmit };
 };

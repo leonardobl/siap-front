@@ -4,7 +4,7 @@ export const Form = styled.form`
   border-radius: 0.75rem;
   background: #fff;
   box-shadow: 3px 2px 3px 0px rgba(0, 0, 0, 0.16);
-  padding: 2rem;
+  padding: 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "title title" "pix boleto" "msg msg" "button button";
