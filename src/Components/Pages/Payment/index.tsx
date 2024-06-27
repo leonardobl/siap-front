@@ -1,5 +1,6 @@
 import React from "react";
+import { PaymentTemplate } from "../../Templates/PaymentTemplate";
 
 export const Payment = () => {
-  return <div>Payment</div>;
+  return <PaymentTemplate />;
 };
