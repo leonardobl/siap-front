@@ -41,7 +41,7 @@ export const FormNewScheduleDetail = () => {
       <div>
         <Button
           variant="blue"
-          onClick={() => navigate(`/pagamento?id=${v4()}`)}
+          onClick={() => navigate(`/novo-agendamento/pagamento?id=${v4()}`)}
         >
           Avançar
         </Button>
