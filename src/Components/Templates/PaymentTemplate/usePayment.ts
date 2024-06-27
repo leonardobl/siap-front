@@ -6,7 +6,7 @@ export const usePayment = () => {
   const navigate = useNavigate();
 
   function handleSubmit(data) {
-    navigate(`/pagamento/${data?.payment}?id=${v4()}`);
+    navigate(`/novo-agendamento/pagamento/${data?.payment}?id=${v4()}`);
   }
   return { handleSubmit };
 };

@@ -14,7 +14,6 @@ import { useUserRoutes } from "./Routes/useUser.routes";
 import { useProviderTypeRoutes } from "./Routes/ useProviderType.routes";
 import { useSchedulesRoutes } from "./Routes/useSchedules.routes";
 import { useNewScheduleRoutes } from "./Routes/useNewSchedule.routes";
-import { usePaymentRoutes } from "./Routes/usePayment.routes";
 
 export function App() {
   const ProvidersRoutes = useProvidersRoutes();
@@ -26,7 +25,6 @@ export function App() {
   const ProviderTypeRoutes = useProviderTypeRoutes();
   const SchedulesRoutes = useSchedulesRoutes();
   const NewSchedulesRoutes = useNewScheduleRoutes();
-  const PaymentRoutes = usePaymentRoutes();
 
   return (
     <ThemeProvider theme={Theme}>
@@ -44,7 +42,6 @@ export function App() {
             {ProviderTypeRoutes}
             {SchedulesRoutes}
             {NewSchedulesRoutes}
-            {PaymentRoutes}
           </Routes>
         </BrowserRouter>
       </ContextProvider>

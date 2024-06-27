@@ -7,7 +7,7 @@ import { Ticket } from "../Components/Pages/Ticket";
 
 export const usePaymentRoutes = () => {
   return (
-    <Route path="/pagamento">
+    <Route path="pagamento">
       <Route
         index
         element={
