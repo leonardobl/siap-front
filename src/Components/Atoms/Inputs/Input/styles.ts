@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { InputCustomProps } from "../../../../Types/inputs";
+import { darken } from "polished";
 
 export const Container = styled.div`
   position: relative;
@@ -16,6 +17,14 @@ export const Container = styled.div`
   > img#iconLeft {
     position: absolute;
     left: 10px;
+  }
+
+  > img#iconRight {
+    padding-left: 1rem;
+    display: block;
+    cursor: default;
+    height: fit-content;
+    border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
   }
 `;
 
@@ -81,13 +90,17 @@ export const MyInput = styled.input<InputCustomProps>`
   }
 
   &:disabled {
-    background-color: #f0f0f0;
+    background-color: ${darken(0.015, "#fff")};
     border: 1px solid ${(props) => props.theme.colors["gray-200"]};
     color: ${(props) => props.theme.colors["gray-200"]};
     cursor: not-allowed;
 
     + label {
-      background: linear-gradient(to top, #f0f0f0 50%, transparent 50%);
+      background: linear-gradient(
+        to top,
+        ${darken(0.015, "#fff")} 50%,
+        transparent 50%
+      );
     }
   }
 

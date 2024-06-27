@@ -65,6 +65,22 @@ export const LayoutTemplate = ({
         </S.HeaderMenu>
 
         <S.WrapperGroupMenu data-border-bottom>
+          <DetailsMenu titleheader="AGENDAMENTO" data-openmenu={menuOpen} open>
+            <NavLink to={"/agendamentos"} title="Agendamentos">
+              <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
+              <span>Agendamentos</span>
+            </NavLink>
+            <NavLink to={"/novo-agendamento"} title="Novo Agendamento">
+              <img
+                src="/assets/svg/icon-new-agendamento.svg"
+                alt="icone usuario"
+              />
+              <span>Novo Agendamento</span>
+            </NavLink>
+          </DetailsMenu>
+        </S.WrapperGroupMenu>
+
+        <S.WrapperGroupMenu data-border-bottom>
           <DetailsMenu titleheader="CADASTRO" data-openmenu={menuOpen} open>
             <NavLink to={"/usuarios"} title="Usuários">
               <img src="/assets/svg/icon-users.svg" alt="icone usuario" />

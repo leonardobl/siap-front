@@ -7,6 +7,7 @@ import { useFormLogin } from "./useFormLogin";
 import { Button } from "../../../Atoms/Button";
 import { MyModal } from "../../../Atoms/Modal";
 import { ErrorMessage } from "../../../Atoms/ErrorMessage";
+import { ModalInfo } from "../../../Atoms/ModalInfo";
 
 interface IFormLoginProps extends ComponentProps<"form"> {
   submiteForm: (data: IAutenticacaoForm) => void;
@@ -80,7 +81,7 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
         </div>
       </S.Grid>
 
-      <MyModal isOpen={openModal} onAfterClose={() => setOpenModal(false)}>
+      <ModalInfo isOpen={openModal} onAfterClose={() => setOpenModal(false)}>
         <S.ContentModal>
           <img
             id="icon-close"
@@ -105,7 +106,7 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
             </Button>
           </div>
         </S.ContentModal>
-      </MyModal>
+      </ModalInfo>
     </S.Form>
   );
 };

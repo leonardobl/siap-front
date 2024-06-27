@@ -26,7 +26,6 @@ export const FormFilterProviders = ({
     Controller,
     StatusOptions,
     errors,
-    cidadesOptions,
     tipoOptions,
   } = useFormFilterProviders();
 
@@ -43,23 +42,9 @@ export const FormFilterProviders = ({
           maxLength={18}
           data-error={!!errors.cnpj}
         />
-        {errors.cnpj && <ErrorMessage>{errors.cnpj.message}</ErrorMessage>}
       </div>
       <div>
-        <Controller
-          control={control}
-          name="cidade"
-          render={({ field: { onChange, value } }) => (
-            <SimpleSelect
-              label="Cidade"
-              inputId="Cidade"
-              isClearable
-              options={cidadesOptions}
-              value={cidadesOptions.find((i) => i.value === value) || null}
-              onChange={(e: ISelectOptions) => onChange(e?.value)}
-            />
-          )}
-        />
+        <Input {...register("cidade")} label="Cidade" id="Cidade" />
       </div>
       <div>
         <Controller

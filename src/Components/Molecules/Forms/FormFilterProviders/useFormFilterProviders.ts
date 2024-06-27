@@ -27,9 +27,6 @@ const StatusOptions = Object.values(StatusEnum).map((item) => ({
 }));
 
 export const useFormFilterProviders = () => {
-  const [cidadesOptions, setCidadesOptions] = useState<ISelectOptions[]>(
-    [] as ISelectOptions[]
-  );
   const [tipoOptions, setTipoOptions] = useState<ISelectOptions[]>(
     [] as ISelectOptions[]
   );
@@ -84,7 +81,6 @@ export const useFormFilterProviders = () => {
     Controller,
     StatusOptions,
     errors,
-    cidadesOptions,
     tipoOptions,
   };
 };
