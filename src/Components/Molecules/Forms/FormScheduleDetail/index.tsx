@@ -4,7 +4,6 @@ import { Input } from "../../../Atoms/Inputs/Input";
 import { InputFile } from "../../../Atoms/Inputs/InputFile";
 import { useFormSheduleDetail } from "./useFormSheduleDetail";
 import { MyModal } from "../../../Atoms/Modal";
-import { IFileCustom } from "../../../Atoms/Inputs/InputFile/useInputFile";
 import { Button } from "../../../Atoms/Button";
 
 export const FormSheduleDetail = () => {
@@ -15,6 +14,7 @@ export const FormSheduleDetail = () => {
     setModalOpen,
     fileTemp,
     setFileTemp,
+    isNewSchedule,
     handleInsertFile,
   } = useFormSheduleDetail();
 
@@ -71,7 +71,7 @@ export const FormSheduleDetail = () => {
         />
       </div>
 
-      <div>
+      <S.WrapperButtons>
         <S.ButtonFile
           type="button"
           onClick={() => {
@@ -84,7 +84,9 @@ export const FormSheduleDetail = () => {
           )}
           {fileTemp ? "Laudo Anexado" : "Adicionar Laudo"}
         </S.ButtonFile>
-      </div>
+
+        {isNewSchedule && <Button variant="blue">Emitir Nota Fiscal</Button>}
+      </S.WrapperButtons>
 
       <MyModal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}>
         <S.WrapperContentModal>

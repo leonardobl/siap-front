@@ -2,8 +2,11 @@ import React from "react";
 import * as S from "./styles";
 import { LayoutTemplate } from "../LayoutTemplate";
 import { Button } from "../../Atoms/Button";
+import { usePaymentConfirmation } from "./usePaymentConfirmation";
+import { v4 } from "uuid";
 
 export const PaymentConfirmationTemplate = () => {
+  const { navigate } = usePaymentConfirmation();
   return (
     <LayoutTemplate titleHeader="Confirmação do Pagamento">
       <S.Container>
@@ -12,7 +15,12 @@ export const PaymentConfirmationTemplate = () => {
           Pagamento Confirmado!
         </h4>
 
-        <Button variant="blue">Realizar Agendamento</Button>
+        <Button
+          variant="blue"
+          onClick={() => navigate(`/novo-agendamento/agendamento?id=${v4()}`)}
+        >
+          Realizar Agendamento
+        </Button>
       </S.Container>
     </LayoutTemplate>
   );
