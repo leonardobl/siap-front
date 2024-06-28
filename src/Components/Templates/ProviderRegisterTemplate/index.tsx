@@ -60,10 +60,12 @@ export const ProviderRegisterTemplate = () => {
               </S.WrapperButtons>
 
               {filterOpen && (
-                <FormFilterProfessional
-                  onClean={handleClean}
-                  submitForm={handleFilterProfessional}
-                />
+                <S.WrapperFilterProfessional>
+                  <FormFilterProfessional
+                    onClean={handleClean}
+                    submitForm={handleFilterProfessional}
+                  />
+                </S.WrapperFilterProfessional>
               )}
 
               <ProfessionalsList professionals={profissionais} />

@@ -86,6 +86,13 @@ export const LayoutTemplate = ({
               <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
               <span>Usuários</span>
             </NavLink>
+            <NavLink to={"/profissionais"} title="Profissionais">
+              <img
+                src="/assets/svg/icon-professional.svg"
+                alt="icone usuario"
+              />
+              <span>Profissionais</span>
+            </NavLink>
             <NavLink to={"/servicos"} title="Serviços">
               <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
               <span>Serviços</span>

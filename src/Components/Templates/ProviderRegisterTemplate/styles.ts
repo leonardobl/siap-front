@@ -53,3 +53,7 @@ export const WrapperButtonSave = styled.div`
     margin-left: auto;
   }
 `;
+
+export const WrapperFilterProfessional = styled.div`
+  margin-bottom: 32px;
+`;

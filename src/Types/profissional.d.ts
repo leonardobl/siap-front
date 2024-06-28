@@ -2,7 +2,7 @@ import { ConselhoEnum } from "../Enum/conselho";
 import { IPageRequest, IPageableObject, ISortObject } from "./page";
 
 export interface IProfissionalListProps extends IPageRequest {
-  uuidPrestador: string;
+  uuidPrestador?: string;
   nome?: string;
   cpf?: string;
   conselho?: ConselhoEnum;
