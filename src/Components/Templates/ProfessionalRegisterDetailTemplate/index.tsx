@@ -14,7 +14,11 @@ export const ProfessionalRegisterDetailTemplate = () => {
         <S.WrapperButton>
           <Button
             iconleft="/assets/svg/icon-plus.svg"
-            onClick={() => navigate("/profissionais/cadastro/agenda")}
+            onClick={() =>
+              navigate(
+                `/profissionais/cadastro/agenda?id=${professional?.uuid}`
+              )
+            }
           >
             Cadastrar Agenda
           </Button>
