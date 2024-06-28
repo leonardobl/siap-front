@@ -33,7 +33,7 @@ export const ProfessionalsTemplate = () => {
           </Button>
           <Button
             iconleft="/assets/svg/icon-plus.svg"
-            // onClick={() => setModalOpen(true)}
+            onClick={() => navigate("/profissionais/cadastro")}
           >
             Cadastrar
           </Button>

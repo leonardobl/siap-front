@@ -10,7 +10,7 @@ import { ISelectOptions } from "../../../../Types/inputs";
 
 interface IFormProfessionalRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IProfissionalForm) => void;
-  onCancel: () => void;
+  onCancel?: () => void;
 }
 
 export const FormProfessionalRegister = ({
@@ -127,9 +127,11 @@ export const FormProfessionalRegister = ({
         )}
       </div>
       <div>
-        <Button type="button" onClick={onCancel}>
-          Cancelar
-        </Button>
+        {onCancel && (
+          <Button type="button" onClick={onCancel}>
+            Cancelar
+          </Button>
+        )}
         <Button variant="blue">Salvar</Button>
       </div>
     </S.Form>
