@@ -1,30 +1,46 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
+import { IProfissionalDTO } from "../../../../Types/profissional";
 
-export const FormProfessionalDetail = () => {
+interface IFormProfessionalDetailProps extends ComponentProps<"form"> {
+  professional: IProfissionalDTO;
+}
+
+export const FormProfessionalDetail = ({
+  professional,
+  ...rest
+}: IFormProfessionalDetailProps) => {
   return (
-    <S.Form>
+    <S.Form {...rest}>
       <div>
-        <Input label="Nome Completo" disabled />
+        <Input value={professional?.nome} label="Nome Completo" disabled />
       </div>
       <div>
-        <Input label="CPF" disabled />
+        <Input value={professional?.cpf} label="CPF" disabled />
       </div>
       <div>
-        <Input label="Telefone" disabled />
+        <Input value={professional?.telefone} label="Telefone" disabled />
       </div>
       <div>
-        <Input label="E-mail" disabled />
+        <Input value={professional?.email} label="E-mail" disabled />
       </div>
       <div>
-        <Input label="Conselho" disabled />
+        <Input value={professional?.conselho} label="Conselho" disabled />
       </div>
       <div>
-        <Input label="Número do Conselho" disabled />
+        <Input
+          value={professional?.numeroConselho}
+          label="Número do Conselho"
+          disabled
+        />
       </div>
       <div>
-        <Input label="UF do Conselho" disabled />
+        <Input
+          value={professional?.ufConselho}
+          label="UF do Conselho"
+          disabled
+        />
       </div>
     </S.Form>
   );

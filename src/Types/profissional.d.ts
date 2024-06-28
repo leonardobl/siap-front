@@ -18,6 +18,7 @@ export interface IProfissionalDTO {
   telefone: string;
   ufConselho: string;
   uuid: string;
+  uuidPrestador: string;
 }
 
 export interface IProfissionalForm {

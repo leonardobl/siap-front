@@ -26,4 +26,8 @@ export class Profissional {
   ): Promise<AxiosResponse<IProfissionalDTO>> {
     return SiapApi.post(`${basePath}/cadastrar`, props);
   }
+
+  static async getById(id: string): Promise<AxiosResponse<IProfissionalDTO>> {
+    return SiapApi.get(`${basePath}/${id}`);
+  }
 }

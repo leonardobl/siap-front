@@ -11,7 +11,7 @@ export const ProfessionalsList = ({
   professionals,
   ...rest
 }: IProfessionalsListProps) => {
-  const { isMobile } = useProfessionalsList();
+  const { isMobile, navigate } = useProfessionalsList();
 
   return (
     <S.Table {...rest}>
@@ -31,7 +31,13 @@ export const ProfessionalsList = ({
                 <span>{i.conselho}</span>
               </div>
               <div className="wrapperEye">
-                <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+                <img
+                  src="/assets/svg/icon-eye-open.svg"
+                  alt="icone olho"
+                  onClick={() =>
+                    navigate("/profissionais/cadastro/detalhe?id=${")
+                  }
+                />
               </div>
             </S.TableMobileItem>
           ))}
@@ -45,7 +51,13 @@ export const ProfessionalsList = ({
               <p>{i.numeroConselho}</p>
               <p>{i.ufConselho}</p>
               <div>
-                <img src="/assets/svg/icon-eye-open.svg" alt="icone olho" />
+                <img
+                  src="/assets/svg/icon-eye-open.svg"
+                  alt="icone olho"
+                  onClick={() =>
+                    navigate(`/profissionais/cadastro/detalhe?id=${i.uuid}`)
+                  }
+                />
               </div>
             </S.TableItem>
           ))}
