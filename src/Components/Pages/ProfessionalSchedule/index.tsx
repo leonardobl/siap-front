@@ -17,23 +17,25 @@ export const ProfessionalSchedule = () => {
           <Scheduler
             view="week"
             month={null}
-            // day={null}
+            editable
+            day={null}
             agenda={null}
+            hourFormat="24"
             locale={ptBR}
             week={{
-              weekDays: [0, 1, 2, 3, 4, 5, 6],
+              weekDays: [0, 1, 2, 3, 4, 5],
               weekStartOn: 1,
               startHour: 8,
               endHour: 18,
               step: 30,
-              cellRenderer: () => <></>,
+              // cellRenderer: () => <></>,
             }}
-            day={{
-              startHour: 7,
-              endHour: 22,
-              step: 30,
-              cellRenderer: () => <></>,
-            }}
+            // day={{
+            //   startHour: 7,
+            //   endHour: 22,
+            //   step: 30,
+            //   cellRenderer: () => <></>,
+            // }}
             events={
               [
                 // {

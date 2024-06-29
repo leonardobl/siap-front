@@ -30,7 +30,7 @@ export function App() {
 
   return (
     <ThemeProvider theme={Theme}>
-      <ToastContainer autoClose={2000} />
+      <ToastContainer autoClose={2000} theme="colored" position="top-center" />
       <GlobalStyles />
       <ContextProvider>
         <BrowserRouter>

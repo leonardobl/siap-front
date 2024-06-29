@@ -30,11 +30,10 @@ SiapApi.interceptors.response.use(
   (error) => {
     if (error.response.status === 403) {
       toast.error("Token expirado");
-
       setTimeout(() => {
         localStorage.clear();
         window.location.href = "/login";
-      }, 2000);
+      }, 1000);
     }
 
     return Promise.reject(error);
