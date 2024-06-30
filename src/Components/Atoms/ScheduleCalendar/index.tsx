@@ -45,6 +45,7 @@ export const ScheduleCalendar = ({
         editable
         day={null}
         agenda={null}
+        selectedDate={new Date()}
         hourFormat="24"
         locale={customLocale}
         eventRenderer={(e) => (
@@ -60,6 +61,29 @@ export const ScheduleCalendar = ({
           // cellRenderer: () => <></>,
         }}
         events={values}
+        fields={[
+          {
+            name: "title",
+            type: "input",
+
+            config: {
+              label: "Título",
+              required: false,
+
+              placeholder: "Digite o título",
+            },
+          },
+          {
+            name: "start",
+            type: "date",
+            config: { label: "Início", required: true },
+          },
+          {
+            name: "end",
+            type: "date",
+            config: { label: "Fim", required: true },
+          },
+        ]}
       />
     </S.Container>
   );

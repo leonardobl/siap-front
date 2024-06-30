@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  button.MuiButton-root {
+    color: #0b4a89;
+  }
+
+  button.MuiButton-root:hover {
+    background-color: transparent;
+  }
+
   div.rs__view_navigator {
     display: none;
   }
