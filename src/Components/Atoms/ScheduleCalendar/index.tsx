@@ -2,7 +2,10 @@ import { Scheduler } from "@aldabil/react-scheduler";
 import React from "react";
 import { CardEventSchedule } from "../CardEventSchedule";
 import { ptBR } from "date-fns/locale";
-import { ProcessedEvent } from "@aldabil/react-scheduler/types";
+import {
+  CellRenderedProps,
+  ProcessedEvent,
+} from "@aldabil/react-scheduler/types";
 import * as S from "./styles";
 
 interface IScheduleCalendarProps {
@@ -58,7 +61,38 @@ export const ScheduleCalendar = ({
           endHour: 18,
           step: 30,
           navigation: true,
-          // cellRenderer: () => <></>,
+          cellRenderer: ({
+            height,
+            start,
+            end,
+            onClick,
+            day,
+            ...props
+          }: CellRenderedProps) => {
+            // Fake some condition up
+            const hour = start.getHours();
+            const disabled = hour === 14;
+            const restProps = disabled ? {} : props;
+
+            return (
+              <div
+                style={{
+                  height: "100%",
+                  background: disabled ? "#eee" : "transparent",
+                  cursor: disabled ? "not-allowed" : "pointer",
+                }}
+                onClick={() => {
+                  if (disabled) {
+                    return alert("Opss");
+                  }
+                  onClick();
+                }}
+                // disableRipple={disabled}
+                // disabled={disabled}
+                {...restProps}
+              ></div>
+            );
+          },
         }}
         events={values}
         fields={[
