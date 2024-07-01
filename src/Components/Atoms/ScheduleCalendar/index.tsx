@@ -35,7 +35,7 @@ export const ScheduleCalendar = ({
           return <CardEventSchedule schedule={e} onRemove={onRemoveItem} />;
         }}
         week={{
-          weekDays: [0, 1, 2, 3, 4, 5, 6],
+          weekDays: [0, 1, 2, 3, 4, 5],
           weekStartOn: 1,
           startHour: 7,
           endHour: 18,

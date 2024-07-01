@@ -37,7 +37,7 @@ export const Menu = styled.nav`
   -o-transition: width 0.3s ease-in-out;
   transition: width 0.3s ease-in-out;
   width: 0;
-  z-index: 99;
+  z-index: 9999;
 
   &[data-open="true"] {
     width: 100%;

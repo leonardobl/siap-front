@@ -17,20 +17,21 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     background: #0b4a89;
 
     > div {
       display: flex;
-      flex-direction: row-reverse;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      /* gap: 8px; */
     }
 
     p.MuiTypography-body1 {
       color: rgb(0, 0, 0);
       cursor: default;
       color: #fff;
-      font-size: 16px !important;
+      font-size: 12px !important;
       font-style: normal;
       font-weight: 400;
     }
@@ -38,9 +39,26 @@ export const Container = styled.div`
     p.MuiTypography-body1:hover {
       text-decoration: none;
       color: #fff;
-      font-size: 16px;
+      font-size: 12px;
       font-style: normal;
       font-weight: 400;
+    }
+
+    @media (min-width: ${(props) => props.theme.screens.lg}) {
+      p.MuiTypography-body1 {
+        font-size: 16px !important;
+      }
+
+      p.MuiTypography-body1:hover {
+        font-size: 16px;
+      }
+
+      > div {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 8px;
+      }
     }
   }
 `;
