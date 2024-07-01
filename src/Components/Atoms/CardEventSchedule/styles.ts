@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  background: #0b4a89;
+  background: #2082e3;
   height: 100%;
   cursor: default;
   padding: 0.5rem;
