@@ -58,7 +58,6 @@ export const CardDates = styled.div`
       display: block;
       font-style: normal;
       font-weight: 400;
-      line-height: 12px;
     }
   }
 `;

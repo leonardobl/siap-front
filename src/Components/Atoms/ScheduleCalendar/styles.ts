@@ -13,7 +13,7 @@ export const Container = styled.div`
     display: none;
   }
 
-  span.rs__cell.rs__header:has(.MuiTypography-body1) {
+  span.rs__header:has(.MuiTypography-body1) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,6 @@ export const Container = styled.div`
       font-size: 16px !important;
       font-style: normal;
       font-weight: 400;
-      line-height: 20px;
     }
 
     p.MuiTypography-body1:hover {
@@ -42,7 +41,6 @@ export const Container = styled.div`
       font-size: 16px;
       font-style: normal;
       font-weight: 400;
-      line-height: 20px;
     }
   }
 `;
