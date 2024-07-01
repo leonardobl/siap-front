@@ -1,6 +1,20 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
+
+  > button {
+    position: absolute;
+    top: 38px;
+    transform: translateY(-50%);
+    right: 16px;
+    z-index: 99;
+  }
+
+  div.MuiPaper-root:has([data-testid="date-navigator"]) {
+    height: 80px;
+  }
+
   button.MuiButton-root {
     color: #0b4a89;
   }

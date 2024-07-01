@@ -8,6 +8,7 @@ import {
 import * as S from "./styles";
 import { v4 } from "uuid";
 import { useScheduleCalendar } from "./useScheduleCalendar";
+import { Button } from "../Button";
 
 interface IScheduleCalendarProps {
   setValues?: React.Dispatch<React.SetStateAction<ProcessedEvent[]>>;
@@ -24,6 +25,7 @@ export const ScheduleCalendar = ({
 
   return (
     <S.Container>
+      <Button>Salvar</Button>
       <Scheduler
         view="week"
         month={null}
