@@ -3,6 +3,7 @@ import { LayoutTemplate } from "../../Templates/LayoutTemplate";
 import * as S from "./styles";
 import { ScheduleCalendar } from "../../Atoms/ScheduleCalendar";
 import { ProcessedEvent } from "@aldabil/react-scheduler/types";
+import { colors } from "react-select/dist/declarations/src/theme";
 
 let events = [
   {
@@ -10,6 +11,7 @@ let events = [
     title: "",
     start: new Date("2024/6/24 09:30"),
     end: new Date("2024/6/24 12:15"),
+    color: "#ff0000",
   },
 
   {
@@ -17,6 +19,7 @@ let events = [
     title: "",
     start: new Date("2024/6/25 10:00"),
     end: new Date("2024/6/25 11:00"),
+    colors: "red",
   },
 ];
 

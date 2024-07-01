@@ -1,5 +1,5 @@
 import { Scheduler } from "@aldabil/react-scheduler";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CardEventSchedule } from "../CardEventSchedule";
 import { ptBR } from "date-fns/locale";
 import {
@@ -7,6 +7,7 @@ import {
   ProcessedEvent,
 } from "@aldabil/react-scheduler/types";
 import * as S from "./styles";
+import { v4 } from "uuid";
 
 interface IScheduleCalendarProps {
   setValues?: React.Dispatch<React.SetStateAction<ProcessedEvent[]>>;
@@ -36,9 +37,42 @@ export const ScheduleCalendar = ({
   setValues,
   values,
 }: IScheduleCalendarProps) => {
+  const [disabledHours, setDisabledHours] = useState<{
+    [key: string]: string[];
+  }>({});
+
+  useEffect(() => {
+    const today = new Date();
+    const daysOfWeek = Array.from({ length: 7 }, (_, i) => {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      return date.toISOString().split("T")[0];
+    });
+
+    const newDisabledHours = daysOfWeek.reduce((acc, day) => {
+      acc[day] =
+        day === today.toISOString().split("T")[0]
+          ? ["10:30", "15:00"]
+          : generateRandomDisabledHours();
+      return acc;
+    }, {});
+
+    setDisabledHours(newDisabledHours);
+  }, []);
+
   function handleRemove(id: string | number) {
     setValues((prev) => prev.filter((i) => i.event_id !== id));
   }
+
+  const generateRandomDisabledHours = () => {
+    const hours = [];
+    for (let i = 0; i < 5; i++) {
+      const randomHour = Math.floor(Math.random() * (18 - 8 + 1)) + 8;
+      const randomMinute = Math.random() > 0.5 ? 0 : 30;
+      hours.push(`${randomHour}:${randomMinute === 0 ? "00" : "30"}`);
+    }
+    return hours;
+  };
 
   return (
     <S.Container>
@@ -51,9 +85,9 @@ export const ScheduleCalendar = ({
         selectedDate={new Date()}
         hourFormat="24"
         locale={customLocale}
-        eventRenderer={(e) => (
-          <CardEventSchedule schedule={e} onRemove={handleRemove} />
-        )}
+        eventRenderer={(e) => {
+          return <CardEventSchedule schedule={e} onRemove={handleRemove} />;
+        }}
         week={{
           weekDays: [0, 1, 2, 3, 4, 5],
           weekStartOn: 1,
@@ -69,9 +103,11 @@ export const ScheduleCalendar = ({
             day,
             ...props
           }: CellRenderedProps) => {
-            // Fake some condition up
-            const hour = start.getHours();
-            const disabled = hour === 14;
+            const date = start.toISOString().split("T")[0];
+            const time = `${start.getHours()}:${
+              start.getMinutes() === 0 ? "00" : start.getMinutes()
+            }`;
+            const disabled = disabledHours[date]?.includes(time);
             const restProps = disabled ? {} : props;
 
             return (
@@ -83,41 +119,25 @@ export const ScheduleCalendar = ({
                 }}
                 onClick={() => {
                   if (disabled) {
-                    return alert("Opss");
+                    return alert("Opss, horário desativado");
                   }
-                  onClick();
+
+                  const newDate: ProcessedEvent = {
+                    event_id: v4(),
+                    start,
+                    end,
+                    title: "",
+                  };
+
+                  setValues((prev) => [...prev, newDate]);
+                  // onClick();
                 }}
-                // disableRipple={disabled}
-                // disabled={disabled}
                 {...restProps}
               ></div>
             );
           },
         }}
         events={values}
-        fields={[
-          {
-            name: "title",
-            type: "input",
-
-            config: {
-              label: "Título",
-              required: false,
-
-              placeholder: "Digite o título",
-            },
-          },
-          {
-            name: "start",
-            type: "date",
-            config: { label: "Início", required: true },
-          },
-          {
-            name: "end",
-            type: "date",
-            config: { label: "Fim", required: true },
-          },
-        ]}
       />
     </S.Container>
   );
