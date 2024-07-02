@@ -15,10 +15,12 @@ export const SchedulesTemplate = () => {
     isMobile,
     pagination,
     setNumberPage,
+    Title,
+    pathname,
   } = useSchedules();
 
   return (
-    <LayoutTemplate titleHeader="Agendamentos">
+    <LayoutTemplate titleHeader={Title[pathname]}>
       <S.Container>
         <S.WrapperButtons>
           <Button

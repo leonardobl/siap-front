@@ -1,6 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { v4 } from "uuid";
 
 const StatusColors = {
   "Aguardando Pagamento": "#DEC800",
@@ -13,6 +14,15 @@ const StatusColors = {
 export const useSheduleList = () => {
   const isMobile = useMediaQuery({ maxWidth: "640px" });
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-  return { StatusColors, isMobile, navigate };
+  function handleDetail() {
+    if (pathname.includes("/meus-agendamentos")) {
+      navigate(`/meus-agendamentos/agendamento?id=${v4()}`);
+      return;
+    }
+    navigate(`/agendamentos/agendamento?id=${v4()}`);
+  }
+
+  return { StatusColors, isMobile, handleDetail };
 };

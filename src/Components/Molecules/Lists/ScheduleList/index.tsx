@@ -60,7 +60,7 @@ const Items = [
 ];
 
 export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
-  const { StatusColors, isMobile, navigate } = useSheduleList();
+  const { StatusColors, isMobile, handleDetail } = useSheduleList();
 
   return (
     <S.Container {...rest}>
@@ -89,9 +89,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                   <img
                     src="/assets/svg/icon-eye-open.svg"
                     alt="icone olho"
-                    onClick={() =>
-                      navigate(`/agendamentos/agendamento?id=${v4()}`)
-                    }
+                    onClick={handleDetail}
                   />
                 </S.TableMobileItem>
               ))}
@@ -111,9 +109,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                   <img
                     src="/assets/svg/icon-eye-open.svg"
                     alt="icone olho"
-                    onClick={() =>
-                      navigate(`/agendamentos/agendamento?id=${v4()}`)
-                    }
+                    onClick={handleDetail}
                   />
                 </S.TableItem>
               ))}
