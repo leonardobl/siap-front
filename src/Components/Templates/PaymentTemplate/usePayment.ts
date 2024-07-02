@@ -1,12 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export const usePayment = () => {
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
   const navigate = useNavigate();
 
-  function handleSubmit(data) {
-    navigate(`/novo-agendamento/pagamento/${data?.payment}?id=${v4()}`);
+  function handleSubmit({ payment }: { payment: string }) {
+    navigate(`/novo-agendamento/pagamento/${payment}?id=${id}`);
   }
+
   return { handleSubmit };
 };
