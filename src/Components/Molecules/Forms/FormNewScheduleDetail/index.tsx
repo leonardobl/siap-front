@@ -1,47 +1,79 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { Button } from "../../../Atoms/Button";
 import { useFormNewScheduleDetail } from "./useFormNewScheduleDetail";
-import { v4 } from "uuid";
+import { IAgendamentoDTO } from "../../../../Types/agendamento";
 
-export const FormNewScheduleDetail = () => {
+interface IFormNewScheduleDetailProps extends ComponentProps<"form"> {
+  agendamento: IAgendamentoDTO;
+}
+
+export const FormNewScheduleDetail = ({
+  agendamento,
+  ...rest
+}: IFormNewScheduleDetailProps) => {
   const { navigate } = useFormNewScheduleDetail();
   return (
-    <S.Form>
+    <S.Form {...rest}>
       <div>
-        <Input label="Serviço" value={"Exame Médico"} disabled />
+        <Input
+          label="Serviço"
+          value={agendamento?.servico?.nome || "---"}
+          disabled
+        />
       </div>
       <div>
-        <Input label="Cidade" value={"Rio de Janeiro"} disabled />
+        <Input label="Cidade" value={"FAVOR IMPLEMENTAR"} disabled />
       </div>
       <div>
         <Input
           label="Prestador"
-          value={"Clínica Realtan - 22.760.430/0001- 63 - Razão Social "}
+          value={`${agendamento?.prestador?.nome || "---"} - ${
+            agendamento?.prestador?.cnpj || "---"
+          } - ${agendamento?.prestador?.razaoSocial || "---"}`}
           disabled
         />
       </div>
       <div>
         <Input
           label="Endereço"
-          value={"R. Cornélius, 174 - Realengo,Rio de Janeiro"}
+          value={`${agendamento?.prestador?.endereco?.logradouro || "---"}, ${
+            agendamento?.prestador?.endereco?.numero || "---"
+          } - ${agendamento?.prestador?.endereco?.bairro || "---"}, ${
+            agendamento?.prestador?.endereco?.cidade?.nome || "---"
+          }`}
           disabled
         />
       </div>
       <div>
-        <Input label="CNPJ" value={"22.760.430/0001- 63"} disabled />
+        <Input
+          label="CNPJ"
+          value={`${agendamento?.prestador?.cnpj || "---"}`}
+          disabled
+        />
       </div>
       <div>
-        <Input label="Telefone" value={"(21) 3226-4064"} disabled />
+        <Input
+          label="Telefone"
+          value={`${agendamento?.prestador?.telefone || "---"}`}
+          disabled
+        />
       </div>
       <div>
-        <Input label="E-mail" value={"clinicarealtran@gmail.com"} disabled />
+        <Input
+          label="E-mail"
+          value={`${agendamento?.prestador?.email}` || "---"}
+          disabled
+        />
       </div>
       <div>
         <Button
           variant="blue"
-          onClick={() => navigate(`/novo-agendamento/pagamento?id=${v4()}`)}
+          disabled={!!!agendamento?.uuid}
+          onClick={() => {
+            navigate(`/novo-agendamento/pagamento?id=${agendamento?.uuid}`);
+          }}
         >
           Avançar
         </Button>

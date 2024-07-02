@@ -26,6 +26,10 @@ export class Agendamento {
     );
   }
 
+  static async getById(id: string): Promise<AxiosResponse<IAgendamentoDTO>> {
+    return SiapApi.get(`${basePath}/${id}`);
+  }
+
   static async post(
     data: IAgendamentoCadastroForm
   ): Promise<AxiosResponse<IAgendamentoDTO>> {
