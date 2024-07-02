@@ -17,6 +17,8 @@ export const SchedulesTemplate = () => {
     setNumberPage,
     Title,
     pathname,
+    agendamentos,
+    handleClean,
   } = useSchedules();
 
   return (
@@ -33,19 +35,24 @@ export const SchedulesTemplate = () => {
         </S.WrapperButtons>
 
         {filterOpen && (
-          <FormFilterSchedules onClean={() => ""} submitForm={handleFilter} />
+          <FormFilterSchedules
+            onClean={handleClean}
+            submitForm={handleFilter}
+          />
         )}
 
-        <ScheduleList Schedules={[]} />
+        <ScheduleList Schedules={agendamentos} />
 
-        <Pagination
-          totalPage={pagination.totalPage}
-          totalRegister={pagination.totalRegister}
-          actualPage={pagination.actualPage}
-          setNumberPage={setNumberPage}
-          key={`${isMobile} - ${pagination} - ${Math.random()}`}
-          maxPageNumbersDisplayed={isMobile ? 3 : 10}
-        />
+        {agendamentos?.length > 0 && (
+          <Pagination
+            totalPage={pagination.totalPage}
+            totalRegister={pagination.totalRegister}
+            actualPage={pagination.actualPage}
+            setNumberPage={setNumberPage}
+            key={`${isMobile} - ${pagination} - ${Math.random()}`}
+            maxPageNumbersDisplayed={isMobile ? 3 : 10}
+          />
+        )}
       </S.Container>
     </LayoutTemplate>
   );

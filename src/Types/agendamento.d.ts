@@ -7,19 +7,19 @@ import { IProfissionalDTO } from "./profissional";
 import { IServicoDTO } from "./servico";
 
 export interface IAgendamentoProps extends IPageRequest {
-  status: string;
-  dataInicial: string;
-  dataFinal: string;
-  idCliente: string;
-  clienteNomeCpf: string;
-  idPrestador: string;
-  prestadorNomeCnpj: string;
-  idProfissional: string;
-  profissionalNomeCpf: string;
+  status?: string;
+  dataInicial?: string;
+  dataFinal?: string;
+  idCliente?: string;
+  clienteNomeCpf?: string;
+  idPrestador?: string;
+  prestadorNomeCnpj?: string;
+  idProfissional?: string;
+  profissionalNomeCpf?: string;
 }
 
 export interface IPageAgendamentoDTO {
-  content: AgendamentoDTO[];
+  content: IAgendamentoDTO[];
   empty: boolean;
   first: boolean;
   last: boolean;
@@ -32,7 +32,7 @@ export interface IPageAgendamentoDTO {
   totalPages: number;
 }
 
-export interface AgendamentoDTO {
+export interface IAgendamentoDTO {
   cliente: IClienteDTO;
   dataPagamento: string;
   dataRealizacao: string;

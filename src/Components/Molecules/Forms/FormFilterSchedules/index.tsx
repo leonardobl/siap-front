@@ -6,35 +6,53 @@ import { InputDate } from "../../../Atoms/Inputs/InputDate";
 import { Button } from "../../../Atoms/Button";
 import { useFormFilterSchedules } from "./useFormFilterSchedules";
 import { ISelectOptions } from "../../../../Types/inputs";
+import { IAgendamentoProps } from "../../../../Types/agendamento";
+import { AsyncSimpleSelect } from "../../../Atoms/Selects/AsyncSelect";
+import { reverseToIsoDate } from "../../../../Utils/dateTransform";
 
 interface IFormFilterSchedulesProps extends ComponentProps<"form"> {
-  submitForm: () => void;
+  submitForm: (data: IAgendamentoProps) => void;
   onClean?: () => void;
 }
 
 export const FormFilterSchedules = ({
   submitForm,
   onClean,
+
   ...rest
 }: IFormFilterSchedulesProps) => {
   const {
     Controller,
     control,
-    errors,
     handleSubmit,
     register,
     StatusOptions,
     reset,
+    pathname,
+    dateFim,
+    dateIni,
+    setDateFim,
+    setDateIni,
+    handleReset,
   } = useFormFilterSchedules();
 
   return (
     <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
       <div>
-        <Input {...register("cliente")} label="Cliente" />
+        <Input
+          {...register(
+            pathname.includes("meus-agendamentos")
+              ? "prestadorNomeCnpj"
+              : "clienteNomeCpf"
+          )}
+          label={
+            pathname.includes("meus-agendamentos") ? "Prestador" : "Cliente"
+          }
+        />
       </div>
 
       <div>
-        <Input {...register("profissional")} label="Profissional" />
+        <Input {...register("profissionalNomeCpf")} label="Profissional" />
       </div>
 
       <div>
@@ -56,20 +74,36 @@ export const FormFilterSchedules = ({
 
       <div>
         <Controller
-          name="dataIni"
+          name="dataInicial"
           control={control}
           render={({ field: { onChange, value } }) => (
-            <InputDate showIcon label="Data Inicial" onChange={() => ""} />
+            <InputDate
+              showIcon
+              selected={dateIni}
+              label="Data Inicial"
+              onChange={(e) => {
+                onChange(reverseToIsoDate(e?.toLocaleDateString()));
+                setDateIni(e);
+              }}
+            />
           )}
         />
       </div>
 
       <div>
         <Controller
-          name="dataFim"
+          name="dataFinal"
           control={control}
           render={({ field: { onChange, value } }) => (
-            <InputDate showIcon label="Data Final" onChange={() => ""} />
+            <InputDate
+              showIcon
+              selected={dateFim}
+              label="Data Final"
+              onChange={(e) => {
+                setDateFim(e);
+                onChange(reverseToIsoDate(e?.toLocaleDateString()));
+              }}
+            />
           )}
         />
       </div>
@@ -80,6 +114,7 @@ export const FormFilterSchedules = ({
           onClick={() => {
             onClean && onClean();
             reset();
+            handleReset();
           }}
         >
           Limpar

@@ -1,10 +1,10 @@
 import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { useSheduleList } from "./useSheduleList";
-import { v4 } from "uuid";
+import { IAgendamentoDTO } from "../../../../Types/agendamento";
 
 interface IScheduleListProps extends ComponentProps<"div"> {
-  Schedules: [];
+  Schedules: IAgendamentoDTO[];
 }
 
 const headers = [
@@ -16,55 +16,12 @@ const headers = [
   "Status",
 ];
 
-const Items = [
-  {
-    mome: "Camilla Santos de Alcântara",
-    CPF: "018.895.983.13",
-    Profissional: "Estácio Neto",
-    Conselho: "123456 CRN/RJ",
-    "Data de Atendimento": "24/06/2024 9:00 ",
-    Status: "Agendado",
-  },
-  {
-    mome: "Camilla Santos de Alcântara",
-    CPF: "018.895.983.13",
-    Profissional: "Estácio Neto",
-    Conselho: "123456 CRN/RJ",
-    "Data de Atendimento": "24/06/2024 9:00 ",
-    Status: "Pago",
-  },
-  {
-    mome: "Camilla Santos de Alcântara",
-    CPF: "018.895.983.13",
-    Profissional: "Estácio Neto",
-    Conselho: "123456 CRN/RJ",
-    "Data de Atendimento": "24/06/2024 9:00 ",
-    Status: "Finalizado",
-  },
-  {
-    mome: "Camilla Santos de Alcântara",
-    CPF: "018.895.983.13",
-    Profissional: "Estácio Neto",
-    Conselho: "123456 CRN/RJ",
-    "Data de Atendimento": "24/06/2024 9:00 ",
-    Status: "Cancelado",
-  },
-  {
-    mome: "Camilla Santos de Alcântara",
-    CPF: "018.895.983.13",
-    Profissional: "Estácio Neto",
-    Conselho: "123456 CRN/RJ",
-    "Data de Atendimento": "24/06/2024 9:00 ",
-    Status: "Aguardando Pagamento",
-  },
-];
-
 export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
   const { StatusColors, isMobile, handleDetail } = useSheduleList();
 
   return (
     <S.Container {...rest}>
-      {Items.length > 0 ? (
+      {Schedules?.length > 0 ? (
         <S.Table>
           <S.Tableheader>
             {headers.map((i) => (
@@ -74,15 +31,15 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
 
           {isMobile ? (
             <S.TableItems>
-              {Items.map((i) => (
+              {Schedules?.map((i) => (
                 <S.TableMobileItem key={Math.random()}>
                   <S.WrapperContentMobile>
-                    <p>{i.mome}</p>
+                    <p>{i.cliente.nome}</p>
 
                     <div>
                       <span>{i["Data de Atendimento"]}</span>
-                      <S.StatusAgendamento statuscolor={StatusColors[i.Status]}>
-                        {i.Status}
+                      <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
+                        {i.status}
                       </S.StatusAgendamento>
                     </div>
                   </S.WrapperContentMobile>
@@ -96,15 +53,15 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
             </S.TableItems>
           ) : (
             <S.TableItems>
-              {Items.map((i) => (
+              {Schedules?.map((i) => (
                 <S.TableItem key={Math.random()}>
-                  <p>{i.mome}</p>
-                  <p>{i.CPF}</p>
-                  <p>{i.Profissional}</p>
-                  <p>{i.Conselho}</p>
-                  <p>{i["Data de Atendimento"]}</p>
-                  <S.StatusAgendamento statuscolor={StatusColors[i.Status]}>
-                    {i.Status}
+                  <p>{i.cliente.nome}</p>
+                  <p>{i.cliente.cpf}</p>
+                  <p>{i.profissional.nome}</p>
+                  <p>{i.profissional.conselho}</p>
+                  <p>{i.diaAgendado}</p>
+                  <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
+                    {i.status}
                   </S.StatusAgendamento>
                   <img
                     src="/assets/svg/icon-eye-open.svg"
