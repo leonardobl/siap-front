@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useContextSite } from "../../../Context/Context";
 import { Agendamento } from "../../../Services/Agendamento";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ export const useTicket = () => {
   const id = searchParams.get("id");
   const { setIsLoad } = useContextSite();
   const [fatura, setFatura] = useState<IFaturaDTO>({} as IFaturaDTO);
+  const navigate = useNavigate();
 
   const getAgendamento = useCallback(() => {
     setIsLoad(true);
@@ -22,7 +23,12 @@ export const useTicket = () => {
           response: {
             data: { mensagem },
           },
-        }) => toast.error(mensagem)
+        }) => {
+          toast.error(mensagem);
+          setTimeout(() => {
+            navigate(`/novo-agendamento/pagamento?id=${id}`);
+          }, 2000);
+        }
       )
       .finally(() => {
         setIsLoad(false);
