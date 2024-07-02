@@ -3,10 +3,9 @@ import * as S from "./styles";
 import { LayoutTemplate } from "../LayoutTemplate";
 import { Button } from "../../Atoms/Button";
 import { usePaymentConfirmation } from "./usePaymentConfirmation";
-import { v4 } from "uuid";
 
 export const PaymentConfirmationTemplate = () => {
-  const { navigate } = usePaymentConfirmation();
+  const { navigate, id } = usePaymentConfirmation();
   return (
     <LayoutTemplate titleHeader="Confirmação do Pagamento">
       <S.Container>
@@ -17,7 +16,7 @@ export const PaymentConfirmationTemplate = () => {
 
         <Button
           variant="blue"
-          onClick={() => navigate(`/novo-agendamento/agendamento?id=${v4()}`)}
+          onClick={() => navigate(`/novo-agendamento/agendamento?id=${id}`)}
         >
           Realizar Agendamento
         </Button>

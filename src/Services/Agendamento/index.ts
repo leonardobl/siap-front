@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
 import { SiapApi } from "../../Apis/SiapApi";
 import {
+  IAgendamentoAgendarFormProps,
   IAgendamentoCadastroForm,
   IAgendamentoDTO,
   IAgendamentoProps,
@@ -34,5 +35,12 @@ export class Agendamento {
     data: IAgendamentoCadastroForm
   ): Promise<AxiosResponse<IAgendamentoDTO>> {
     return SiapApi.post(`${basePath}`, data);
+  }
+
+  static async put(
+    data: IAgendamentoAgendarFormProps
+  ): Promise<AxiosResponse<IAgendamentoDTO>> {
+    const { uuid, ...rest } = data;
+    return SiapApi.put(`${basePath}/${uuid}/agendar`, rest);
   }
 }

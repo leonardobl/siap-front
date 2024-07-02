@@ -14,11 +14,17 @@ const basePath = "/profissional";
 
 export class Profissional {
   static async list(
-    props: IProfissionalListProps
+    props?: IProfissionalListProps
   ): Promise<AxiosResponse<IPageProfissionalDTO>> {
-    const values = removeEmpty(props);
-    const params = objectToParams(values);
-    return SiapApi.get(`${basePath}/listar?${params}`);
+    let params = "";
+
+    if (props) {
+      const values = removeEmpty(props);
+      params = objectToParams(values);
+    }
+    return SiapApi.get(
+      params ? `${basePath}/listar?${params}` : `${basePath}/listar`
+    );
   }
 
   static async create(
