@@ -1,6 +1,8 @@
 import { AxiosResponse } from "axios";
 import { SiapApi } from "../../Apis/SiapApi";
 import {
+  IAgendamentoCadastroForm,
+  IAgendamentoDTO,
   IAgendamentoProps,
   IPageAgendamentoDTO,
 } from "../../Types/agendamento";
@@ -22,5 +24,11 @@ export class Agendamento {
     return SiapApi.get(
       params ? `${basePath}/listar?${params}` : `${basePath}/listar`
     );
+  }
+
+  static async post(
+    data: IAgendamentoCadastroForm
+  ): Promise<AxiosResponse<IAgendamentoDTO>> {
+    return SiapApi.post(`${basePath}`, data);
   }
 }

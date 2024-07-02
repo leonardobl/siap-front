@@ -46,3 +46,9 @@ export interface IAgendamentoDTO {
   status: string;
   uuid: string;
 }
+
+export interface IAgendamentoCadastroForm {
+  uuidCliente: string;
+  uuidPrestador: string;
+  uuidServico: string;
+}
