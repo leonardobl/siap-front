@@ -1,12 +1,20 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { InputFile } from "../../../Atoms/Inputs/InputFile";
 import { useFormSheduleDetail } from "./useFormSheduleDetail";
 import { MyModal } from "../../../Atoms/Modal";
 import { Button } from "../../../Atoms/Button";
+import { IAgendamentoDTO } from "../../../../Types/agendamento";
 
-export const FormSheduleDetail = () => {
+interface IFormSheduleDetailProps extends ComponentProps<"form"> {
+  agendamento: IAgendamentoDTO;
+}
+
+export const FormSheduleDetail = ({
+  agendamento,
+  ...rest
+}: IFormSheduleDetailProps) => {
   const {
     file,
     setFile,
@@ -19,44 +27,82 @@ export const FormSheduleDetail = () => {
   } = useFormSheduleDetail();
 
   return (
-    <S.Form>
+    <S.Form {...rest}>
       <div>
-        <Input value={"Agendado"} label="Status" disabled />
-      </div>
-      <div>
-        <Input value={"Exame Médico"} label="Serviço" disabled />
-      </div>
-      <div>
-        <Input value={"Clínica Realtran"} label="Prestador" disabled />
-      </div>
-      <div>
-        <Input value={"22.760.430/0001- 63"} label="CNPJ" disabled />
+        <Input value={agendamento?.status || "---"} label="Status" disabled />
       </div>
       <div>
         <Input
-          value={"R. Cornélius, 174 - Realengo, Rio de Janeiro - RJ"}
+          value={agendamento?.servico?.nome || "---"}
+          label="Serviço"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={agendamento?.prestador?.nome || "---"}
+          label="Prestador"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={agendamento?.prestador?.cnpj || "---"}
+          label="CNPJ"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={`${agendamento?.prestador?.endereco?.logradouro || "---"}, ${
+            agendamento?.prestador?.endereco?.numero || "---"
+          } - ${agendamento?.prestador?.endereco?.bairro || "---"}, ${
+            agendamento?.prestador?.endereco?.cidade?.nome || "---"
+          }`}
           label="Endereço"
           disabled
         />
       </div>
       <div>
-        <Input value={"(21) 3226-4064"} label="Telefone" disabled />
-      </div>
-      <div>
-        <Input value={"Estacio Neto"} label="Profissional" disabled />
-      </div>
-      <div>
-        <Input value={"123456 CRN/RJ"} label="Conselho" disabled />
-      </div>
-      <div>
-        <Input value={"1234"} label="Número do Conselho" disabled />
-      </div>
-      <div>
-        <Input value={"RJ"} label="UF Conselho" disabled />
+        <Input
+          value={agendamento?.prestador?.telefone || "---"}
+          label="Telefone"
+          disabled
+        />
       </div>
       <div>
         <Input
-          value={"15/06/2024"}
+          value={agendamento?.profissional?.nome || "---"}
+          label="Profissional"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={`${agendamento?.profissional?.conselho || "---"} / ${
+            agendamento?.profissional?.ufConselho || "---"
+          }`}
+          label="Conselho"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={agendamento?.profissional?.numeroConselho || "---"}
+          label="Número do Conselho"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={agendamento?.profissional?.ufConselho || "---"}
+          label="UF Conselho"
+          disabled
+        />
+      </div>
+      <div>
+        <Input
+          value={agendamento.diaAgendado || "---"}
           label="Data"
           disabled
           iconright="/assets/svg/icon-clock-gray.svg"
@@ -64,7 +110,7 @@ export const FormSheduleDetail = () => {
       </div>
       <div>
         <Input
-          value={"14:00"}
+          value={agendamento.horaAgendada || "---"}
           label="Horário"
           disabled
           iconright="/assets/svg/icon-calendar-gray.svg"
