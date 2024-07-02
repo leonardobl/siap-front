@@ -3,9 +3,11 @@ import { LayoutTemplate } from "../LayoutTemplate";
 import * as S from "./styles";
 import { Button } from "../../Atoms/Button";
 import { PaymentCodContainer } from "../../Atoms/PaymentCodContainer";
-import { v4 } from "uuid";
+import { useTicket } from "./useTicket";
 
 export const TicketTemplate = () => {
+  const { fatura } = useTicket();
+
   return (
     <LayoutTemplate titleHeader="Pagamento BOLETO">
       <S.Container>
@@ -21,17 +23,17 @@ export const TicketTemplate = () => {
           </div>
 
           <div>
-            <img src="/assets/img/barcode.png" alt="pix" />
+            <img src={fatura?.boleto?.barCode} alt="boleto" />
           </div>
 
           <div>
             <p>
-              Valor: <span>R$0,00</span>
+              Valor: <span>${fatura?.valorTotal}</span>
             </p>
           </div>
 
           <div>
-            <PaymentCodContainer value={v4()} />
+            <PaymentCodContainer value={fatura?.boleto?.barCodeData} />
           </div>
 
           <div>
