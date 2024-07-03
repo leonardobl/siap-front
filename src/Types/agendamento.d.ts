@@ -52,6 +52,12 @@ export interface IAgendamentoCadastroForm {
   uuidPrestador: string;
   uuidServico: string;
 }
+export interface IAgendamentoCadastroFormRHF {
+  uuidCliente: string;
+  uuidPrestador: string;
+  uuidServico: string;
+  cidade: string;
+}
 
 export interface IAgendamentoAgendarForm {
   diaAgendado: string;

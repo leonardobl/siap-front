@@ -1,3 +1,4 @@
+import { darken } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -6,6 +7,17 @@ export const Container = styled.div`
   &:has(input:focus) {
     label {
       top: -2px;
+    }
+  }
+
+  & div.react-select__control--is-disabled {
+    background-color: ${darken(0.04, "#fff")};
+  }
+
+  &:has(input:disabled) {
+    cursor: not-allowed;
+    label {
+      background: transparent;
     }
   }
 

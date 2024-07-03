@@ -90,7 +90,7 @@ export const MyInput = styled.input<InputCustomProps>`
   }
 
   &:disabled {
-    background-color: ${darken(0.015, "#fff")};
+    background-color: ${darken(0.04, "#fff")};
     border: 1px solid ${(props) => props.theme.colors["gray-200"]};
     color: ${(props) => props.theme.colors["gray-200"]};
     cursor: not-allowed;

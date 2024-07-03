@@ -17,13 +17,14 @@ export const FormNewScheduleService = ({
   ...rest
 }: IFormNewScheduleServiceProps) => {
   const {
-    getPrestadores,
     servicosOptions,
     control,
     errors,
+    watch,
     handleSubmit,
-    register,
     Controller,
+    cidadeOptions,
+    loadPrestadores,
   } = useFormNewSchedule();
 
   return (
@@ -48,16 +49,20 @@ export const FormNewScheduleService = ({
         )}
       </div>
       <div>
-        {/* <Controller
+        <Controller
           control={control}
-          name="uuidServico"
+          name="cidade"
           render={({ field: { onChange, value } }) => (
+            <SimpleSelect
+              required
+              label="Cidade"
+              value={cidadeOptions.find((i) => i.value === value) || null}
+              options={cidadeOptions}
+              onChange={(e: ISelectOptions) => onChange(e?.value)}
+            />
           )}
-        /> */}
-        <SimpleSelect required label="Cidade" />
-        {/* {errors?.uuidServico && (
-          <ErrorMessage>{errors.uuidServico.message}</ErrorMessage>
-        )} */}
+        />
+        {errors?.cidade && <ErrorMessage>{errors.cidade.message}</ErrorMessage>}
       </div>
       <div>
         <Controller
@@ -66,13 +71,15 @@ export const FormNewScheduleService = ({
           render={({ field: { onChange, value } }) => (
             <AsyncSimpleSelect
               required
+              isDisabled={!!!watch("cidade")}
               customError={!!errors?.uuidPrestador}
-              loadOptions={getPrestadores}
+              loadOptions={loadPrestadores}
               label="Prestador"
               onChange={(e: ISelectOptions) => onChange(e?.value)}
             />
           )}
         />
+
         {errors?.uuidPrestador && (
           <ErrorMessage>{errors.uuidPrestador.message}</ErrorMessage>
         )}

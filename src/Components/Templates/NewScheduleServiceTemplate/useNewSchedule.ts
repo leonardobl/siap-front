@@ -16,6 +16,9 @@ export const useNewSchedule = () => {
     //   uuidCliente: "PENDENTE DE IMPLEMENTACAO"
     // }
 
+    console.log(data);
+    return;
+
     setIsLoad(false);
     Agendamento.post(data)
       .then(({ data }) => {

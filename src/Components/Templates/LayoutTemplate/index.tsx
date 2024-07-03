@@ -70,7 +70,7 @@ export const LayoutTemplate = ({
               <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
               <span>Agendamentos</span>
             </NavLink>
-            <NavLink to={"/meus-agendamentos"} title="Agendamentos">
+            <NavLink to={"/meus-agendamentos"} title="Meus Agendamentos">
               <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
               <span>Meus Agendamentos</span>
             </NavLink>
