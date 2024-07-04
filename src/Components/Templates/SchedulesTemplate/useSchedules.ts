@@ -29,7 +29,7 @@ export const useSchedules = () => {
     getAgendamentos(data);
   }
 
-  function getAgendamentos(props?: IAgendamentoProps) {
+  async function getAgendamentos(props?: IAgendamentoProps) {
     setIsLoad(true);
     let params = props;
 
