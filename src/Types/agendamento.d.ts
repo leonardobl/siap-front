@@ -1,3 +1,4 @@
+import { FormaDePagamentoEnum } from "../Enum/formaDePagamento";
 import { IClienteDTO } from "./cliente";
 import { IServicoContratadoDTO } from "./contrato";
 import { IFaturaDTO } from "./fatura";
@@ -66,4 +67,9 @@ export interface IAgendamentoAgendarForm {
 
 export interface IAgendamentoAgendarFormProps extends IAgendamentoAgendarForm {
   uuid: string;
+}
+
+export interface IAgendamentoGerarFaturaProps {
+  formaDePagamento: FormaDePagamentoEnum;
+  uuidAgendamento: string;
 }

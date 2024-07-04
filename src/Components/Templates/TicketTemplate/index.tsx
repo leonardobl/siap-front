@@ -4,6 +4,7 @@ import * as S from "./styles";
 import { Button } from "../../Atoms/Button";
 import { PaymentCodContainer } from "../../Atoms/PaymentCodContainer";
 import { useTicket } from "./useTicket";
+import { maskMoney } from "../../../Utils/masks";
 
 export const TicketTemplate = () => {
   const { fatura } = useTicket();
@@ -23,17 +24,17 @@ export const TicketTemplate = () => {
           </div>
 
           <div>
-            <img src={fatura?.boleto?.barCode} alt="boleto" />
+            <img src={fatura?.boleto?.barCodeData} alt="boleto" />
           </div>
 
           <div>
             <p>
-              Valor: <span>${fatura?.valorTotal}</span>
+              Valor: <span>{maskMoney(fatura?.valorTotal / 100)}</span>
             </p>
           </div>
 
           <div>
-            <PaymentCodContainer value={fatura?.boleto?.barCodeData} />
+            <PaymentCodContainer value={fatura?.boleto?.digitableLine} />
           </div>
 
           <div>

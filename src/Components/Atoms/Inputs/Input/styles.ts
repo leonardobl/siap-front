@@ -98,7 +98,7 @@ export const MyInput = styled.input<InputCustomProps>`
     + label {
       background: linear-gradient(
         to top,
-        ${darken(0.015, "#fff")} 50%,
+        ${darken(0.04, "#fff")} 50%,
         transparent 50%
       );
     }

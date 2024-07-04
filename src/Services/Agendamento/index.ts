@@ -4,11 +4,13 @@ import {
   IAgendamentoAgendarFormProps,
   IAgendamentoCadastroForm,
   IAgendamentoDTO,
+  IAgendamentoGerarFaturaProps,
   IAgendamentoProps,
   IPageAgendamentoDTO,
 } from "../../Types/agendamento";
 import { removeEmpty } from "../../Utils/removeEmpty";
 import objectToParams from "../../Utils/objectToParams";
+import { IFaturaDTO } from "../../Types/fatura";
 
 const basePath = "/agendamento";
 
@@ -42,5 +44,14 @@ export class Agendamento {
   ): Promise<AxiosResponse<IAgendamentoDTO>> {
     const { uuid, ...rest } = data;
     return SiapApi.put(`${basePath}/${uuid}/agendar`, rest);
+  }
+
+  static async gerarFatura(
+    props: IAgendamentoGerarFaturaProps
+  ): Promise<AxiosResponse<IFaturaDTO>> {
+    const { formaDePagamento, uuidAgendamento } = props;
+    return SiapApi.post(`${basePath}/${uuidAgendamento}/gerar-fatura`, {
+      formaDePagamento,
+    });
   }
 }

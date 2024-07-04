@@ -2,6 +2,8 @@ import React, { ComponentProps } from "react";
 import * as S from "./styles";
 import { useSheduleList } from "./useSheduleList";
 import { IAgendamentoDTO } from "../../../../Types/agendamento";
+import { removeUnderscoreAndCapitalize } from "../../../../Utils/removeUnderscoreAndCapitalize";
+import { maskCpf } from "../../../../Utils/masks";
 
 interface IScheduleListProps extends ComponentProps<"div"> {
   Schedules: IAgendamentoDTO[];
@@ -31,45 +33,51 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
 
           {isMobile ? (
             <S.TableItems>
-              {Schedules?.map((i) => (
-                <S.TableMobileItem key={Math.random()}>
-                  <S.WrapperContentMobile>
-                    <p>{i.cliente.nome}</p>
+              {Schedules?.length > 0 &&
+                Schedules?.map((i) => (
+                  <S.TableMobileItem key={Math.random()}>
+                    <S.WrapperContentMobile>
+                      <p>{i?.cliente?.nome}</p>
 
-                    <div>
-                      <span>{i["Data de Atendimento"]}</span>
-                      <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
-                        {i.status}
-                      </S.StatusAgendamento>
-                    </div>
-                  </S.WrapperContentMobile>
-                  <img
-                    src="/assets/svg/icon-eye-open.svg"
-                    alt="icone olho"
-                    onClick={handleDetail}
-                  />
-                </S.TableMobileItem>
-              ))}
+                      <div>
+                        <span>{i["Data de Atendimento"]}</span>
+                        <S.StatusAgendamento
+                          statuscolor={StatusColors[i.status]}
+                        >
+                          {removeUnderscoreAndCapitalize(i.status)}
+                        </S.StatusAgendamento>
+                      </div>
+                    </S.WrapperContentMobile>
+                    <img
+                      src="/assets/svg/icon-eye-open.svg"
+                      alt="icone olho"
+                      onClick={() => handleDetail(i?.uuid)}
+                    />
+                  </S.TableMobileItem>
+                ))}
             </S.TableItems>
           ) : (
             <S.TableItems>
-              {Schedules?.map((i) => (
-                <S.TableItem key={Math.random()}>
-                  <p>{i.cliente.nome}</p>
-                  <p>{i.cliente.cpf}</p>
-                  <p>{i.profissional.nome}</p>
-                  <p>{i.profissional.conselho}</p>
-                  <p>{i.diaAgendado}</p>
-                  <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
-                    {i.status}
-                  </S.StatusAgendamento>
-                  <img
-                    src="/assets/svg/icon-eye-open.svg"
-                    alt="icone olho"
-                    onClick={handleDetail}
-                  />
-                </S.TableItem>
-              ))}
+              {Schedules?.length > 0 &&
+                Schedules?.map((i) => (
+                  <S.TableItem key={Math.random()}>
+                    <p>{i?.cliente?.nome}</p>
+                    <p>{maskCpf(i.cliente?.cpf)}</p>
+                    <p>{i?.profissional?.nome}</p>
+                    <p>{i.profissional?.conselho}</p>
+                    <p>{i?.diaAgendado}</p>
+                    <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
+                      {removeUnderscoreAndCapitalize(
+                        i.status.toLocaleLowerCase()
+                      )}
+                    </S.StatusAgendamento>
+                    <img
+                      src="/assets/svg/icon-eye-open.svg"
+                      alt="icone olho"
+                      onClick={() => handleDetail(i?.uuid)}
+                    />
+                  </S.TableItem>
+                ))}
             </S.TableItems>
           )}
         </S.Table>

@@ -6,6 +6,7 @@ import { useFormSheduleDetail } from "./useFormSheduleDetail";
 import { MyModal } from "../../../Atoms/Modal";
 import { Button } from "../../../Atoms/Button";
 import { IAgendamentoDTO } from "../../../../Types/agendamento";
+import { removeUnderscoreAndCapitalize } from "../../../../Utils/removeUnderscoreAndCapitalize";
 
 interface IFormSheduleDetailProps extends ComponentProps<"form"> {
   agendamento: IAgendamentoDTO;
@@ -29,7 +30,11 @@ export const FormSheduleDetail = ({
   return (
     <S.Form {...rest}>
       <div>
-        <Input value={agendamento?.status || "---"} label="Status" disabled />
+        <Input
+          value={removeUnderscoreAndCapitalize(agendamento?.status) || "---"}
+          label="Status"
+          disabled
+        />
       </div>
       <div>
         <Input
