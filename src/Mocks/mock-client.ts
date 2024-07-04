@@ -15,6 +15,7 @@ export const mockClientDetail: IClienteDTO = {
   email: "email@teste.com.br",
   telefone: "(86) 99523-3237",
   uuid: v4(),
+  uuidUsuario: v4(),
   endereco: {
     bairro: "Ininga",
     cep: "64049-700",

@@ -37,15 +37,17 @@ export const useLogin = () => {
           usuarioCpfCnpj: decoded.sub,
           roles: decoded.perfis,
         });
+
+        return decoded;
       })
-      .then(() => {
-        Cliente.usuarioAtual()
+      .then((decoded) => {
+        Cliente.clienteLogado({ uuidUsuario: decoded.uuid })
           .then(({ data }) => {
             const usuario = JSON.parse(localStorage.getItem("usuario"));
 
             setUsuarioStorage({
               ...usuario,
-              uuidClienteLogado: data,
+              cliente: data,
             });
           })
           .catch(

@@ -4,23 +4,22 @@ import { IAgendamentoCadastroForm } from "../../../Types/agendamento";
 import { Agendamento } from "../../../Services/Agendamento";
 import { useContextSite } from "../../../Context/Context";
 import { toast } from "react-toastify";
+import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 
 export const useNewSchedule = () => {
   const navigate = useNavigate();
   const { setIsLoad } = useContextSite();
+  const [usuarioLogado] = useLocalStorage("usuario");
 
   function handleSubmit(data: IAgendamentoCadastroForm) {
-    // PARA O MEU EU DO FUTURO
-    // const PAYLOAD: IAgendamentoCadastroForm = {
-    //   ...data,
-    //   uuidCliente: "PENDENTE DE IMPLEMENTACAO"
-    // }
+    const PAYLOAD: IAgendamentoCadastroForm = {
+      uuidPrestador: data.uuidPrestador,
+      uuidServico: data.uuidServico,
+      uuidCliente: usuarioLogado?.cliente?.uuid,
+    };
 
-    console.log(data);
-    return;
-
-    setIsLoad(false);
-    Agendamento.post(data)
+    setIsLoad(true);
+    Agendamento.post(PAYLOAD)
       .then(({ data }) => {
         navigate(`/novo-agendamento/servico/detalhe?id=${data?.uuid}`);
       })

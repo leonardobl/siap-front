@@ -15,14 +15,7 @@ export const LayoutTemplate = ({
   children,
   ...rest
 }: ILayoutTemplateProps) => {
-  const {
-    logout,
-    menuOpen,
-    setMenuOpen,
-    modalIsOpen,
-    navigate,
-    setModalIsOpen,
-  } = useLayout();
+  const { logout, menuOpen, setMenuOpen, isAdmin, isCliente } = useLayout();
 
   return (
     <S.Container {...rest}>
@@ -66,21 +59,33 @@ export const LayoutTemplate = ({
 
         <S.WrapperGroupMenu data-border-bottom>
           <DetailsMenu titleheader="AGENDAMENTO" data-openmenu={menuOpen} open>
-            <NavLink to={"/agendamentos"} title="Agendamentos">
-              <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
-              <span>Agendamentos</span>
-            </NavLink>
-            <NavLink to={"/meus-agendamentos"} title="Meus Agendamentos">
-              <img src="/assets/svg/icon-agendamento.svg" alt="icone usuario" />
-              <span>Meus Agendamentos</span>
-            </NavLink>
-            <NavLink to={"/novo-agendamento"} title="Novo Agendamento">
-              <img
-                src="/assets/svg/icon-new-agendamento.svg"
-                alt="icone usuario"
-              />
-              <span>Novo Agendamento</span>
-            </NavLink>
+            {isAdmin && (
+              <NavLink to={"/agendamentos"} title="Agendamentos">
+                <img
+                  src="/assets/svg/icon-agendamento.svg"
+                  alt="icone usuario"
+                />
+                <span>Agendamentos</span>
+              </NavLink>
+            )}
+            {isCliente && (
+              <>
+                <NavLink to={"/meus-agendamentos"} title="Meus Agendamentos">
+                  <img
+                    src="/assets/svg/icon-agendamento.svg"
+                    alt="icone usuario"
+                  />
+                  <span>Meus Agendamentos</span>
+                </NavLink>
+                <NavLink to={"/novo-agendamento"} title="Novo Agendamento">
+                  <img
+                    src="/assets/svg/icon-new-agendamento.svg"
+                    alt="icone usuario"
+                  />
+                  <span>Novo Agendamento</span>
+                </NavLink>
+              </>
+            )}
           </DetailsMenu>
         </S.WrapperGroupMenu>
 

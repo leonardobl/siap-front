@@ -3,19 +3,22 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 import { useContextSite } from "../../../Context/Context";
 import { useMediaQuery } from "react-responsive";
+import { RolesEnum } from "../../../Enum/roles";
 
 export const useLayout = () => {
   const isMobile = useMediaQuery({ maxWidth: "1020px" });
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [token] = useLocalStorage("@token");
+  const [usuarioLogado] = useLocalStorage("usuario");
   const { pathname } = useLocation();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const { setIsLoad } = useContextSite();
+
+  const isCliente = usuarioLogado?.roles?.includes(RolesEnum.ROLE_CLIENTE);
+  const isAdmin = usuarioLogado?.roles?.includes(RolesEnum.ROLE_ADMIN);
 
   function logout() {
     setIsLoad(true);
-    setModalIsOpen(false);
 
     setTimeout(() => {
       localStorage.clear();
@@ -33,8 +36,8 @@ export const useLayout = () => {
     logout,
     menuOpen,
     setMenuOpen,
-    modalIsOpen,
     navigate,
-    setModalIsOpen,
+    isCliente,
+    isAdmin,
   };
 };

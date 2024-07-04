@@ -38,4 +38,12 @@ export class Cliente {
   static usuarioAtual(): Promise<AxiosResponse<string>> {
     return SiapApi.get(`${basePath}/usuario/atual`);
   }
+
+  static clienteLogado({
+    uuidUsuario,
+  }: {
+    uuidUsuario: string;
+  }): Promise<AxiosResponse<IClienteDTO>> {
+    return SiapApi.get(`${basePath}/usuario/${uuidUsuario}`);
+  }
 }

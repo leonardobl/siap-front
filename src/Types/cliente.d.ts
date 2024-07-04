@@ -18,6 +18,7 @@ export interface IClienteDTO {
   nome: string;
   telefone: string;
   uuid: string;
+  uuidUsuario: string;
 }
 
 export interface IPageClienteDTO {

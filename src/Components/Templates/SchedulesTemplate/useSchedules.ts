@@ -6,6 +6,7 @@ import { IAgendamentoDTO, IAgendamentoProps } from "../../../Types/agendamento";
 import { Agendamento } from "../../../Services/Agendamento";
 import { useContextSite } from "../../../Context/Context";
 import { toast } from "react-toastify";
+import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 
 const Title = {
   "/meus-agendamentos": "Meus Agendamentos",
@@ -22,6 +23,7 @@ export const useSchedules = () => {
   const [agendamentos, setAgendamentos] = useState<IAgendamentoDTO[]>(
     [] as IAgendamentoDTO[]
   );
+  const [usuarioLogado] = useLocalStorage("usuario");
 
   function handleFilter(data: IAgendamentoProps) {
     getAgendamentos(data);
@@ -29,7 +31,13 @@ export const useSchedules = () => {
 
   function getAgendamentos(props?: IAgendamentoProps) {
     setIsLoad(true);
-    Agendamento.get({ size: 5, ...props })
+    let params = props;
+
+    if (pathname.includes("/meus-agendamentos")) {
+      params = { ...props, idCliente: usuarioLogado?.cliente?.uuid };
+    }
+
+    Agendamento.get({ size: 5, ...params })
       .then(({ data }) => {
         setAgendamentos(data.content);
         setpagination({
