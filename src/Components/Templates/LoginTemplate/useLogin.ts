@@ -8,6 +8,7 @@ import { useContextSite } from "../../../Context/Context";
 import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import { Cliente } from "../../../Services/Cliente";
 
 export const useLogin = () => {
   const { setIsLoad } = useContextSite();
@@ -36,6 +37,24 @@ export const useLogin = () => {
           usuarioCpfCnpj: decoded.sub,
           roles: decoded.perfis,
         });
+      })
+      .then(() => {
+        Cliente.usuarioAtual()
+          .then(({ data }) => {
+            const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+            setUsuarioStorage({
+              ...usuario,
+              uuidClienteLogado: data,
+            });
+          })
+          .catch(
+            ({
+              response: {
+                data: { mensagem },
+              },
+            }) => console.log(mensagem)
+          );
 
         toast.success("Login efetuado com sucesso");
         setTimeout(() => {
