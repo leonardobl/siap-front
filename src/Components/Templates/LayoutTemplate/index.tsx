@@ -89,46 +89,51 @@ export const LayoutTemplate = ({
           </DetailsMenu>
         </S.WrapperGroupMenu>
 
-        <S.WrapperGroupMenu data-border-bottom>
-          <DetailsMenu titleheader="CADASTRO" data-openmenu={menuOpen} open>
-            <NavLink to={"/usuarios"} title="Usuários">
-              <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
-              <span>Usuários</span>
-            </NavLink>
-            <NavLink to={"/profissionais"} title="Profissionais">
-              <img
-                src="/assets/svg/icon-professional.svg"
-                alt="icone usuario"
-              />
-              <span>Profissionais</span>
-            </NavLink>
-            <NavLink to={"/servicos"} title="Serviços">
-              <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
-              <span>Serviços</span>
-            </NavLink>
-            <NavLink title="Clientes" to={"/clientes"}>
-              <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
-              <span>Clientes</span>
-            </NavLink>
-            <NavLink title="Contratos" to={"/Contratos"}>
-              <img src="/assets/svg/icon-contracts.svg" alt="icone usuario" />
-              <span>Contratos</span>
-            </NavLink>
+        {isAdmin && (
+          <S.WrapperGroupMenu data-border-bottom>
+            <DetailsMenu titleheader="CADASTRO" data-openmenu={menuOpen} open>
+              <NavLink to={"/usuarios"} title="Usuários">
+                <img src="/assets/svg/icon-users.svg" alt="icone usuario" />
+                <span>Usuários</span>
+              </NavLink>
+              <NavLink to={"/profissionais"} title="Profissionais">
+                <img
+                  src="/assets/svg/icon-professional.svg"
+                  alt="icone usuario"
+                />
+                <span>Profissionais</span>
+              </NavLink>
+              <NavLink to={"/servicos"} title="Serviços">
+                <img src="/assets/svg/icon-services.svg" alt="icone usuario" />
+                <span>Serviços</span>
+              </NavLink>
+              <NavLink title="Clientes" to={"/clientes"}>
+                <img src="/assets/svg/icon-user.svg" alt="icone usuario" />
+                <span>Clientes</span>
+              </NavLink>
+              <NavLink title="Contratos" to={"/Contratos"}>
+                <img src="/assets/svg/icon-contracts.svg" alt="icone usuario" />
+                <span>Contratos</span>
+              </NavLink>
 
-            <NavLink to={"/prestadores"} title="Prestadores">
-              <img src="/assets/svg/icon-prestadores.svg" alt="icone usuario" />
-              <span>Prestadores</span>
-            </NavLink>
+              <NavLink to={"/prestadores"} title="Prestadores">
+                <img
+                  src="/assets/svg/icon-prestadores.svg"
+                  alt="icone usuario"
+                />
+                <span>Prestadores</span>
+              </NavLink>
 
-            <NavLink to={"/tipo-prestadores"} title="Tipos de Prestadores">
-              <img
-                src="/assets/svg/icon-prestadores-plus.svg"
-                alt="icone usuario"
-              />
-              <span>Tipos de Prestadores</span>
-            </NavLink>
-          </DetailsMenu>
-        </S.WrapperGroupMenu>
+              <NavLink to={"/tipo-prestadores"} title="Tipos de Prestadores">
+                <img
+                  src="/assets/svg/icon-prestadores-plus.svg"
+                  alt="icone usuario"
+                />
+                <span>Tipos de Prestadores</span>
+              </NavLink>
+            </DetailsMenu>
+          </S.WrapperGroupMenu>
+        )}
 
         <S.WrapperGroupMenu>
           <DetailsMenu titleheader="CONTA" data-openmenu={menuOpen} open>
