@@ -4,6 +4,7 @@ import { useSheduleList } from "./useSheduleList";
 import { IAgendamentoDTO } from "../../../../Types/agendamento";
 import { removeUnderscoreAndCapitalize } from "../../../../Utils/removeUnderscoreAndCapitalize";
 import { maskCpf } from "../../../../Utils/masks";
+import { reverseToBrDate } from "../../../../Utils/dateTransform";
 
 interface IScheduleListProps extends ComponentProps<"div"> {
   Schedules: IAgendamentoDTO[];
@@ -65,11 +66,9 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                     <p>{maskCpf(i.cliente?.cpf)}</p>
                     <p>{i?.profissional?.nome}</p>
                     <p>{i.profissional?.conselho}</p>
-                    <p>{i?.diaAgendado}</p>
+                    <p>{reverseToBrDate(i?.diaAgendado)}</p>
                     <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
-                      {removeUnderscoreAndCapitalize(
-                        i.status.toLocaleLowerCase()
-                      )}
+                      {removeUnderscoreAndCapitalize(i.status)}
                     </S.StatusAgendamento>
                     <img
                       src="/assets/svg/icon-eye-open.svg"

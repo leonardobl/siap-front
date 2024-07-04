@@ -23,7 +23,7 @@ export const useSchedules = () => {
   const [agendamentos, setAgendamentos] = useState<IAgendamentoDTO[]>(
     [] as IAgendamentoDTO[]
   );
-  const [usuarioLogado] = useLocalStorage("usuario");
+  const [usuarioLogado] = useLocalStorage("dataUser");
 
   function handleFilter(data: IAgendamentoProps) {
     getAgendamentos(data);

@@ -7,6 +7,9 @@ import { MyModal } from "../../../Atoms/Modal";
 import { Button } from "../../../Atoms/Button";
 import { IAgendamentoDTO } from "../../../../Types/agendamento";
 import { removeUnderscoreAndCapitalize } from "../../../../Utils/removeUnderscoreAndCapitalize";
+import { StatusAgendamento } from "../../Lists/ScheduleList/styles";
+import { StatusAgendamentoEnum } from "../../../../Enum/statusAgendamento";
+import { reverseToBrDate } from "../../../../Utils/dateTransform";
 
 interface IFormSheduleDetailProps extends ComponentProps<"form"> {
   agendamento: IAgendamentoDTO;
@@ -25,6 +28,7 @@ export const FormSheduleDetail = ({
     setFileTemp,
     isNewSchedule,
     handleInsertFile,
+    isProfessional,
   } = useFormSheduleDetail();
 
   return (
@@ -107,7 +111,7 @@ export const FormSheduleDetail = ({
       </div>
       <div>
         <Input
-          value={agendamento.diaAgendado || "---"}
+          value={reverseToBrDate(agendamento?.diaAgendado) || "---"}
           label="Data"
           disabled
           iconright="/assets/svg/icon-clock-gray.svg"
@@ -122,22 +126,30 @@ export const FormSheduleDetail = ({
         />
       </div>
 
-      <S.WrapperButtons>
-        <S.ButtonFile
-          type="button"
-          onClick={() => {
-            if (fileTemp) return;
-            setModalOpen(true);
-          }}
-        >
-          {fileTemp && (
-            <img src="/assets/svg/icon-check-green.svg" alt="icon anexado" />
-          )}
-          {fileTemp ? "Laudo Anexado" : "Adicionar Laudo"}
-        </S.ButtonFile>
+      {isProfessional &&
+        agendamento.status === StatusAgendamentoEnum.AGENDADO && (
+          <S.WrapperButtons>
+            <S.ButtonFile
+              type="button"
+              onClick={() => {
+                if (fileTemp) return;
+                setModalOpen(true);
+              }}
+            >
+              {fileTemp && (
+                <img
+                  src="/assets/svg/icon-check-green.svg"
+                  alt="icon anexado"
+                />
+              )}
+              {fileTemp ? "Laudo Anexado" : "Adicionar Laudo"}
+            </S.ButtonFile>
 
-        {isNewSchedule && <Button variant="blue">Emitir Nota Fiscal</Button>}
-      </S.WrapperButtons>
+            {isNewSchedule && (
+              <Button variant="blue">Emitir Nota Fiscal</Button>
+            )}
+          </S.WrapperButtons>
+        )}
 
       <MyModal isOpen={modalOpen} onRequestClose={() => setModalOpen(false)}>
         <S.WrapperContentModal>
