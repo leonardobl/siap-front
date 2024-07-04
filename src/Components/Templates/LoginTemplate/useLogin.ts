@@ -13,7 +13,7 @@ import { Cliente } from "../../../Services/Cliente";
 export const useLogin = () => {
   const { setIsLoad } = useContextSite();
   const [token, setToken] = useLocalStorage("@token");
-  const [usuarioStorage, setUsuarioStorage] = useLocalStorage("usuario");
+  const [dataUser, setDataUser] = useLocalStorage("dataUser");
   const navigate = useNavigate();
 
   function submiteForm(data: IAutenticacaoForm) {
@@ -32,7 +32,7 @@ export const useLogin = () => {
       .then((token) => {
         const decoded = jwtDecode<IDecodedToken>(token);
 
-        setUsuarioStorage({
+        setDataUser({
           uuidUsuario: decoded.uuid,
           usuarioCpfCnpj: decoded.sub,
           roles: decoded.perfis,
@@ -43,10 +43,10 @@ export const useLogin = () => {
       .then((decoded) => {
         Cliente.clienteLogado({ uuidUsuario: decoded.uuid })
           .then(({ data }) => {
-            const usuario = JSON.parse(localStorage.getItem("usuario"));
+            const dataUser = JSON.parse(localStorage.getItem("dataUser"));
 
-            setUsuarioStorage({
-              ...usuario,
+            setDataUser({
+              ...dataUser,
               cliente: data,
             });
           })
@@ -59,8 +59,10 @@ export const useLogin = () => {
           );
 
         toast.success("Login efetuado com sucesso");
+
         setTimeout(() => {
-          navigate("/usuarios");
+          const dataUser = JSON.parse(localStorage.getItem("dataUser"));
+          navigate(dataUser?.cliente ? "/meus-agendamentos" : "/usuarios");
         }, 2000);
       })
       .catch(

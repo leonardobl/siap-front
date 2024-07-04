@@ -9,13 +9,16 @@ export const useLayout = () => {
   const isMobile = useMediaQuery({ maxWidth: "1020px" });
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const [token] = useLocalStorage("@token");
-  const [usuarioLogado] = useLocalStorage("usuario");
+  const [dataUser] = useLocalStorage("dataUser");
   const { pathname } = useLocation();
   const { setIsLoad } = useContextSite();
-
-  const isCliente = usuarioLogado?.roles?.includes(RolesEnum.ROLE_CLIENTE);
-  const isAdmin = usuarioLogado?.roles?.includes(RolesEnum.ROLE_ADMIN);
+  const isAdmin = [
+    RolesEnum.ROLE_ADMIN,
+    RolesEnum.ATENDENTE_PRESTADOR,
+    RolesEnum.PRESTADOR,
+    RolesEnum.PROFISSIONAL,
+  ].some((item) => dataUser?.roles?.includes(item));
+  const isCliente = dataUser?.roles?.includes(RolesEnum.ROLE_CLIENTE);
 
   function logout() {
     setIsLoad(true);
