@@ -9,6 +9,7 @@ import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Cliente } from "../../../Services/Cliente";
+import { RolesEnum } from "../../../Enum/roles";
 
 export const useLogin = () => {
   const { setIsLoad } = useContextSite();
@@ -62,7 +63,11 @@ export const useLogin = () => {
 
         setTimeout(() => {
           const dataUser = JSON.parse(localStorage.getItem("dataUser"));
-          navigate(dataUser?.cliente ? "/meus-agendamentos" : "/usuarios");
+          navigate(
+            dataUser?.roles.includes(RolesEnum.ROLE_CLIENTE)
+              ? "/meus-agendamentos"
+              : "/agendamentos"
+          );
         }, 2000);
       })
       .catch(
