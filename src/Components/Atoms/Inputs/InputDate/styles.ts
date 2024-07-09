@@ -99,7 +99,7 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
         font-size: 12px;
         font-weight: 400;
         outline: none;
-        letter-spacing: 1px;
+        /* letter-spacing: 1px; */
 
         /* &:focus {
           border: 1px solid ${(props) => props.theme.colors["blue-100"]};
