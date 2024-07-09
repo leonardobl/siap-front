@@ -41,7 +41,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                       <p>{i?.cliente?.nome}</p>
 
                       <div>
-                        <span>{i["Data de Atendimento"]}</span>
+                        <span>{reverseToBrDate(i?.diaAgendado)}</span>
                         <S.StatusAgendamento
                           statuscolor={StatusColors[i.status]}
                         >
@@ -49,11 +49,14 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                         </S.StatusAgendamento>
                       </div>
                     </S.WrapperContentMobile>
-                    <img
-                      src="/assets/svg/icon-eye-open.svg"
-                      alt="icone olho"
-                      onClick={() => handleDetail(i?.uuid)}
-                    />
+
+                    <S.WrapperIconEye>
+                      <img
+                        src="/assets/svg/icon-eye-open.svg"
+                        alt="icone olho"
+                        onClick={() => handleDetail(i?.uuid)}
+                      />
+                    </S.WrapperIconEye>
                   </S.TableMobileItem>
                 ))}
             </S.TableItems>
@@ -70,11 +73,13 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                     <S.StatusAgendamento statuscolor={StatusColors[i.status]}>
                       {removeUnderscoreAndCapitalize(i.status)}
                     </S.StatusAgendamento>
-                    <img
-                      src="/assets/svg/icon-eye-open.svg"
-                      alt="icone olho"
-                      onClick={() => handleDetail(i?.uuid)}
-                    />
+                    <S.WrapperIconEye>
+                      <img
+                        src="/assets/svg/icon-eye-open.svg"
+                        alt="icone olho"
+                        onClick={() => handleDetail(i?.uuid)}
+                      />
+                    </S.WrapperIconEye>
                   </S.TableItem>
                 ))}
             </S.TableItems>

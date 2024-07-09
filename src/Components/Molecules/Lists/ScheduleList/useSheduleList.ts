@@ -4,10 +4,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const StatusColors = {
   AGUARDANDO_PAGAMENTO: "#DEC800",
-  AGENDADO: "#0B4A89",
+  AGENDADO: "#0829D7",
   PAGO: "#0075FF",
   FINALIZADO: "#00E825",
   CANCELADO: "#F20000",
+  ABERTO: "#05B1C8",
 };
 
 export const useSheduleList = () => {

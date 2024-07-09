@@ -55,13 +55,7 @@ export const TableItem = styled.div`
   }
 
   > p + p {
-    padding-left: 1rem;
-    border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
-  }
-
-  > img {
-    padding-left: 1rem;
-    cursor: pointer;
+    padding-left: 0.5rem;
     border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
   }
 
@@ -77,6 +71,24 @@ export const TableItem = styled.div`
   }
 `;
 
+export const WrapperIconEye = styled.div`
+  padding-left: 0.5rem;
+  min-height: 20px;
+  height: 100%;
+  border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
+  display: flex;
+  align-items: center;
+
+  > img {
+    cursor: pointer;
+    display: block;
+  }
+
+  @media (min-width: ${(props) => props.theme.screens.lg}) {
+    max-height: 40%;
+  }
+`;
+
 export const StatusAgendamento = styled.span<{ statuscolor: string }>`
   color: ${(props) => props.statuscolor};
   height: fit-content;
@@ -87,7 +99,7 @@ export const StatusAgendamento = styled.span<{ statuscolor: string }>`
 
   @media (min-width: ${(props) => props.theme.screens.lg}) {
     font-size: 0.875rem;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
   }
 `;
@@ -105,7 +117,7 @@ export const TableMobileItem = styled.div`
   align-items: center;
 
   > img {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
     display: block;
     height: fit-content;
     border-left: 1px solid ${(props) => props.theme.colors["gray-200"]};
