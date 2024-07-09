@@ -51,8 +51,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test-jest": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
-    "test": "cypress run",
-    "test:open": "cypress open",
+    "test:dev:open": "cypress open --config baseUrl=http://localhost:3000",
+    "test:staging:open": "cypress open --config baseUrl=https://staging.siap.tec.br",
+    "test:staging": "cypress run --config baseUrl=https://staging.siap.tec.br",
+    "test:dev": "cypress run --config baseUrl=http://localhost:3000",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
