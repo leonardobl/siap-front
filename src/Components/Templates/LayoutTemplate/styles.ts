@@ -128,6 +128,8 @@ export const HeaderMenu = styled.div`
 
       img#logoSiap {
         display: block;
+        max-width: 160px;
+        width: 100%;
         opacity: 1;
         animation: ${fadeIn} 0.3s ease-in-out forwards;
       }

@@ -36,7 +36,7 @@ export const LayoutTemplate = ({
             />
             <img
               id="logoSiap"
-              src="/assets/img/logo-siap-blue.png"
+              src="/assets/svg/logo-siap-blue.svg"
               alt="logo siap"
             />
           </div>
