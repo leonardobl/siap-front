@@ -10,6 +10,8 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Cliente } from "../../../Services/Cliente";
 import { RolesEnum } from "../../../Enum/roles";
+import { log } from "console";
+import { decode } from "punycode";
 
 export const useLogin = () => {
   const { setIsLoad } = useContextSite();
@@ -37,6 +39,7 @@ export const useLogin = () => {
           uuidUsuario: decoded.uuid,
           usuarioCpfCnpj: decoded.sub,
           roles: decoded.perfis,
+          type: decoded.type,
         });
 
         return decoded;

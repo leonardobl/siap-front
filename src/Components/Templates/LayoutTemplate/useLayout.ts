@@ -6,7 +6,6 @@ import { useMediaQuery } from "react-responsive";
 import { RolesEnum } from "../../../Enum/roles";
 
 export const useLayout = () => {
-  const isMobile = useMediaQuery({ maxWidth: "1020px" });
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const [dataUser] = useLocalStorage("dataUser");
@@ -14,10 +13,12 @@ export const useLayout = () => {
   const { setIsLoad } = useContextSite();
   const isAdmin = [
     RolesEnum.ROLE_ADMIN,
-    RolesEnum.ATENDENTE_PRESTADOR,
-    RolesEnum.PRESTADOR,
-    RolesEnum.PROFISSIONAL,
+    RolesEnum.ROLE_GERENTE,
+    RolesEnum.ROLE_COLABORADOR,
   ].some((item) => dataUser?.roles?.includes(item));
+
+  const isProvider = dataUser?.roles?.includes(RolesEnum.PRESTADOR);
+
   const isCliente = dataUser?.roles?.includes(RolesEnum.ROLE_CLIENTE);
 
   function logout() {
@@ -42,5 +43,6 @@ export const useLayout = () => {
     navigate,
     isCliente,
     isAdmin,
+    isProvider,
   };
 };

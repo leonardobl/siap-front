@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 import { useContextSite } from "../../../Context/Context";
 import { Profissional } from "../../../Services/Profissional";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 
 export const useProfessionalRegister = () => {
   const { setIsLoad } = useContextSite();
   const navigate = useNavigate();
+  const [dataUser] = useLocalStorage("dataUser");
 
   function handleCancel() {
     navigate(-1);
@@ -16,7 +18,12 @@ export const useProfessionalRegister = () => {
   function handleSubmitProfessional(data: IProfissionalForm) {
     setIsLoad(true);
 
-    Profissional.create(data)
+    const PAYLOAD: IProfissionalForm = {
+      ...data,
+      uuidPrestador: dataUser.uuidUsuario,
+    };
+
+    Profissional.create(PAYLOAD)
       .then(({ data }) => {
         navigate(`/profissionais/cadastro/detalhe?id=${data.uuid}`);
       })

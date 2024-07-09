@@ -18,7 +18,7 @@ import { Profissional } from "../../../Services/Profissional";
 import { IPagination } from "../../../Types/pagination";
 
 export const useProviderRegister = () => {
-  const [tabIdx, setTabIdx] = useState(3);
+  const [tabIdx, setTabIdx] = useState(1);
   const [filterOpen, setFilterOpen] = useState(false);
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ maxWidth: "640px" });

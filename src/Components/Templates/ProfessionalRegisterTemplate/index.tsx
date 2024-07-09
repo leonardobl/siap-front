@@ -11,7 +11,6 @@ export const ProfessionalRegisterTemplate = () => {
     <LayoutTemplate titleHeader="Cadastro de Profissionais">
       <S.Container>
         <S.WrapperForm>
-          <h1>Cadastro de Profissionais</h1>
           <FormProfessionalRegister
             submitForm={handleSubmitProfessional}
             onCancel={handleCancel}
