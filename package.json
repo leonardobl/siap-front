@@ -52,7 +52,7 @@
     "build": "react-scripts build",
     "test-jest": "react-scripts test --transformIgnorePatterns \"node_modules/(?!@toolz/allow-react)/\" --env=jsdom",
     "test": "cypress run",
-    "cy:open": "cypress open",
+    "test:open": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
