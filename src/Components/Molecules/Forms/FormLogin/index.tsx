@@ -64,21 +64,23 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
           {errors?.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
         </div>
 
-        <div>
-          <S.ButtonEnter>Entrar</S.ButtonEnter>
-        </div>
+        <S.WrapperButtons>
+          <div>
+            <S.ButtonEnter>Entrar</S.ButtonEnter>
+          </div>
 
-        <div>
-          <S.ButtonRegister type="button" onClick={() => setOpenModal(true)}>
-            Cadastrar
-          </S.ButtonRegister>
-        </div>
+          <div>
+            <S.ButtonRegister type="button" onClick={() => setOpenModal(true)}>
+              Cadastrar
+            </S.ButtonRegister>
+          </div>
 
-        <div>
-          <Link to={"/esqueceu-senha"} id="forgot">
-            Esqueceu sua senha?
-          </Link>
-        </div>
+          <div>
+            <Link to={"/esqueceu-senha"} id="forgot">
+              Esqueceu sua senha?
+            </Link>
+          </div>
+        </S.WrapperButtons>
       </S.Grid>
 
       <ModalInfo isOpen={openModal} onAfterClose={() => setOpenModal(false)}>

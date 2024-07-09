@@ -77,6 +77,12 @@ export const Grid = styled.div`
   }
 `;
 
+export const WrapperButtons = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 0;
+`;
+
 export const ButtonEnter = styled.button`
   border-radius: 12px;
   border: none;
