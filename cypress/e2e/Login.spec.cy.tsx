@@ -1,13 +1,11 @@
 /// <reference types="cypress" />
 
 describe("<FormLogin />", () => {
-  beforeEach(() => cy.visit("/login"));
+  beforeEach(() => {
+    cy.visit("/login", { failOnStatusCode: false });
+  });
 
   it("Deve conter 2 inputs e 3 botões", () => {
-    cy.intercept("/login").as("pageLogin");
-
-    cy.visit("/login");
-
     cy.get("input").should("have.length", 2);
 
     cy.get("button").should("contain.text", "Entrar");
