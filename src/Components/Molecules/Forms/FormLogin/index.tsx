@@ -21,7 +21,7 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
     <S.Form {...rest} onSubmit={handleSubmit(submiteForm)}>
       <S.WrapperText>
         <p>
-          Agendamentos <span>simplificados</span>, <br /> pagamentos
+          Agendamentos <span>simplificados</span>, <br /> pagamentos{" "}
           <span>automatizados</span>
         </p>
       </S.WrapperText>
