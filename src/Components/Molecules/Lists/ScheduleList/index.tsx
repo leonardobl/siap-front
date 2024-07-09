@@ -30,6 +30,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
             {headers.map((i) => (
               <h3 key={i}>{i}</h3>
             ))}
+            <div></div>
           </S.Tableheader>
 
           {isMobile ? (

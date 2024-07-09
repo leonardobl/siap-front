@@ -15,7 +15,10 @@ export const Tableheader = styled.div`
     display: grid;
     border-radius: 0.75rem;
     background: ${(props) => props.theme.colors["blue-300"]};
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 0.9fr 0.1fr;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 0.9fr minmax(
+        28px,
+        0.1fr
+      );
     margin-bottom: 1rem;
 
     > h3 {
@@ -35,7 +38,7 @@ export const Tableheader = styled.div`
 export const TableItems = styled.div``;
 
 export const TableItem = styled.div`
-  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 0.9fr 0.1fr;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 0.9fr minmax(20px, 0.1fr);
   display: grid;
   padding: 0 1rem;
   align-items: center;
