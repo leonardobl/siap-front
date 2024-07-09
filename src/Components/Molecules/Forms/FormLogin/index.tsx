@@ -40,7 +40,7 @@ export const FormLogin = ({ submiteForm, ...rest }: IFormLoginProps) => {
             {...register("cpfCNPJ")}
             label="CPF/CNPJ"
             required
-            id="cpf/cnpj"
+            id="login"
             maxLength={18}
             iconleft="/assets/svg/icon-avatar.svg"
             data-error={!!errors?.cpfCNPJ?.message}
