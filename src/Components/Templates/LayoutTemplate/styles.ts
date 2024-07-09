@@ -75,6 +75,10 @@ export const HeaderMenu = styled.div`
     display: none;
   }
 
+  img#logoSiap {
+    width: 240px;
+  }
+
   &[data-open="true"] {
     img#logoSiap {
       display: block;
