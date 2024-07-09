@@ -9,13 +9,13 @@ import { useLocalStorage } from "../../../Hooks/useSessionStorage";
 export const useNewSchedule = () => {
   const navigate = useNavigate();
   const { setIsLoad } = useContextSite();
-  const [usuarioLogado] = useLocalStorage("usuario");
+  const [dataUser] = useLocalStorage("dataUser");
 
   function handleSubmit(data: IAgendamentoCadastroForm) {
     const PAYLOAD: IAgendamentoCadastroForm = {
       uuidPrestador: data.uuidPrestador,
       uuidServico: data.uuidServico,
-      uuidCliente: usuarioLogado?.cliente?.uuid,
+      uuidCliente: dataUser?.cliente?.uuid,
     };
 
     setIsLoad(true);
