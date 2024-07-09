@@ -5,14 +5,17 @@ import { FormProfessionalRegister } from "../../Molecules/Forms/FormProfessional
 import { useProfessionalRegister } from "./useProfessionalRegister";
 
 export const ProfessionalRegisterTemplate = () => {
-  const { handleSubmitProfessional } = useProfessionalRegister();
+  const { handleSubmitProfessional, handleCancel } = useProfessionalRegister();
 
   return (
     <LayoutTemplate titleHeader="Cadastro de Profissionais">
       <S.Container>
         <S.WrapperForm>
           <h1>Cadastro de Profissionais</h1>
-          <FormProfessionalRegister submitForm={handleSubmitProfessional} />
+          <FormProfessionalRegister
+            submitForm={handleSubmitProfessional}
+            onCancel={handleCancel}
+          />
         </S.WrapperForm>
       </S.Container>
     </LayoutTemplate>

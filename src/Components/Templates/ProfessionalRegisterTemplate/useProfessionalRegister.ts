@@ -9,6 +9,10 @@ export const useProfessionalRegister = () => {
   const { setIsLoad } = useContextSite();
   const navigate = useNavigate();
 
+  function handleCancel() {
+    navigate(-1);
+  }
+
   function handleSubmitProfessional(data: IProfissionalForm) {
     setIsLoad(true);
 
@@ -28,5 +32,5 @@ export const useProfessionalRegister = () => {
       });
   }
 
-  return { handleSubmitProfessional };
+  return { handleSubmitProfessional, handleCancel };
 };
