@@ -12,7 +12,7 @@ export const customSelectStyles = {
     borderRadius: "12px",
     height: "auto",
     fontSize: "12px",
-    letterSpacing: "1px",
+    // letterSpacing: "1px",
     borderColor: state.isFocused ? colors["blue-100"] : colors["gray-200"],
     boxShadow: state.isFocused ? null : null,
     // "&:hover": {

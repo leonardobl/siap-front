@@ -8,7 +8,7 @@ export const Container = styled.div<InputCustomProps>`
     height: 36px;
     border-radius: 12px;
     outline: none;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     border: 1px solid ${(props) => props.theme.colors["gray-200"]};
     transition: all 0.2s ease-in-out;
 
