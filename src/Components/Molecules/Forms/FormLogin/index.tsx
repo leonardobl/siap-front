@@ -5,7 +5,6 @@ import { IAutenticacaoForm } from "../../../../Types/autenticacao";
 import { Input } from "../../../Atoms/Inputs/Input";
 import { useFormLogin } from "./useFormLogin";
 import { Button } from "../../../Atoms/Button";
-import { MyModal } from "../../../Atoms/Modal";
 import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 import { ModalInfo } from "../../../Atoms/ModalInfo";
 
