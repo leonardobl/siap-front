@@ -58,7 +58,7 @@ export const MyInput = styled.input<InputCustomProps>`
   font-weight: 400;
   color: ${(props) => props.theme.colors["blue-300"]};
 
-  letter-spacing: 1;
+  /* letter-spacing: 1; */
 
   &[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
