@@ -4,6 +4,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   position: relative;
 
+  & div.react-select__indicator {
+    margin-right: 3px;
+  }
+
   &:has(input:focus) {
     label {
       top: -2px;

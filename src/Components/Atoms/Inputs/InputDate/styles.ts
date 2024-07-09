@@ -51,7 +51,7 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
       position: relative;
 
       svg {
-        right: 4px;
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
       }
@@ -60,11 +60,14 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
     .react-datepicker-wrapper::before {
       position: absolute;
       z-index: 1;
-      right: 40px;
+      right: 30px;
       top: 50%;
       transform: translateY(-50%);
-      content: url("/assets/svg/left-bar.svg");
+      content: "";
       display: block;
+      border-left: 1px solid rgb(204, 204, 204);
+      display: block;
+      height: 50%;
     }
 
     .react-datepicker {
@@ -91,7 +94,7 @@ export const Container = styled.div<{ $showIcon?: boolean }>`
 
         height: 36px;
         border-radius: 12px;
-        border: 0.5px solid ${(props) => props.theme.colors["gray-200"]};
+        border: 1px solid ${(props) => props.theme.colors["gray-200"]};
         background: #fff;
 
         padding: 0 16px;
