@@ -23,7 +23,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
   const { StatusColors, isMobile, handleDetail } = useSheduleList();
 
   return (
-    <S.Container {...rest} data-cy="schedules-list">
+    <S.Container {...rest} data-cy="schedules-wrapper">
       {Schedules?.length > 0 ? (
         <S.Table>
           <S.Tableheader>
@@ -62,7 +62,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
                 ))}
             </S.TableItems>
           ) : (
-            <S.TableItems>
+            <S.TableItems data-cy="schedules-list">
               {Schedules?.length > 0 &&
                 Schedules?.map((i) => (
                   <S.TableItem key={Math.random()}>

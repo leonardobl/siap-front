@@ -35,3 +35,27 @@
 //     }
 //   }
 // }
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login: typeof loginCypress;
+    }
+  }
+}
+
+export const loginCypress = ({
+  login,
+  password,
+}: {
+  login: string;
+  password: string;
+}) => {
+  cy.visit("/login", { failOnStatusCode: false });
+  cy.get(`input[id="login"]`).type(login).should("have.value", login);
+  cy.get(`input[id="senha"]`).type(password).should("have.value", password);
+
+  cy.get("form").submit();
+};
+
+Cypress.Commands.add("login", loginCypress);
