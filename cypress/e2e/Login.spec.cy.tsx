@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-const DATA_USER_ADMIN = {
+export const DATA_USER_ADMIN = {
   login: "014.269.043-04",
   password: "STARcheck#123",
 };
@@ -47,5 +47,12 @@ describe("<FormLogin />", () => {
 
     cy.get("form").submit();
     cy.url().should("include", "/meus-agendamentos");
+  });
+
+  it("Deve apresentar msg de erro ao submeter sem login/senha", () => {
+    cy.get("form").submit();
+    cy.get('[data-cy="erro-message"]')
+      .should("have.length", 2)
+      .should("be.visible");
   });
 });

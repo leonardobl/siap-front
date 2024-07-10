@@ -23,7 +23,7 @@ export const ScheduleList = ({ Schedules, ...rest }: IScheduleListProps) => {
   const { StatusColors, isMobile, handleDetail } = useSheduleList();
 
   return (
-    <S.Container {...rest}>
+    <S.Container {...rest} data-cy="schedules-list">
       {Schedules?.length > 0 ? (
         <S.Table>
           <S.Tableheader>
