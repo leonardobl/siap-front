@@ -2,7 +2,7 @@
 
 import { DATA_USER_ADMIN, DATA_USER_CLIENT } from "../../fixtures/DataUser";
 
-describe("<FormLogin />", () => {
+describe("Login", () => {
   it("Deve conter 2 inputs e 3 botões", () => {
     cy.visit("/login", { failOnStatusCode: false });
     cy.get("input").should("have.length", 2);
@@ -10,8 +10,7 @@ describe("<FormLogin />", () => {
     cy.get("button").should("contain.text", "Entrar");
     cy.get("button").should("contain.text", "Cadastrar");
     cy.get("a#forgot")
-      .should("be.visible")
-      .and("contain", "Esqueceu sua senha?");
+    .should("contain", "Esqueceu sua senha?");
   });
 
   it("Deve submeter login como admin e direciona '/agendamentos'", () => {

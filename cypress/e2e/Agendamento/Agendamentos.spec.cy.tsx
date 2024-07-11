@@ -2,12 +2,15 @@
 
 import { DATA_USER_ADMIN } from "../../fixtures/DataUser";
 
-describe("<ScheduleList />", () => {
-  it("Deve exibir as listagem de agendamentos", () => {
+describe("Agendamentos", () => {
+  beforeEach(() => {
     cy.login({
       login: DATA_USER_ADMIN.login,
       password: DATA_USER_ADMIN.password,
     });
+  });
+
+  it("Deve exibir as listagem de agendamentos", () => {
     cy.get('[data-cy="schedules-wrapper"]').should("be.visible");
 
     cy.intercept({
@@ -22,5 +25,10 @@ describe("<ScheduleList />", () => {
         .children()
         .should("have.length", body.content.length);
     });
+  });
+
+  it("Deve exibir o form ao clicar no botão filtro", () => {
+    cy.get("button").contains("Filtro").click();
+    cy.get('[data-cy="filter-schedule"]').should("be.visible");
   });
 });
