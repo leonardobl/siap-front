@@ -11,12 +11,13 @@ describe("Servicos", () => {
   );
 
   it("Deve ser direcionado para a listagem de serviços", () => {
-    cy.get('a[title="Serviços"]').click();
+    cy.goToByTitle("Serviços");
     cy.url().should("contain", "servicos");
   });
 
   it("Deve exibir uma listagem com os servicos", () => {
-    cy.get('a[title="Serviços"]').click();
+    cy.goToByTitle("Serviços");
+
     cy.get('div[data-cy="services-wrapper"]').should("be.visible");
 
     cy.intercept({
@@ -29,5 +30,27 @@ describe("Servicos", () => {
         .children()
         .should("have.length", body.content.length);
     });
+  });
+
+  it("Deve exibir o form do filtro ao clicar no botão do filtro", () => {
+    cy.goToByTitle("Serviços");
+    cy.get("button").contains("Filtro").click();
+    cy.get('form[data-cy="filter-services"]').should("be.visible");
+  });
+
+  it("Deve cadastrar o serviço com sucesso", () => {
+    cy.goToByTitle("Serviços");
+    cy.get("button").contains("Cadastrar").click();
+    cy.get("form[data-cy='form-service-register']").should("be.visible");
+
+    const inputValue = `Teste - ${Math.random()}`;
+
+    cy.get("input#nome").type(inputValue);
+
+    cy.get("button").contains("Salvar").click();
+
+    cy.get('div[data-cy="services-list"]')
+      .children()
+      .should("contain.text", inputValue);
   });
 });

@@ -17,7 +17,11 @@ export const FormServiceRegister = ({
   const { handleSubmit, register, reset, errors } = useFormServiceRegister();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-service-register"
+    >
       <div>
         <Input
           {...register("nome")}

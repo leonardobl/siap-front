@@ -29,6 +29,7 @@
 declare global {
   namespace Cypress {
     interface Chainable {
+      goToByTitle(title: string): Chainable;
       login({
         login,
         password,
@@ -50,5 +51,9 @@ Cypress.Commands.add(
     cy.get("form").submit();
   }
 );
+
+Cypress.Commands.add("goToByTitle", (title: string) => {
+  cy.get(`a[title="${title}"]`).click();
+});
 
 export {};
