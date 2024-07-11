@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { DATA_USER_ADMIN } from "../../fixtures/dataUser";
+import { DATA_USER_ADMIN } from "../Login/Login.spec.cy";
 
 describe("<ScheduleList />", () => {
   it("Deve exibir as listagem de agendamentos", () => {
