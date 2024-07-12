@@ -14,13 +14,13 @@ export const ClientList = ({ clients, ...rest }: IClientListProps) => {
   return (
     <>
       {clients?.length > 0 ? (
-        <S.Table {...rest}>
+        <S.Table {...rest} data-cy="clients-wrapper">
           <S.TableHeader>
             <h2>Nome Completo</h2>
             <h2>CPF</h2>
             <span></span>
           </S.TableHeader>
-          <S.TableItems>
+          <S.TableItems data-cy="clients-list">
             {clients?.length > 0 &&
               clients.map((i) => (
                 <S.TableItem key={Math.random()}>
