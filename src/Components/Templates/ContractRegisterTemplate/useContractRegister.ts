@@ -15,6 +15,7 @@ export const useContractRegister = () => {
 
   function handleSubmit(data: IContratoCompletoFormRHF) {
     setIsLoad(true);
+
     const PAYLOAD: IContratoForm = {
       dataFinal: data.dataFinal,
       dataInicial: data.dataInicial,

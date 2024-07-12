@@ -15,8 +15,8 @@ export const InputMoney = (props: IInputMoneyProps) => {
         required={false}
         placeholder={props.placeholder || ""}
         intlConfig={{ locale: "pt-BR", currency: "BRL" }}
-        fixedDecimalLength={2}
-        decimalScale={2}
+        // fixedDecimalLength={2}
+        // decimalScale={2}
       />
       {props?.label && (
         <S.MyLabel htmlFor={props?.name}>

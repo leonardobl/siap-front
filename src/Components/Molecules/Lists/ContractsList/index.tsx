@@ -17,7 +17,7 @@ export const ContractsList = ({ contracts, ...rest }: IContractsListProps) => {
   return (
     <>
       {contracts?.length > 0 ? (
-        <S.Table {...rest}>
+        <S.Table {...rest} data-cy="contracts-wrapper">
           <S.TableHeader>
             <h2>Prestador</h2>
             <h2>CNPJ</h2>
@@ -43,7 +43,7 @@ export const ContractsList = ({ contracts, ...rest }: IContractsListProps) => {
               ))}
             </S.TableMobileItens>
           ) : (
-            <S.TableItens>
+            <S.TableItens data-cy="contracts-list">
               {contracts?.map((i) => (
                 <S.TableItem key={Math.random()}>
                   <p>{i?.prestador?.nome}</p>

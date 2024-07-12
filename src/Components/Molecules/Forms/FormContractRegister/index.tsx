@@ -11,6 +11,7 @@ import { ErrorMessage } from "../../../Atoms/ErrorMessage";
 import { ISelectOptions } from "../../../../Types/inputs";
 import { SimpleSelect } from "../../../Atoms/Selects/SimpleSelect";
 import { InputMoney } from "../../../Atoms/Inputs/InputMoney";
+import dayjs from "dayjs";
 
 interface IFormContractRegisterProps extends ComponentProps<"form"> {
   submitForm: (data: IContratoCompletoFormRHF) => void;
@@ -42,7 +43,11 @@ export const FormContractRegister = ({
   } = useFormContractRegister();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-contract"
+    >
       <S.FormContent>
         <div>
           <Controller
@@ -52,6 +57,7 @@ export const FormContractRegister = ({
               <AsyncSimpleSelect
                 customError={!!errors.uuidPrestador}
                 label="Prestador"
+                inputId="prestador"
                 value={prestador}
                 loadOptions={getPrestadores}
                 onChange={(e) => {
@@ -80,7 +86,7 @@ export const FormContractRegister = ({
                 selected={dataIni}
                 onChange={(e) => {
                   setDataIni(e);
-                  onChange(reverseToIsoDate(e?.toLocaleDateString()) || "");
+                  onChange(dayjs(e).format("YYYY-MM-DD") || "");
                 }}
               />
             )}
@@ -103,7 +109,7 @@ export const FormContractRegister = ({
                 selected={dataFim}
                 onChange={(e) => {
                   setDataFim(e);
-                  onChange(reverseToIsoDate(e?.toLocaleDateString()) || "");
+                  onChange(dayjs(e).format("YYYY-MM-DD") || "");
                 }}
               />
             )}
@@ -124,7 +130,7 @@ export const FormContractRegister = ({
                 customError={!!errors?.servico}
                 value={servicosOptions.find((i) => i.value === value) || null}
                 label="Serviço"
-                id="servico"
+                inputId="servico"
                 onChange={(e: ISelectOptions) => {
                   onChange(e?.value);
                 }}
