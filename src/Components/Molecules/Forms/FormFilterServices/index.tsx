@@ -18,7 +18,11 @@ export const FormFilterServices = ({
   const { handleSubmit, register, reset } = useFormFilterServices();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="filter-services"
+    >
       <div>
         <Input {...register("nome")} label="Serviços" id="servicos" />
       </div>

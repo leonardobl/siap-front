@@ -37,7 +37,11 @@ export const FormFilterSchedules = ({
   } = useFormFilterSchedules();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="filter-schedule"
+    >
       <div>
         <Input
           {...register(

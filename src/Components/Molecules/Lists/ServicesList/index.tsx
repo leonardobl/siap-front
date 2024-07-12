@@ -11,14 +11,14 @@ export const ServicesList = ({ servicesList, ...rest }: IServicesListProps) => {
   const { isMobile } = useServicesList();
 
   return (
-    <S.Table {...rest}>
+    <S.Table {...rest} data-cy="services-wrapper">
       {servicesList?.length > 0 ? (
         <>
           <S.TableHeader>
             <h2>Serviços</h2>
           </S.TableHeader>
 
-          <S.TableItens>
+          <S.TableItens data-cy="services-list">
             {servicesList.map((i) => (
               <S.TableItem key={Math.random()}>
                 <p>{i.nome}</p>
