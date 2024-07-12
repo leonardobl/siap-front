@@ -13,7 +13,11 @@ export const FormFilterClient = ({
 }: IFormFilterClientProps) => {
   const { register, handleSubmit, errors, reset } = useFormFilterClient();
   return (
-    <S.FormFilter {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.FormFilter
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="filter-clients"
+    >
       <div>
         <Input id="nome" label="Nome Completo" {...register("nome")} />
       </div>
