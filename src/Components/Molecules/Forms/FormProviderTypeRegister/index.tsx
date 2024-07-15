@@ -20,7 +20,11 @@ export const FormProviderTypeRegister = ({
     useFormProviderTypeRegister();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-provider-type"
+    >
       <div>
         <Input
           {...register("nome")}

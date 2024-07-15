@@ -31,7 +31,7 @@ describe("Tipo Prestador", () => {
     });
   });
 
-  it.only("Deve filtrar com sucesso", async () => {
+  it("Deve filtrar com sucesso", async () => {
     cy.intercept({
       method: "GET",
       url: "https://agendamentos-api-staging.siap.tec.br:8443/tipo-prestador/listar*",
@@ -52,5 +52,25 @@ describe("Tipo Prestador", () => {
         .should("have.length", body.content.length)
         .and("contain", body.content[0].nome);
     });
+  });
+
+  it.only("Deve cadastrar com sucesso", () => {
+    cy.intercept({
+      method: "POST",
+      url: "https://agendamentos-api-staging.siap.tec.br:8443/tipo-prestador/cadastrar",
+    }).as("postProvider");
+    const TipoPrestador = `Tipo - ${new Date().getTime()}`;
+
+    cy.get("button").contains("Cadastrar").click();
+
+    cy.get("form[data-cy='form-provider-type']").should("be.visible");
+
+    cy.get("input[id='nome']").type(TipoPrestador);
+
+    cy.get("button").contains("Salvar").click();
+
+    cy.wait("@postProvider")
+      .then(({ response }) => response.statusCode)
+      .should("eq", 201);
   });
 });
