@@ -24,6 +24,7 @@ export const TabItem = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default;
 
   background: #f0f0f0;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.16) inset;

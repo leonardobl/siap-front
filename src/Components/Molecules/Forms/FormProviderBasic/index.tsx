@@ -29,7 +29,11 @@ export const FormProviderBasic = ({
   } = useFormProviderBasic();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-provider-basic"
+    >
       <div>
         <Input
           {...register("nome")}

@@ -1,5 +1,6 @@
 ///<reference types="cypress" />
 
+import { DATA_PROVIDER } from "../../fixtures/DataProvider";
 import { DATA_USER_ADMIN } from "../../fixtures/DataUser";
 
 describe("Prestadores", () => {
@@ -56,5 +57,26 @@ describe("Prestadores", () => {
         .children()
         .should("have.length", body.content.length);
     });
+  });
+
+  it("Deve direcionar para a tela de cadastro", () => {
+    cy.get("button").contains("Cadastrar").click();
+
+    cy.location("pathname").should("eq", "/prestadores/cadastro");
+  });
+
+  it.only("Deve cadastrar um dados basicos com sucesso", () => {
+    cy.get("button").contains("Cadastrar").click();
+    cy.get("form[data-cy='form-provider-basic']").should("be.visible");
+
+    cy.get("input[id='Nome']").type(DATA_PROVIDER.nome);
+    cy.get("input[id='social']").type(DATA_PROVIDER.razao);
+    cy.get("input[id='CNPJ']").type(DATA_PROVIDER.cnpj);
+    cy.get("input[id='municipal']").type(DATA_PROVIDER.incricaoMunicipal);
+    cy.get("input[id='estadual']").type(DATA_PROVIDER.incricaoEstadual);
+    cy.get("input[id='email']").type(DATA_PROVIDER.email);
+    cy.get("[id='tipo']").type("{enter}");
+    cy.get("[id='telefone']").type(DATA_PROVIDER.telefone);
+    cy.get("[id='cep']").type(DATA_PROVIDER.cep).blur();
   });
 });
