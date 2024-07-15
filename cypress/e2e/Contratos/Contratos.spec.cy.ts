@@ -50,7 +50,7 @@ describe("Contratos", () => {
     });
   });
 
-  it.only("Deve cadastrar um contrato com sucesso", () => {
+  it("Deve cadastrar um contrato com sucesso", () => {
     cy.get("button").contains("Cadastrar").click();
 
     cy.location("pathname").should("contain", "/contratos/cadastro");

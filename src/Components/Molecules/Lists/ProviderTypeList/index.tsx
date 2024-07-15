@@ -13,12 +13,12 @@ export const ProviderTypeList = ({
   return (
     <>
       {providersTypes?.length > 0 ? (
-        <S.Table {...rest}>
+        <S.Table {...rest} data-cy="providers-types-wrapper">
           <S.TableHeader>
             <h2>Tipo de Prestador</h2>
           </S.TableHeader>
 
-          <S.TableItens>
+          <S.TableItens data-cy="providers-types-list">
             {providersTypes?.map((i) => (
               <S.TableItem key={Math.random()}>
                 <p>{i?.nome}</p>
