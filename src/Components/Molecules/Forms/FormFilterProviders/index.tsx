@@ -30,9 +30,13 @@ export const FormFilterProviders = ({
   } = useFormFilterProviders();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="providers-filter"
+    >
       <div>
-        <Input {...register("nome")} id="Nome" label="Nome" />
+        <Input {...register("nome")} id="nome" label="Nome" />
       </div>
       <div>
         <Input

@@ -17,7 +17,7 @@ export const ProvidersList = ({
   return (
     <>
       {prestadores?.length > 0 ? (
-        <S.Table {...rest}>
+        <S.Table {...rest} data-cy="providers-wrapper">
           <S.TableHeader>
             <h2>Nome</h2>
             <h2>CNPJ</h2>
@@ -45,7 +45,7 @@ export const ProvidersList = ({
               ))}
             </S.TableItensMobile>
           ) : (
-            <S.TableItens>
+            <S.TableItens data-cy="providers-list">
               {prestadores.map((i) => (
                 <S.TableItem key={`${i.uuid}`}>
                   <p>{i.nome}</p>
