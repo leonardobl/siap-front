@@ -78,5 +78,14 @@ describe("Prestadores", () => {
     cy.get("[id='tipo']").type("{enter}");
     cy.get("[id='telefone']").type(DATA_PROVIDER.telefone);
     cy.get("[id='cep']").type(DATA_PROVIDER.cep).blur();
+
+    cy.intercept({
+      method: "GET",
+      url: "https://viacep.com.br/ws/64049-700/json",
+    }).as("getEndereco");
+
+    cy.wait("@getEndereco").then(() => {
+      cy.get("button").contains("Avançar");
+    });
   });
 });
