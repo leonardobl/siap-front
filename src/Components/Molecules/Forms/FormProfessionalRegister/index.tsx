@@ -29,7 +29,11 @@ export const FormProfessionalRegister = ({
   } = useFormProfessionalRegister();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-profissional-register"
+    >
       <div>
         <Input
           {...register("nome")}
@@ -132,7 +136,9 @@ export const FormProfessionalRegister = ({
             Cancelar
           </Button>
         )}
-        <Button variant="blue">Salvar</Button>
+        <Button variant="blue" data-cy="salvar-profissional">
+          Salvar
+        </Button>
       </div>
     </S.Form>
   );

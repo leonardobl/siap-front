@@ -1,4 +1,5 @@
 import { geradorDeCnpj } from "../../src/Utils/geradorDeCnpj";
+import { geradorDeCpf } from "../../src/Utils/geradorDeCpf";
 import { gerarInscricaoMunicipal } from "../../src/Utils/gerarIncricaoMunicipal";
 import { gerarInscricaoEstadual } from "../../src/Utils/gerarInscricaoEstadual";
 
@@ -13,4 +14,12 @@ export const DATA_PROVIDER = {
   email: `${timestamp}@teste.com.br`,
   telefone: "86999999999",
   cep: "64049700",
+
+  profissional: {
+    nome: `Professional ${timestamp}`,
+    cpf: geradorDeCpf(),
+    numConselho: `${timestamp}`,
+    email: `${timestamp}@empresa.com`,
+    telefone: "86999999999",
+  },
 };

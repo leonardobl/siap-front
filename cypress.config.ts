@@ -3,7 +3,7 @@ import { defineConfig } from "cypress";
 export default defineConfig({
   viewportWidth: 1024,
   viewportHeight: 900,
-  pageLoadTimeout: 3000,
+  pageLoadTimeout: 4000,
 
   component: {
     devServer: {

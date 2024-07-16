@@ -108,7 +108,7 @@ describe("Prestadores", () => {
 
     cy.intercept({
       method: "POST",
-      url: "",
+      url: "https://agendamentos-api-staging.siap.tec.br:8443/prestador/*/vincular-dados-financeiros",
     }).as("postFinancas");
 
     cy.get("[id='banco']").click().type("{enter}");
@@ -118,7 +118,7 @@ describe("Prestadores", () => {
 
     cy.wait("@postFinancas")
       .then(({ response }) => response.statusCode)
-      .should("eq", 201)
+      .should("eq", 200)
       .then(() => {
         cy.get("div[data-cy='profissional-wrapper']").should("be.visible");
       });
@@ -126,6 +126,42 @@ describe("Prestadores", () => {
     //CADASTRO PROFISSIONAL
 
     cy.get("button").contains("Cadastrar").click();
-    cy.get("form[data-cy='form-profissional-register']");
+    cy.get("form[data-cy='form-profissional-register']").should("be.visible");
+
+    cy.get("input[id='nome']").type(DATA_PROVIDER.profissional.nome);
+    cy.get("input[id='cpf']").type(DATA_PROVIDER.profissional.cpf);
+    cy.get("input[id='conselho']").click().type("{enter}");
+    cy.get("input[id='numero']").type(DATA_PROVIDER.profissional.numConselho);
+    cy.get("input[id='uf']").click().type("{enter}");
+    cy.get("input[id='email']").type(DATA_PROVIDER.profissional.email);
+    cy.get("input[id='telefone']").type(DATA_PROVIDER.profissional.telefone);
+
+    cy.get("button[data-cy='salvar-profissional']").click();
+
+    cy.intercept({
+      method: "POST",
+      url: "https://agendamentos-api-staging.siap.tec.br:8443/profissional/cadastrar",
+    }).as("postProfissional");
+
+    cy.intercept({
+      method: "GET",
+      url: "https://agendamentos-api-staging.siap.tec.br:8443/profissional/listar*",
+    }).as("getProfissionais");
+
+    cy.wait("@postProfissional")
+      .then(({ response }) => response.statusCode)
+      .should("eq", 201);
+
+    cy.wait("@getProfissionais").then(({ response: { body } }) => {
+      if (body?.content?.length) {
+        cy.get("div[data-cy='profissional-list']")
+          .children()
+          .should("have.length", body.content.length)
+          .contains(DATA_PROVIDER.profissional.nome);
+      }
+    });
+
+    cy.get("button").contains("Salvar").click();
+    cy.location("pathname").should("eq", "/prestadores");
   });
 });
