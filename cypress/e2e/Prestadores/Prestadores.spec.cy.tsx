@@ -120,7 +120,12 @@ describe("Prestadores", () => {
       .then(({ response }) => response.statusCode)
       .should("eq", 201)
       .then(() => {
-        cy.get("form[data-cy='form-profissional']").should("be.visible");
+        cy.get("div[data-cy='profissional-wrapper']").should("be.visible");
       });
+
+    //CADASTRO PROFISSIONAL
+
+    cy.get("button").contains("Cadastrar").click();
+    cy.get("form[data-cy='form-profissional-register']");
   });
 });
