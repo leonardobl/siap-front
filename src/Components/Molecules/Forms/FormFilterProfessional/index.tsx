@@ -27,7 +27,11 @@ export const FormFilterProfessional = ({
   } = useFormFilterProfessional();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-filter-profissional"
+    >
       <div>
         <Input {...register("nome")} label="Nome" id="nome" />
       </div>

@@ -20,7 +20,11 @@ export const FormFinanceRegister = ({
     useFormFinanceRegister();
 
   return (
-    <S.Form {...rest} onSubmit={handleSubmit(submitForm)}>
+    <S.Form
+      {...rest}
+      onSubmit={handleSubmit(submitForm)}
+      data-cy="form-finance"
+    >
       <div>
         <Controller
           control={control}

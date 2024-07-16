@@ -66,6 +66,8 @@ describe("Prestadores", () => {
   });
 
   it.only("Deve cadastrar um dados basicos com sucesso", () => {
+    //CADASTRO BASICO
+
     cy.get("button").contains("Cadastrar").click();
     cy.get("form[data-cy='form-provider-basic']").should("be.visible");
 
@@ -84,8 +86,41 @@ describe("Prestadores", () => {
       url: "https://viacep.com.br/ws/64049-700/json",
     }).as("getEndereco");
 
+    cy.intercept({
+      method: "POST",
+      url: "https://agendamentos-api-staging.siap.tec.br:8443/prestador/cadastrar",
+    }).as("postPrestador");
+
     cy.wait("@getEndereco").then(() => {
-      cy.get("button").contains("Avançar");
+      cy.wait(300).then(() => {
+        cy.get("button").contains("Avançar").click();
+      });
     });
+
+    cy.wait("@postPrestador")
+      .then(({ response }) => response.statusCode)
+      .should("eq", 201)
+      .then(() => {
+        cy.get("form[data-cy='form-finance']").should("be.visible");
+      });
+
+    //CADASTRO FINANCEIRO
+
+    cy.intercept({
+      method: "POST",
+      url: "",
+    }).as("postFinancas");
+
+    cy.get("[id='banco']").click().type("{enter}");
+    cy.get("input[id='agencia']").type("123");
+    cy.get("input[id='conta']").type("456");
+    cy.get("button").contains("Avançar").click();
+
+    cy.wait("@postFinancas")
+      .then(({ response }) => response.statusCode)
+      .should("eq", 201)
+      .then(() => {
+        cy.get("form[data-cy='form-profissional']").should("be.visible");
+      });
   });
 });

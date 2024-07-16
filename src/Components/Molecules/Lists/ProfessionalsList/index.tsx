@@ -14,7 +14,7 @@ export const ProfessionalsList = ({
   const { isMobile, navigate } = useProfessionalsList();
 
   return (
-    <S.Table {...rest}>
+    <S.Table {...rest} data-cy="profissional-wrapper">
       <S.TableHeader>
         <h2>Nome</h2>
         <h2>Conselho</h2>
@@ -43,7 +43,7 @@ export const ProfessionalsList = ({
           ))}
         </S.TableMobileItens>
       ) : (
-        <S.TableItens>
+        <S.TableItens data-cy="profissional-list">
           {professionals?.map((i) => (
             <S.TableItem key={Math.random()}>
               <p>{i.nome}</p>
